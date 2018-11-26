@@ -88,22 +88,28 @@ function categoryDropdown($categories, $categoryID, $categoryName, $categoryColo
     echo "<tr><td><b>Category</b></td><td class='word-break'>";
 ?>
     <form action="statement.php?page=<?php if(isset($_GET["page"])){ echo $_GET["page"]; } else { echo "1"; } ?>" method="post">
-      <select name="changeCategory">
+        <div class="form-group row">
+            <div class="col-10">
+                <select name="changeCategory" class="form-control">
 <?php
-    foreach ($categories as $key => $value){
-        if($value == $categoryID){
-            //Set the current category as preselected
-            echo '<option value="'.$value.'" selected>'.$key.'</option>';
-        }
-        else{
-            echo '<option value="'.$value.'">'.$key.'</option>';
-        }
-        
-    }
+                foreach ($categories as $key => $value){
+                    if($value == $categoryID){
+                        //Set the current category as preselected
+                        echo '<option value="'.$value.'" selected>'.$key.'</option>';
+                    }
+                    else{
+                        echo '<option value="'.$value.'">'.$key.'</option>';
+                    }
+
+                }
 ?>
-      </select>
-        <input type="hidden" name="paymtPurpose" value="<?php echo $purpose; ?>">
-      <input type="submit">
+                </select>
+            </div>
+            <div class="col-2">
+                <input type="hidden" name="paymtPurpose" value="<?php echo $purpose; ?>">
+                <input type="submit" class="btn btn-primary form-control">
+            </div>
+        </div>
     </form>
  <?php           
     echo "</td></tr>";
