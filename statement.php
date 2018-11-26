@@ -19,7 +19,6 @@ Tag transactions.
 ********************/
 //TODO:
 //Search function
-//Add/change/remove categories
 require_once('inc/statement/listTransactions.php');
 
 getPagedisplay($conn, false, $page, $pageback, $pageforward);

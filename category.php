@@ -24,6 +24,15 @@ echo "<br>";
 
 
 /********************
+Form to change categories
+********************/
+
+require_once('inc/category/changeCategory.php');
+echo "<br><br>";
+
+
+
+/********************
 Form to delete categories
 ********************/
 
