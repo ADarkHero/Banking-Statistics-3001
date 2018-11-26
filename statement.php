@@ -2,17 +2,23 @@
 
 require_once ('inc/template.php');
 
+
+
+/********************
+Shows a menu to switch pages
+********************/
 require_once ('inc/statement/pageFunctions.php');
 getPagedisplay(true, $page, $pageback, $pageforward);
+
+
+
 
 /********************
 List all transactions
 Tag transactions.
 ********************/
-
 //TODO:
 //Search function
-//Multiple pages
 //Add/change/remove categories
 require_once('inc/statement/listTransactions.php');
 

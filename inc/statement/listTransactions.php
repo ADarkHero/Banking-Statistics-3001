@@ -1,4 +1,10 @@
 <?php
+$categories = getCategoryList($conn);
+
+ if(isset($_POST["changeCategory"])){
+     changeCategory($conn, $_POST["changeCategory"]);
+ }
+
 if(isset($_GET["page"])){
     $currentpage = $_GET["page"];
 }
@@ -52,10 +58,8 @@ if ($result->num_rows > 0) {
                     echo "<tr><td><b>Name</b></td><td class='word-break'>".$row["Name1"]." ".$row["Name2"]."</td></tr>";
                     echo "<tr><td><b>Payment Purpose (Long)</b></td><td class='word-break'>".$purpose."</td></tr>";
                     echo "<tr><td><b>Payment Purpose</b></td><td class='word-break'>".$purpose_text."</td></tr>";
-                    echo "<tr><td><b>Value</b></td><td class='word-break'>".$row["Value"]." €</td></tr>";                    
-                    echo "<tr><td><b>Category</b></td><td class='word-break'>"
-                    . "<span style='color: ".$row["CategoryColor"]."'>".$row["CategoryName"]."</span>"
-                    . "</td></tr>";                    
+                    echo "<tr><td><b>Value</b></td><td class='word-break'>".$row["Value"]." €</td></tr>"; 
+                    categoryDropdown($categories, $row["CategoryID"], $row["CategoryName"], $row["CategoryColor"]);                   
 ?>
                         </tbody>     
                     </table>
@@ -69,4 +73,56 @@ if ($result->num_rows > 0) {
 } else {
     echo "Error while fetching your last paycheck.";
 }
+
+
+//Generates a dropdown, so the user can choose a category
+function categoryDropdown($categories, $categoryID, $categoryName, $categoryColor){
+    echo "<tr><td><b>Category</b></td><td class='word-break'>";
+?>
+    <form action="statement.php?page=<?php if(isset($_GET["page"])){ echo $_GET["page"]; } else { echo "1"; } ?>" method="post">
+      <select name="changeCategory">
+<?php
+    foreach ($categories as $key => $value){
+        if($value == $categoryID){
+            //Set the current category as preselected
+            echo '<option value="'.$value.'" selected>'.$key.'</option>';
+        }
+        else{
+            echo '<option value="'.$value.'">'.$key.'</option>';
+        }
+        
+    }
+?>
+      </select>
+      <input type="submit">
+    </form>
+ <?php           
+    echo "</td></tr>";
+}
+
+//If the category was changed, write it into the database
+function changeCategory($conn, $newCategory){
+    //TODO
+    echo $newCategory;
+}
+
+//Returns all categories in an array
+function getCategoryList($conn){
+    $categories = array();
+
+    $sql = "SELECT * FROM categories";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+                    $categories[$row["CategoryName"]]=$row["CategoryID"];
+        }
+    } else {
+        echo "Error while fetching your last paycheck.";
+    }
+    
+    return $categories;
+}
+
 ?>
