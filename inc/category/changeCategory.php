@@ -1,11 +1,19 @@
 <b>Change category</b>:
+
 <form action="category.php" method="post">
-  Category name:
-  <input type="text" name="categoryChangeName"><br>
-  Category color:
-  <input type="color" name="categoryChangeColor"><br>
-  <input type="submit" value="Submit">
+    <div class="form-group row">
+        <label for="categoryChangeName" class="col-2 col-form-label">Category name</label>
+        <div class="col-10"><input type="text" class="form-control" name="categoryChangeName"></div>
+    </div>
+    <div class="form-group row">
+        <label for="categoryChangeColor" class="col-2 col-form-label">Category color</label>
+        <div class="col-10"><input type="color" class="form-control" name="categoryChangeColor"></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Submit"></div>
+    </div>
 </form>
+
 <?php
 	
     if(isSet($_POST["categoryChangeName"]) && isSet($_POST["categoryChangeColor"])){

@@ -1,10 +1,16 @@
 <b>Add new category</b>:
 <form action="category.php" method="post">
-  Category name:
-  <input type="text" name="categoryName"><br>
-  Category color:
-  <input type="color" name="categoryColor"><br>
-  <input type="submit" value="Submit">
+    <div class="form-group row">
+        <label for="categoryName" class="col-2 col-form-label">Category name</label>
+        <div class="col-10"><input type="text" class="form-control" name="categoryName"></div>
+    </div>
+    <div class="form-group row">
+        <label for="categoryName" class="col-2 col-form-label">Category name</label>
+        <div class="col-10"><input type="color" class="form-control" name="categoryColor"></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Submit"></div>
+    </div>
 </form>
 
 <?php

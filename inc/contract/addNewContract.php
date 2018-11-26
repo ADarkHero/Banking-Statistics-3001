@@ -1,12 +1,18 @@
 <b>Add new contract</b>:
-<form action="contract.php" method="post">
-  Contract name:
-  <input type="text" name="contractName"><br>
-  Payment purpose:
-  <input type="text" name="contractValue"><br>
-  <input type="submit" value="Submit">
-</form>
 
+<form action="contract.php" method="post">
+    <div class="form-group row">
+        <label for="contractName" class="col-2 col-form-label">Contract name</label>
+        <div class="col-10"><input type="text" class="form-control" name="contractName"></div>
+    </div>
+    <div class="form-group row">
+        <label for="contractValue" class="col-2 col-form-label">Payment purpose</label>
+        <div class="col-10"><input type="text" class="form-control" name="contractValue"></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Submit"></div>
+    </div>
+</form>
 <?php
 	
 	if(isSet($_POST["contractName"]) & isSet($_POST["contractValue"])){
