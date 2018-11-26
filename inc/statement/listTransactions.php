@@ -7,8 +7,9 @@ else{
 }
 $offset = $pagesize * ($currentpage-1);
 
-$sql = "SELECT EntryDate, AcctNo, BankCode, Name1, Name2, PaymtPurpose, Value"
-        . " FROM statements ORDER BY EntryDate DESC LIMIT ". $pagesize ." OFFSET " . $offset;
+$sql = "SELECT EntryDate, AcctNo, BankCode, Name1, Name2, PaymtPurpose, Value, statements.CategoryID AS CategoryID, CategoryName, CategoryColor"
+        . " FROM statements LEFT JOIN categories ON statements.CategoryID = categories.CategoryID "
+        . "ORDER BY EntryDate DESC LIMIT ". $pagesize ." OFFSET " . $offset;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -29,7 +30,7 @@ if ($result->num_rows > 0) {
                 <h5 class="mb-0">
                   <button class="btn btn-link collapsed full-size-button" data-toggle="collapse" data-target="#collapse<?php echo $i; ?>" aria-expanded="false" aria-controls="collapse<?php echo $i; ?>">
                       <div class="container">
-                        <div class="row">
+                        <div class="row" style="color: <?php echo $row["CategoryColor"]; ?>">
                             <div class="col-2"><?php echo $row["EntryDate"]; ?></div>   
                             <div class="col-8 cut"><?php echo $purpose_text; ?></div> 
                             <div class="col-2 r-align"><?php echo $row["Value"]; ?> €</div> 
@@ -52,9 +53,9 @@ if ($result->num_rows > 0) {
                     echo "<tr><td><b>Payment Purpose (Long)</b></td><td class='word-break'>".$purpose."</td></tr>";
                     echo "<tr><td><b>Payment Purpose</b></td><td class='word-break'>".$purpose_text."</td></tr>";
                     echo "<tr><td><b>Value</b></td><td class='word-break'>".$row["Value"]." €</td></tr>";                    
-                    echo "<tr><td><b>Category</b></td><td class='word-break'>";
-                    echo "//TODO";
-                    echo "</td></tr>";                    
+                    echo "<tr><td><b>Category</b></td><td class='word-break'>"
+                    . "<span style='color: ".$row["CategoryColor"]."'>".$row["CategoryName"]."</span>"
+                    . "</td></tr>";                    
 ?>
                         </tbody>     
                     </table>
