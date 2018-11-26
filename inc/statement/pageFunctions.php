@@ -18,7 +18,12 @@ else{
 }
 
 //There is a maximum amount of pages
-$sql = 'SELECT EntryDate FROM statements;';
+$sql = 'SELECT EntryDate FROM statements';
+if(isset($_GET["search"])){
+    $s = $_GET["search"];
+    $sql .= " WHERE EntryDate LIKE '%".$s."%' OR AcctNo LIKE '%".$s."%' OR BankCode LIKE '%".$s."%' OR Name1 LIKE '%".$s."%' OR Name2 LIKE '%".$s."%'"
+            . " OR PaymtPurpose LIKE '%".$s."%'";
+}
 $result = $conn->query($sql);
 $maxpages = mysqli_num_rows($result) / $pagesize;
 if($page == ceil($maxpages)){
@@ -39,6 +44,13 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
     else{
         echo '<div class="col-8"><h1 class="mt-5"></h1></div>';
     }
+    
+    if(isset($_GET["search"])){
+        $search = $_GET["search"];
+    }
+    else{
+        $search = "";
+    }
 
     //Display the current page and buttons to move to the next one
     ?>   
@@ -48,11 +60,11 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
             </button>
         </h1></div> 
         <div class="col-1"><h1 class="mt-5 monospace">
-            <a href="statement.php?page=<?php echo $pageback; ?>"><</a>
+            <a href="statement.php?page=<?php echo $pageback; ?>&search=<?php echo $search; ?>"><</a>
         </h1></div> 
         <div class="col-1"><h1 class="mt-5 monospace"><?php echo $page; ?></h1></div> 
         <div class="col-1"><h1 class="mt-5 monospace">
-            <a href="statement.php?page=<?php echo $pageforward; ?>">></a>
+            <a href="statement.php?page=<?php echo $pageforward; ?>&search=<?php echo $search; ?>">></a>
         </h1></div>
      <?php
     echo '</div></div>';
