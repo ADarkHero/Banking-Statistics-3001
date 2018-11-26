@@ -21,7 +21,7 @@ $sql = "SELECT EntryDate, AcctNo, BankCode, Name1, Name2, PaymtPurpose, Value, s
 if(isset($_GET["search"])){
     $s = $_GET["search"];
     $sql .= " WHERE EntryDate LIKE '%".$s."%' OR AcctNo LIKE '%".$s."%' OR BankCode LIKE '%".$s."%' OR Name1 LIKE '%".$s."%' OR Name2 LIKE '%".$s."%'"
-            . " OR PaymtPurpose LIKE '%".$s."%' OR CategoryName LIKE '%".$s."%' ";
+            . " OR PaymtPurpose LIKE '%".$s."%' OR Value LIKE '%".$s."%' OR CategoryName LIKE '%".$s."%' ";
 }
 $sql .= "ORDER BY EntryDate DESC LIMIT ". $pagesize ." OFFSET " . $offset;
 $result = $conn->query($sql);
@@ -131,7 +131,7 @@ function changeCategory($conn, $newCategory, $purpose){
 function getCategoryList($conn){
     $categories = array();
 
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM categories ORDER BY CategoryName";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
