@@ -1,9 +1,9 @@
 <?php
 
 require_once ('inc/template.php');
-echo '<h1 class="mt-5">Statements</h1>';
 
-
+require_once ('inc/statement/pageFunctions.php');
+getPagedisplay(true, $page, $pageback, $pageforward);
 
 /********************
 List all transactions
@@ -16,6 +16,7 @@ Tag transactions.
 //Add/change/remove categories
 require_once('inc/statement/listTransactions.php');
 
+getPagedisplay(false, $page, $pageback, $pageforward);
 
 
 require_once ('inc/template_end.php');

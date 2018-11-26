@@ -29,6 +29,7 @@
     <link href="css/logo-nav.css" rel="stylesheet">
     <link href="css/no-more-tables.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 
   </head>
 

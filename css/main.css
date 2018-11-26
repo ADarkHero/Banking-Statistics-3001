@@ -27,6 +27,15 @@
     text-align: right;
 }
 
+.center{
+    text-align: center;
+}
+
 .word-break{
     word-break: break-word;
+}
+
+.monospace{
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold;
 }

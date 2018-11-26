@@ -1,6 +1,14 @@
 <?php
+if(isset($_GET["page"])){
+    $currentpage = $_GET["page"];
+}
+else{
+    $currentpage = 1;
+}
+$offset = $pagesize * ($currentpage-1);
 
-$sql = "SELECT * FROM statements ORDER BY EntryDate DESC LIMIT 25";
+$sql = "SELECT EntryDate, AcctNo, BankCode, Name1, Name2, PaymtPurpose, Value"
+        . " FROM statements ORDER BY EntryDate DESC LIMIT ". $pagesize ." OFFSET " . $offset;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
