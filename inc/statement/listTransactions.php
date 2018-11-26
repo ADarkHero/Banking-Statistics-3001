@@ -2,7 +2,7 @@
 $categories = getCategoryList($conn);
 
  if(isset($_POST["changeCategory"])){
-     changeCategory($conn, $_POST["changeCategory"]);
+     changeCategory($conn, $_POST["changeCategory"], $_POST["paymtPurpose"]);
  }
 
 if(isset($_GET["page"])){
@@ -59,7 +59,7 @@ if ($result->num_rows > 0) {
                     echo "<tr><td><b>Payment Purpose (Long)</b></td><td class='word-break'>".$purpose."</td></tr>";
                     echo "<tr><td><b>Payment Purpose</b></td><td class='word-break'>".$purpose_text."</td></tr>";
                     echo "<tr><td><b>Value</b></td><td class='word-break'>".$row["Value"]." €</td></tr>"; 
-                    categoryDropdown($categories, $row["CategoryID"], $row["CategoryName"], $row["CategoryColor"]);                   
+                    categoryDropdown($categories, $row["CategoryID"], $row["CategoryName"], $row["CategoryColor"], $row["PaymtPurpose"]);                   
 ?>
                         </tbody>     
                     </table>
@@ -76,7 +76,7 @@ if ($result->num_rows > 0) {
 
 
 //Generates a dropdown, so the user can choose a category
-function categoryDropdown($categories, $categoryID, $categoryName, $categoryColor){
+function categoryDropdown($categories, $categoryID, $categoryName, $categoryColor, $purpose){
     echo "<tr><td><b>Category</b></td><td class='word-break'>";
 ?>
     <form action="statement.php?page=<?php if(isset($_GET["page"])){ echo $_GET["page"]; } else { echo "1"; } ?>" method="post">
@@ -94,6 +94,7 @@ function categoryDropdown($categories, $categoryID, $categoryName, $categoryColo
     }
 ?>
       </select>
+        <input type="hidden" name="paymtPurpose" value="<?php echo $purpose; ?>">
       <input type="submit">
     </form>
  <?php           
@@ -101,9 +102,15 @@ function categoryDropdown($categories, $categoryID, $categoryName, $categoryColo
 }
 
 //If the category was changed, write it into the database
-function changeCategory($conn, $newCategory){
-    //TODO
-    echo $newCategory;
+function changeCategory($conn, $newCategory, $purpose){
+    $sql = "UPDATE statements SET CategoryID='".$newCategory."' WHERE PaymtPurpose = '".$purpose."'"; //SQL statement
+        
+    if ($conn->query($sql) === TRUE) {
+        echo "<p class='successMessage'>Your category was changed.</p>";
+    } 
+    else{
+        echo "<p class='errorMessage'>Error while writing the new category to the database.</p>";
+    }
 }
 
 //Returns all categories in an array
