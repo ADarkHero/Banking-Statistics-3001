@@ -1,6 +1,12 @@
 <?php
 require_once('lastPaycheck.php');
-echo "You got your last paycheck on <b class='lastPaycheckDate'>" . $lastPaycheckDate . "</b>! It were <b class='lastPaycheckAmount'>" . $lastPaycheckAmount . " €</b>!<br>";
+
+$timestamp = strtotime($lastPaycheckDate);
+$day = date('d', $timestamp);
+$timeToPaycheck = abs($day - date('d'));
+
+echo "You got your last paycheck on <b class='lastPaycheckDate'>" . $lastPaycheckDate . "</b>! It were <b class='lastPaycheckAmount'>" . $lastPaycheckAmount . " €</b>! "
+        . "You'll get your next paycheck in approximately <b>".$timeToPaycheck." day/s.</b><br>";
 
 /********************
 How much money did we spent since then?
