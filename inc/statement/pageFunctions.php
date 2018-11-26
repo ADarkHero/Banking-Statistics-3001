@@ -30,18 +30,23 @@ else{
 
 
 //Displays the buttons to switch the page and the current page number
-function getPagedisplay($headline, $page, $pageback, $pageforward){
+function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
     echo '<div class="container"><div class="row">'; //Generate div containers
     //Display "Statements", if on top of the page
     if($headline){
-        echo '<div class="col-9"><h1 class="mt-5">Statements</h1></div>';
+        echo '<div class="col-8"><h1 class="mt-5">Statements</h1></div>';
     }
     else{
-        echo '<div class="col-9"><h1 class="mt-5"></h1></div>';
+        echo '<div class="col-8"><h1 class="mt-5"></h1></div>';
     }
 
     //Display the current page and buttons to move to the next one
     ?>   
+        <div class="col-1"><h1 class="mt-5 monospace">
+            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<?php require_once('inc/category/listCategories.php'); ?>">
+                i
+            </button>
+        </h1></div> 
         <div class="col-1"><h1 class="mt-5 monospace">
             <a href="statement.php?page=<?php echo $pageback; ?>"><</a>
         </h1></div> 

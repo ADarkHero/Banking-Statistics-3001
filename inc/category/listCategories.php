@@ -1,7 +1,7 @@
 <?php
 
 /********************
-Contracts
+Categories
 ********************/
 
 $contracts = array();

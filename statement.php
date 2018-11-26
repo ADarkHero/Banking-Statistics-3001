@@ -8,7 +8,7 @@ require_once ('inc/template.php');
 Shows a menu to switch pages
 ********************/
 require_once ('inc/statement/pageFunctions.php');
-getPagedisplay(true, $page, $pageback, $pageforward);
+getPagedisplay($conn, true, $page, $pageback, $pageforward);
 
 
 
@@ -22,7 +22,7 @@ Tag transactions.
 //Add/change/remove categories
 require_once('inc/statement/listTransactions.php');
 
-getPagedisplay(false, $page, $pageback, $pageforward);
+getPagedisplay($conn, false, $page, $pageback, $pageforward);
 
 
 require_once ('inc/template_end.php');
