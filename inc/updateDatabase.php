@@ -35,8 +35,11 @@ for($x = 1; $x < sizeof($rows); $x++){
 		}
 	}
 	$sql = substr($sql, 0, -2);
-	$sql .= ")"; //Finish the sql statement
+	$sql .= ", 0)"; //Finish the sql statement; 0 is for the category id
 
+        echo $sql;
+        echo "<br>";
+        
 	//Execute the query. If no error occured (like a duplicate entry), raise the counter.
 	//Note: The database checks for duplicates. A more effective/faster way should be implemented sometime.
 	if ($conn->query($sql) === TRUE) {
