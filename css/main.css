@@ -1,18 +1,6 @@
-.moneySpent, .contractUnpaid{
-    color: #AA0000;
-}
-
-.lastPaycheckAmount, .contractPaid, .moneyTotal{
-    color: #088A29;
-}
-
 .moneyTotal{
     font-weight: 900;
     text-decoration: underline;
-}
-
-.moneyLeft{
-    color: #2E2EFE;
 }
 
 .cut{

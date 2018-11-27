@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
 		$purpose = str_replace("|","",$purpose); //Removes | from the transactions to make it better readable (and copieable) for humans; You can copy the transaction string from the Volksbank-backend now
 		$in_array_r = in_array_return($purpose, $unpaidContracts);
 		if ($in_array_r) {
-			echo "You already <b class='contractPaid'>paid</b> your contract \"<b class='contractPaid'>".$in_array_r."</b>\"!<br>";
+			echo "You already <b class='text-success'>paid</b> your contract \"<b class='text-success'>".$in_array_r."</b>\"!<br>";
 			unset($unpaidContracts[$in_array_r]); //Remove the value from the unpaid contract array
 		}
     }
@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
 }
 
 foreach ($unpaidContracts as $key => $value){
-	echo "You <b class='contractUnpaid'>didn't pay</b> your contract \"<b class='contractUnpaid'>".$key."</b>\" yet!<br>";
+	echo "You <b class='text-danger'>didn't pay</b> your contract \"<b class='text-danger'>".$key."</b>\" yet!<br>";
 }
 
 
