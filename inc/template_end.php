@@ -4,6 +4,8 @@
     <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Colorpicker -->
     <script type="text/javascript" src="js/jquery.minicolors.min.js"></script>
     <script type="text/javascript">
         $(function(){
@@ -36,6 +38,11 @@
           });
         });
     </script>
+    
+    <!-- Chart.JS -->
+    <script src="js/Chart.bundle.min.js"></script>
+    
+    <!-- Bootstrap tooltips -->
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()

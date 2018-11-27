@@ -8,7 +8,6 @@ echo '<h1 class="mt-5">Dashboard</h1>';
 How much money do you have?
 ********************/
 
-//TODO
 require_once('inc/index/getCurrentMoney.php');
 echo "<br><br>";
 
@@ -21,5 +20,14 @@ require_once('inc/index/moneySpent.php');
 
 
 
-
 require_once ('inc/template_end.php');
+
+
+
+/********************
+Generate some neat Charts
+********************/
+require_once ('inc/index/chartMaker.php');
+
+?>
+
