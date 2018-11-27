@@ -23,13 +23,13 @@
     <title>Banking App</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/logo-nav.css" rel="stylesheet">
-    <link href="css/no-more-tables.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="css/jquery.minicolors.css">
 
   </head>
 

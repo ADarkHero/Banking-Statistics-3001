@@ -7,7 +7,7 @@
     </div>
     <div class="form-group row">
         <label for="categoryChangeColor" class="col-2 col-form-label">Category color</label>
-        <div class="col-10"><input type="color" class="form-control" name="categoryChangeColor"></div>
+        <div class="col-10"><input type="text" id="hue-demo" class="form-control demo" data-control="hue" name="categoryChangeColor" value="#000000"></div>
     </div>
     <div class="form-group row">
         <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Submit"></div>
