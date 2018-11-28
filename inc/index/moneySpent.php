@@ -11,14 +11,26 @@ echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b
 /********************
 How much money did we spent since then?
 ********************/
-$sql = "SELECT Value FROM statements WHERE EntryDate >= '".$lastPaycheckDate."' AND Value < 0";
+$sql = "SELECT Value, CategoryName, CategoryColor FROM statements "
+        . "LEFT JOIN categories ON statements.CategoryID = categories.CategoryID "
+        . "WHERE EntryDate >= '".$lastPaycheckDate."' AND Value < 0";
+        
 $result = $conn->query($sql);
 
-$moneySpent = 0;
+$moneySpent = 0; //Total money spent
+$moneyCategories = array(); //Money spent by category
+$categorieColors = array();
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
 		$moneySpent += doubleval(str_replace(',', '.', $row["Value"]));
+                if(!isset($moneyCategories[$row["CategoryName"]])){ //If the category has no value yet, set it.
+                    $moneyCategories[$row["CategoryName"]] = 0;
+                }
+                if(!isset($categorieColors[$row["CategoryName"]])){ //Do we already have the category color?
+                    $categorieColors[$row["CategoryName"]] = $row["CategoryColor"];
+                }
+                $moneyCategories[$row["CategoryName"]] += doubleval(str_replace(',', '.', $row["Value"]));       
     }
 } else {
     echo "Error while fetching your last paycheck.";
