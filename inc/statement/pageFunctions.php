@@ -1,5 +1,4 @@
 <?php 
-$pagesize = 25;
 
 //If no page is set, the current page is "1"
 if(isset($_GET["page"])){

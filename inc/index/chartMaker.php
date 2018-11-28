@@ -19,16 +19,16 @@ var myChart = new Chart(ctx, {
             label: 'Money spent this month',
             data: [<?php echo str_replace(",", ".", $lastPaycheckAmount); ?>, <?php echo $moneyLeft; ?>, <?php echo $moneySpent; ?>],
             backgroundColor: [
-                'rgba(75, 192, 192, 0.4)',
-                'rgba(54, 162, 235, 0.4)',
-                'rgba(255, 99, 132, 0.4)'
+                'rgba(<?php echo $colorPaycheck; ?>, <?php echo $chartFill; ?>)',
+                'rgba(<?php echo $colorMoneyLeft; ?>, <?php echo $chartFill; ?>)',
+                'rgba(<?php echo $colorMoneySpent; ?>, <?php echo $chartFill; ?>)'
             ],
             borderColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255,99,132,1)'
+                'rgba(<?php echo $colorPaycheck; ?>, <?php echo $chartBorder; ?>)',
+                'rgba(<?php echo $colorMoneyLeft; ?>, <?php echo $chartBorder; ?>)',
+                'rgba(<?php echo $colorMoneySpent; ?>, <?php echo $chartBorder; ?>)'
             ],
-            borderWidth: 1
+            borderWidth: <?php echo $chartBorderWidth; ?>
         }]
     },
     options: {
@@ -74,12 +74,12 @@ var myChart = new Chart(ctx, {
                 ?>
             ],
             backgroundColor: [
-                'rgba(255, 87, 51, 0.4)'
+                'rgba(<?php echo $colorMoneyOverTime; ?>, <?php echo $chartFill; ?>)'
             ],
             borderColor: [
-                'rgba(255, 87, 51, 1)'
+                'rgba(<?php echo $colorMoneyOverTime; ?>, <?php echo $chartBorder; ?>)'
             ],
-            borderWidth: 1
+            borderWidth: <?php echo $chartBorderWidth; ?>
         }]
     },
     options: {
@@ -108,14 +108,14 @@ var myChart = new Chart(ctx, {
             data: [<?php $moneyToSave = str_replace(",", ".", $lastPaycheckAmount)*3-str_replace(",", ".", $rows[1][5]); echo $moneyToSave; ?>,
                    <?php echo str_replace(",", ".", $rows[1][5]); ?>],
             backgroundColor: [
-                'rgba(255, 206, 86, 0.4)',
-                'rgba(75, 192, 192, 0.4)'
+                'rgba(<?php echo $colorMoneyToSave; ?>, <?php echo $chartFill; ?>)',
+                'rgba(<?php echo $colorCurrentMoney; ?>, <?php echo $chartFill; ?>)'
             ],
             borderColor: [
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)'
+                'rgba(<?php echo $colorMoneyToSave; ?>, <?php echo $chartBorder; ?>)',
+                'rgba(<?php echo $colorCurrentMoney; ?>, <?php echo $chartBorder; ?>)'
             ],
-            borderWidth: 1
+            borderWidth: <?php echo $chartBorderWidth; ?>
         }]
     }
 });
@@ -156,7 +156,7 @@ var myChart = new Chart(ctx, {
                         $colorsString .= "'rgba(".$r.", ".$g.", ".$b.", 0.4)', ";
                     }
                     echo $colorsString;
-                    echo "'rgba(54, 162, 235, 0.4)'";
+                    echo "'rgba(54, 162, 235, ".$chartFill.")'";
                 ?>
             ],
             borderColor: [
@@ -167,10 +167,10 @@ var myChart = new Chart(ctx, {
                         $borderString .= "'rgba(".$r.", ".$g.", ".$b.", 1)', ";
                     }
                     echo $borderString;
-                    echo "'rgba(54, 162, 235, 1)'";
+                    echo "'rgba(54, 162, 235, ".$chartBorder.")'";
                 ?>
             ],
-            borderWidth: 1
+            borderWidth: <?php echo $chartBorderWidth; ?>
         }]
     }
 });
