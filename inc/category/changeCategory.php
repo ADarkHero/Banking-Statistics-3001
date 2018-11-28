@@ -23,12 +23,12 @@
     if(isSet($_POST["categoryChangeName"]) && isSet($_POST["categoryChangeColor"])){
         $sql = "UPDATE categories SET  ";
         if($_POST["categoryChangeNewName"]){
-            $sql .= "CategoryName = '".$_POST["categoryChangeNewName"]."', ";
+            $sql .= "CategoryName = '".htmlspecialchars($_POST["categoryChangeNewName"])."', ";
         }
-        $sql .= "CategoryColor = '".$_POST["categoryChangeColor"]."' WHERE CategoryName = '".$_POST["categoryChangeName"]."'"; //SQL statement
+        $sql .= "CategoryColor = '".htmlspecialchars($_POST["categoryChangeColor"])."' WHERE CategoryName = '".htmlspecialchars($_POST["categoryChangeName"])."'"; //SQL statement
 
         if ($conn->query($sql) === TRUE) {
-                echo "<p class='successMessage'>The category \"".$_POST["categoryChangeName"]."\" was edited.</p>";
+                echo "<p class='successMessage'>The category \"".htmlspecialchars($_POST["categoryChangeName"])."\" was edited.</p>";
         } 
         else{
                 echo "<p class='errorMessage'>Error while editing the category from the database.</p>";

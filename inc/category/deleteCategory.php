@@ -13,10 +13,10 @@
 <?php
 	
 	if(isSet($_POST["deleteCategory"])){
-		$sql = "DELETE FROM categories WHERE CategoryName = '".$_POST["deleteCategory"]."'"; //SQL statement
+		$sql = "DELETE FROM categories WHERE CategoryName = '".htmlspecialchars($_POST["deleteCategory"])."'"; //SQL statement
 				
 		if ($conn->query($sql) === TRUE) {
-			echo "<p class='successMessage'>The category \"".$_POST["deleteCategory"]."\" was deleted.</p>";
+			echo "<p class='successMessage'>The category \"".htmlspecialchars($_POST["deleteCategory"])."\" was deleted.</p>";
 		} 
 		else{
 			echo "<p class='errorMessage'>Error while deleting the category from the database.</p>";

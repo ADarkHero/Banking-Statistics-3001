@@ -4,11 +4,11 @@ require_once('inc/category/listCategories.php');
 $categories = getCategoryList($conn);
 
  if(isset($_POST["changeCategory"])){
-     changeCategory($conn, $_POST["changeCategory"], $_POST["paymtPurpose"]);
+     changeCategory($conn, htmlspecialchars($_POST["changeCategory"]), $_POST["paymtPurpose"]);
  }
 
 if(isset($_GET["page"])){
-    $currentpage = $_GET["page"];
+    $currentpage = htmlspecialchars($_GET["page"]);
 }
 else{
     $currentpage = 1;
@@ -81,7 +81,7 @@ if ($result->num_rows > 0) {
 function categoryDropdown($categories, $categoryID, $categoryName, $categoryColor, $purpose){
     echo "<tr><td><b>Category</b></td><td class='word-break'>";
 ?>
-    <form action="statement.php?page=<?php if(isset($_GET["page"])){ echo $_GET["page"]; } else { echo "1"; } ?>" method="post">
+    <form action="statement.php?page=<?php if(isset($_GET["page"])){ echo htmlspecialchars($_GET["page"]); } else { echo "1"; } ?>" method="post">
         <div class="form-group row">
             <div class="col-10">
                 <select name="changeCategory" class="form-control">

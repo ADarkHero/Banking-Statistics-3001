@@ -16,10 +16,10 @@
 <?php
 	
 	if(isSet($_POST["contractName"]) & isSet($_POST["contractValue"])){
-            $sql = "INSERT INTO contracts VALUES ('".$_POST["contractName"]."', '".$_POST["contractValue"]."')"; //SQL statement
+            $sql = "INSERT INTO contracts VALUES ('".htmlspecialchars($_POST["contractName"])."', '".htmlspecialchars($_POST["contractValue"])."')"; //SQL statement
 
             if ($conn->query($sql) === TRUE) {
-                    echo "<p class='successMessage'>Your new contract \"".$_POST["contractName"]."\" was added.</p>";
+                    echo "<p class='successMessage'>Your new contract \"".htmlspecialchars($_POST["contractName"])."\" was added.</p>";
             } 
             else{
                     echo "<p class='errorMessage'>Error while writing the contract to the database.</p>";

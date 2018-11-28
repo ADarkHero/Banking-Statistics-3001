@@ -61,7 +61,7 @@ $moneySaveRatio = 3; //Based on your (last) paycheck: How much money do you want
 //Statement options
 $searchString = ""; //Generetes searchstring for statements
 if(isset($_GET["search"])){ 
-    $s = $_GET["search"];
+    $s = htmlspecialchars($_GET["search"]);
     $searchString = "WHERE EntryDate LIKE '%".$s."%' "
             . "OR AcctNo LIKE '%".$s."%' "
             . "OR BankCode LIKE '%".$s."%' "

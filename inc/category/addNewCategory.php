@@ -17,10 +17,10 @@
 <?php
 	
 	if(isSet($_POST["categoryName"]) && isSet($_POST["categoryColor"])){
-		$sql = "INSERT INTO categories VALUES (null, '".$_POST["categoryName"]."', '".$_POST["categoryColor"]."')"; //SQL statement
+		$sql = "INSERT INTO categories VALUES (null, '".htmlspecialchars($_POST["categoryName"])."', '".htmlspecialchars($_POST["categoryColor"])."')"; //SQL statement
 				
 		if ($conn->query($sql) === TRUE) {
-			echo "<p class='successMessage'>Your new category \"".$_POST["categoryName"]."\" was added.</p>";
+			echo "<p class='successMessage'>Your new category \"".htmlspecialchars($_POST["categoryName"])."\" was added.</p>";
 		} 
 		else{
 			echo "<p class='errorMessage'>Error while writing the category to the database.</p>";

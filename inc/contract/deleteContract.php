@@ -13,10 +13,10 @@
 <?php
 	
 	if(isSet($_POST["deleteContract"])){
-		$sql = "DELETE FROM contracts WHERE ContractName = '".$_POST["deleteContract"]."'"; //SQL statement
+		$sql = "DELETE FROM contracts WHERE ContractName = '".htmlspecialchars($_POST["deleteContract"])."'"; //SQL statement
 				
 		if ($conn->query($sql) === TRUE) {
-			echo "<p class='successMessage'>The contract \"".$_POST["deleteContract"]."\" was deleted.</p>";
+			echo "<p class='successMessage'>The contract \"".htmlspecialchars($_POST["deleteContract"])."\" was deleted.</p>";
 		} 
 		else{
 			echo "<p class='errorMessage'>Error while deleting the contract from the database.</p>";
