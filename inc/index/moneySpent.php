@@ -5,15 +5,19 @@ $timestamp = strtotime($lastPaycheckDate);
 $day = date('d', $timestamp);
 $timeToPaycheck = abs($day - date('d'));
 
-echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . $lastPaycheckAmount . " €</b>! "
-        . "You'll get your next paycheck in approximately <b>".$timeToPaycheck." day/s.</b><br>";
+echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . $lastPaycheckAmount . " ".$currency."</b>! "
+        . "You'll get your next paycheck in approximately <b>".$timeToPaycheck." day";
+if($timeToPaycheck > 1){ //Checks, if it is day or days
+    echo "s";
+}
+echo "</b>.<br>";
 
 /********************
 How much money did we spent since then?
 ********************/
 $sql = "SELECT Value, EntryDate, CategoryName, CategoryColor FROM statements "
         . "LEFT JOIN categories ON statements.CategoryID = categories.CategoryID "
-        . "WHERE EntryDate >= '".$lastPaycheckDate."' AND Value < 0";
+        . "WHERE EntryDate >= '".$lastPaycheckDate."' AND Value < 0 ORDER BY EntryDate";
         
 $result = $conn->query($sql);
 
@@ -45,7 +49,7 @@ if ($result->num_rows > 0) {
 }
 
 $moneySpent *= -1;
-echo "You spent <b class='text-danger'>" . str_replace('.', ',', $moneySpent) . " €</b> since your last paycheck.<br>";
+echo "You spent <b class='text-danger'>" . str_replace('.', ',', $moneySpent) . " ".$currency."</b> since your last paycheck.<br>";
 
 $moneyLeft = $lastPaycheckAmount - $moneySpent;
-echo "You have <b class='text-primary'>" . str_replace('.', ',', $moneyLeft) . " €</b> left until your next paycheck.";
+echo "You have <b class='text-primary'>" . str_replace('.', ',', $moneyLeft) . " ".$currency."</b> left until your next paycheck.";

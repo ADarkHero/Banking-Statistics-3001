@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
                         <div class="row" style="color: <?php echo $row["CategoryColor"]; ?>">
                             <div class="col-2"><?php echo $row["EntryDate"]; ?></div>   
                             <div class="col-8 cut"><?php echo $purpose_text; ?></div> 
-                            <div class="col-2 r-align"><?php echo $row["Value"]; ?> €</div> 
+                            <div class="col-2 r-align"><?php echo $row["Value"]." ".$currency; ?></div> 
                         </div>    
                       </div>         
                   </button>
@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
                     echo "<tr><td><b>Name</b></td><td class='word-break'>".$row["Name1"]." ".$row["Name2"]."</td></tr>";
                     echo "<tr><td><b>Payment Purpose (Long)</b></td><td class='word-break'>".$purpose."</td></tr>";
                     echo "<tr><td><b>Payment Purpose</b></td><td class='word-break'>".$purpose_text."</td></tr>";
-                    echo "<tr><td><b>Value</b></td><td class='word-break'>".$row["Value"]." €</td></tr>"; 
+                    echo "<tr><td><b>Value</b></td><td class='word-break'>".$row["Value"]." ".$currency."</td></tr>"; 
                     categoryDropdown($categories, $row["CategoryID"], $row["CategoryName"], $row["CategoryColor"], $row["PaymtPurpose"]);                   
 ?>
                         </tbody>     

@@ -29,3 +29,7 @@ $payCheckAccount = ""; //IBAN of the person, that gives you your paycheck
 
 
 
+/********************
+Some more options
+********************/
+$currency = "€";

@@ -24,10 +24,9 @@ require_once('inc/index/moneySpent.php');
 Generate some neat Charts
 ********************/
 require_once ('inc/index/chartMaker.php');
+echo "<br>"; //It looks better, with a break at the end
 
 
 
 require_once ('inc/template_end.php');
-
-?>
 

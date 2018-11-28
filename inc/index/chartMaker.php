@@ -19,9 +19,9 @@ var myChart = new Chart(ctx, {
             label: 'Money spent this month',
             data: [<?php echo str_replace(",", ".", $lastPaycheckAmount); ?>, <?php echo $moneyLeft; ?>, <?php echo $moneySpent; ?>],
             backgroundColor: [
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 99, 132, 0.2)'
+                'rgba(75, 192, 192, 0.4)',
+                'rgba(54, 162, 235, 0.4)',
+                'rgba(255, 99, 132, 0.4)'
             ],
             borderColor: [
                 'rgba(75, 192, 192, 1)',
@@ -74,7 +74,7 @@ var myChart = new Chart(ctx, {
                 ?>
             ],
             backgroundColor: [
-                'rgba(255, 87, 51, 0.2)'
+                'rgba(255, 87, 51, 0.4)'
             ],
             borderColor: [
                 'rgba(255, 87, 51, 1)'
@@ -108,8 +108,8 @@ var myChart = new Chart(ctx, {
             data: [<?php $moneyToSave = str_replace(",", ".", $lastPaycheckAmount)*3-str_replace(",", ".", $rows[1][5]); echo $moneyToSave; ?>,
                    <?php echo str_replace(",", ".", $rows[1][5]); ?>],
             backgroundColor: [
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)'
+                'rgba(255, 206, 86, 0.4)',
+                'rgba(75, 192, 192, 0.4)'
             ],
             borderColor: [
                 'rgba(255, 206, 86, 1)',
@@ -152,21 +152,25 @@ var myChart = new Chart(ctx, {
                 <?php 
                     $colorsString = "";
                     foreach ($categorieColors as $key => $value) {
-                        $colorsString .= '"'.$value.'", ';
+                        list($r, $g, $b) = sscanf($value, "#%02x%02x%02x");     
+                        $colorsString .= "'rgba(".$r.", ".$g.", ".$b.", 0.4)', ";
                     }
                     echo $colorsString;
-                    echo "'rgba(54, 162, 235, 0.2)'";
+                    echo "'rgba(54, 162, 235, 0.4)'";
                 ?>
             ],
             borderColor: [
                 <?php
                     $borderString = "";
-                    for($i = 0; $i <= sizeof($moneyCategories); $i++){
-                        $borderString .= "'rgba(100, 100, 100, 1)', ";
+                    foreach ($categorieColors as $key => $value) {
+                        list($r, $g, $b) = sscanf($value, "#%02x%02x%02x");     
+                        $borderString .= "'rgba(".$r.", ".$g.", ".$b.", 1)', ";
                     }
-                    echo substr($borderString, 0, -2); //Removes last ,
+                    echo $borderString;
+                    echo "'rgba(54, 162, 235, 1)'";
                 ?>
             ],
+            borderWidth: 1
         }]
     }
 });
