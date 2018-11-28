@@ -17,12 +17,7 @@ else{
 }
 
 //There is a maximum amount of pages
-$sql = 'SELECT EntryDate FROM statements';
-if(isset($_GET["search"])){
-    $s = $_GET["search"];
-    $sql .= " WHERE EntryDate LIKE '%".$s."%' OR AcctNo LIKE '%".$s."%' OR BankCode LIKE '%".$s."%' OR Name1 LIKE '%".$s."%' OR Name2 LIKE '%".$s."%'"
-            . " OR PaymtPurpose LIKE '%".$s."%'";
-}
+$sql = 'SELECT EntryDate FROM statements LEFT JOIN categories ON statements.CategoryID = categories.CategoryID '.$searchString;
 $result = $conn->query($sql);
 $maxpages = mysqli_num_rows($result) / $pagesize;
 if($page == ceil($maxpages)){

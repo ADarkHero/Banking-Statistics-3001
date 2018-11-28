@@ -3,11 +3,11 @@
 <form action="contract.php" method="post">
     <div class="form-group row">
         <label for="contractName" class="col-3 col-form-label">Contract name</label>
-        <div class="col-9"><input type="text" class="form-control" name="contractName"></div>
+        <div class="col-9"><input type="text" class="form-control" name="contractName"  placeholder="The name of the contract you want to add"></div>
     </div>
     <div class="form-group row">
         <label for="contractValue" class="col-3 col-form-label">Payment purpose</label>
-        <div class="col-9"><input type="text" class="form-control" name="contractValue"></div>
+        <div class="col-9"><input type="text" class="form-control" name="contractValue" placeholder="Unique statement of the contract"></div>
     </div>
     <div class="form-group row">
         <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Submit"></div>

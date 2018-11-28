@@ -16,14 +16,8 @@ else{
 $offset = $pagesize * ($currentpage-1);
 
 $sql = "SELECT EntryDate, AcctNo, BankCode, Name1, Name2, PaymtPurpose, Value, statements.CategoryID AS CategoryID, CategoryName, CategoryColor"
-        . " FROM statements LEFT JOIN categories ON statements.CategoryID = categories.CategoryID ";
-//Does the user search for something?
-if(isset($_GET["search"])){
-    $s = $_GET["search"];
-    $sql .= " WHERE EntryDate LIKE '%".$s."%' OR AcctNo LIKE '%".$s."%' OR BankCode LIKE '%".$s."%' OR Name1 LIKE '%".$s."%' OR Name2 LIKE '%".$s."%'"
-            . " OR PaymtPurpose LIKE '%".$s."%' OR Value LIKE '%".$s."%' OR CategoryName LIKE '%".$s."%' ";
-}
-$sql .= "ORDER BY EntryDate DESC LIMIT ". $pagesize ." OFFSET " . $offset;
+        . " FROM statements LEFT JOIN categories ON statements.CategoryID = categories.CategoryID ".$searchString;
+$sql .= " ORDER BY EntryDate DESC LIMIT ". $pagesize ." OFFSET " . $offset;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

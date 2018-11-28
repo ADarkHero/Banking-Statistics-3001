@@ -2,7 +2,7 @@
 <form action="category.php" method="post">
     <div class="form-group row">
         <label for="categoryName" class="col-3 col-form-label">Category name</label>
-        <div class="col-9"><input type="text" class="form-control" name="categoryName"></div>
+        <div class="col-9"><input type="text" class="form-control" name="categoryName" placeholder="The name of the category you want to add"></div>
     </div>
     <div class="form-group row">
         <label for="categoryName" class="col-3 col-form-label">Category color</label>

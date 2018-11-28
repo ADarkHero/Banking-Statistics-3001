@@ -10,6 +10,29 @@
 </div>    
 
 <script>
+   function lineChartOpenStatements(event, data){
+        if(data[0]){
+            var ticks = data[0]["_xScale"]["ticks"];
+            var index = data[0]["_index"];
+            var clickedValue = ticks[index];
+            var link = 'statement.php?search=' + clickedValue;
+            window.open(link, '_blank');
+        }
+    }
+
+    function pieChartOpenStatements(event, data){
+        if(data[0]){
+            console.log(data);
+            var items = data[0]["_chart"]["legend"]["legendItems"];
+            var index = data[0]["_index"];
+            var clickedValue = items[index]["text"];
+            var link = 'statement.php?search=' + clickedValue;
+            window.open(link, '_blank');
+        }
+    } 
+</script>
+
+<script>  
 var ctx = document.getElementById("moneySpent");
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -92,7 +115,8 @@ var myChart = new Chart(ctx, {
                     beginAtZero:true
                 }
             }]
-        }
+        },
+        onClick: lineChartOpenStatements
     }
 });
 </script>
@@ -172,6 +196,10 @@ var myChart = new Chart(ctx, {
             ],
             borderWidth: <?php echo $chartBorderWidth; ?>
         }]
+    },
+    options: {
+        onClick: pieChartOpenStatements
     }
 });
 </script>
+

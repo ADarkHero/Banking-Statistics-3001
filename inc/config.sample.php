@@ -25,13 +25,6 @@ if ($conn->connect_error) {
 /********************
 Paycheck variables
 ********************/
-$payCheckAccount = ""; //IBAN of the person, that gives you your paycheck
-
-
-
-/********************
-Some more options
-********************/
 //General options
 $currency = "€";
 
@@ -46,3 +39,18 @@ $colorMoneySpent = "255, 99, 132";
 $colorMoneyOverTime = "255, 87, 51";
 $colorMoneyToSave = "255, 206, 86";
 $colorCurrentMoney = $colorPaycheck;
+
+//Statement options
+$searchString = ""; //Generetes searchstring for statements
+if(isset($_GET["search"])){ 
+    $s = $_GET["search"];
+    $searchString = "WHERE EntryDate LIKE '%".$s."%' "
+            . "OR AcctNo LIKE '%".$s."%' "
+            . "OR BankCode LIKE '%".$s."%' "
+            . "OR Name1 LIKE '%".$s."%' "
+            . "OR Name2 LIKE '%".$s."%' "
+            . "OR PaymtPurpose LIKE '%".$s."%' "
+            . "OR Value LIKE '%".$s."%' "
+            . "OR CategoryName LIKE '%".$s."%'";
+}
+$pagesize = 25; //How many statements are displayed?

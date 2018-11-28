@@ -3,7 +3,7 @@
 <form action="category.php" method="post">
     <div class="form-group row">
         <label for="categoryChangeName" class="col-3 col-form-label">Category name</label>
-        <div class="col-9"><input type="text" class="form-control" name="categoryChangeName"></div>
+        <div class="col-9"><input type="text" class="form-control" name="categoryChangeName" placeholder="The name of the category you want to change"></div>
     </div>
     <div class="form-group row">
         <label for="categoryChangeName" class="col-3 col-form-label">NEW Category name</label>
