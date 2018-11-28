@@ -13,7 +13,7 @@ $moneySpent = 0;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-		echo "<span style='color:".$row["CategoryColor"]."'>".$row["CategoryName"]."</span><br>";
+		echo "<span style='color:".$row["CategoryColor"]."' class='monospace'>".$row["CategoryColor"]." | ".$row["CategoryName"]."</span><br>";
     }
 } else {
     echo "Error while fetching your categories. Do you have any?";

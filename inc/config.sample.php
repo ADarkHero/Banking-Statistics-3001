@@ -44,5 +44,5 @@ $colorPaycheck = "75, 192, 192";
 $colorMoneyLeft = "54, 162, 235";
 $colorMoneySpent = "255, 99, 132";
 $colorMoneyOverTime = "255, 87, 51";
-$colorMoneyToSave = $colorPaycheck;
-$colorCurrentMoney = "255, 206, 86";
+$colorMoneyToSave = "255, 206, 86";
+$colorCurrentMoney = $colorPaycheck;

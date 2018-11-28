@@ -2,12 +2,12 @@
 
 <form action="contract.php" method="post">
     <div class="form-group row">
-        <label for="contractName" class="col-2 col-form-label">Contract name</label>
-        <div class="col-10"><input type="text" class="form-control" name="contractName"></div>
+        <label for="contractName" class="col-3 col-form-label">Contract name</label>
+        <div class="col-9"><input type="text" class="form-control" name="contractName"></div>
     </div>
     <div class="form-group row">
-        <label for="contractValue" class="col-2 col-form-label">Payment purpose</label>
-        <div class="col-10"><input type="text" class="form-control" name="contractValue"></div>
+        <label for="contractValue" class="col-3 col-form-label">Payment purpose</label>
+        <div class="col-9"><input type="text" class="form-control" name="contractValue"></div>
     </div>
     <div class="form-group row">
         <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Submit"></div>
