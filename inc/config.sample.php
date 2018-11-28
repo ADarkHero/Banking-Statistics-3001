@@ -34,6 +34,13 @@ Some more options
 ********************/
 //General options
 $currency = "€";
+function bankNumberFormat($number){ //How should numbers be formatted?
+    return number_format($number, 2, ",", ".");
+}
+//This method is used for numbers, that have a comma like 123,42
+function bankNumberFormatComma($number){ //How should numbers be formatted?
+    return bankNumberFormat(doubleval(str_replace(",", ".", $number)));
+}
 
 
 //Chart options

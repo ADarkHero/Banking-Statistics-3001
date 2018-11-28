@@ -10,7 +10,8 @@ if($timeToPaycheck < 0){
     $timeToPaycheck = 0;
 }
 
-echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . $lastPaycheckAmount . " ".$currency."</b>! "
+echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . 
+        bankNumberFormatComma($lastPaycheckAmount) . " ".$currency."</b>! "
         . "You'll get your next paycheck in approximately <b>".$timeToPaycheck." day";
 if($timeToPaycheck !== "1"){ //Checks, if it is day or days
     echo "s";
@@ -54,7 +55,10 @@ if ($result->num_rows > 0) {
 }
 
 $moneySpent *= -1;
-echo "You spent <b class='text-danger'>" . str_replace('.', ',', $moneySpent) . " ".$currency."</b> since your last paycheck.<br>";
+echo "You spent <b class='text-danger'>" . bankNumberFormat($moneySpent) . " ".$currency."</b> since your last paycheck.<br>";
 
 $moneyLeft = $lastPaycheckAmount - $moneySpent;
-echo "You have <b class='text-primary'>" . str_replace('.', ',', $moneyLeft) . " ".$currency."</b> left until your next paycheck.";
+echo "You have <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$currency."</b> left until your next paycheck.<br>";
+
+$moneyPerDay = $moneyLeft / $timeToPaycheck;
+echo "If you don't need to save money, you could spend <b class='text-primary'>" . bankNumberFormat($moneyPerDay) . " ".$currency."</b> per day.";
