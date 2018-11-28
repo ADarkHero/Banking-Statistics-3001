@@ -25,8 +25,16 @@ if ($conn->connect_error) {
 /********************
 Paycheck variables
 ********************/
+$payCheckAccount = ""; //IBAN of the person, that gives you your paycheck
+
+
+
+/********************
+Some more options
+********************/
 //General options
 $currency = "€";
+
 
 //Chart options
 $chartFill = "0.4"; //How dark is the chart background color? (0.4 - 1)
@@ -39,6 +47,9 @@ $colorMoneySpent = "255, 99, 132";
 $colorMoneyOverTime = "255, 87, 51";
 $colorMoneyToSave = "255, 206, 86";
 $colorCurrentMoney = $colorPaycheck;
+
+$moneySaveRatio = 3; //Based on your (last) paycheck: How much money do you want to save?
+
 
 //Statement options
 $searchString = ""; //Generetes searchstring for statements

@@ -129,7 +129,8 @@ var myChart = new Chart(ctx, {
         labels: ["Money to save", "Current money"],
         datasets: [{
             label: 'How much money should you save?',
-            data: [<?php $moneyToSave = str_replace(",", ".", $lastPaycheckAmount)*3-str_replace(",", ".", $rows[1][5]); echo $moneyToSave; ?>,
+            data: [<?php $moneyToSave = str_replace(",", ".", $lastPaycheckAmount)*$moneySaveRatio-str_replace(",", ".", $rows[1][5]); 
+                    if($moneyToSave > 0){ echo $moneyToSave; } else { echo "0"; } ?>,
                    <?php echo str_replace(",", ".", $rows[1][5]); ?>],
             backgroundColor: [
                 'rgba(<?php echo $colorMoneyToSave; ?>, <?php echo $chartFill; ?>)',
