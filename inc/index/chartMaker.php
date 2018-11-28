@@ -39,7 +39,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ["Paycheck", "Money left", "Money spent"],
         datasets: [{
-            label: 'Money spent this month',
+            label: '',
             data: [<?php echo str_replace(",", ".", $lastPaycheckAmount); ?>, <?php echo $moneyLeft; ?>, <?php echo $moneySpent; ?>],
             backgroundColor: [
                 'rgba(<?php echo $colorPaycheck; ?>, <?php echo $chartFill; ?>)',
@@ -84,7 +84,7 @@ var myChart = new Chart(ctx, {
             ?>
         ],
         datasets: [{
-            label: 'Money over time',
+            label: '',
             data: [
                 <?php 
                     $motString = "";
@@ -128,7 +128,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ["Money to save", "Current money"],
         datasets: [{
-            label: 'How much money should you save?',
+            label: '',
             data: [<?php $moneyToSave = str_replace(",", ".", $lastPaycheckAmount)*$moneySaveRatio-str_replace(",", ".", $rows[1][5]); 
                     if($moneyToSave > 0){ echo $moneyToSave; } else { echo "0"; } ?>,
                    <?php echo str_replace(",", ".", $rows[1][5]); ?>],
@@ -162,7 +162,7 @@ var myChart = new Chart(ctx, {
             ?>
         ],
         datasets: [{
-            label: 'How much money did we spent in each category?',
+            label: '',
             data: [
                 <?php 
                     $valuesString = "";
