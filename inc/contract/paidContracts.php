@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
 /********************
 Which contracts did we pay?
 ********************/
-$sql = "SELECT Value, PaymtPurpose FROM statements WHERE EntryDate > '".$lastPaycheckDate."'";
+$sql = "SELECT Value, PaymtPurpose FROM statements WHERE EntryDate >= '".$lastPaycheckDate."'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
