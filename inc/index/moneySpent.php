@@ -1,13 +1,18 @@
 <?php
 require_once('lastPaycheck.php');
 
-$timestamp = strtotime($lastPaycheckDate);
-$day = date('d', $timestamp);
-$timeToPaycheck = abs($day - date('d'));
+$paycheckDay = date_create($lastPaycheckDate);
+$currentDate = new DateTime("now");
+
+$interval = date_diff($paycheckDay, $currentDate);
+$timeToPaycheck = cal_days_in_month(CAL_GREGORIAN, date_format($paycheckDay, 'm'), 2018) - $interval->format('%a');
+if($timeToPaycheck < 0){
+    $timeToPaycheck = 0;
+}
 
 echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . $lastPaycheckAmount . " ".$currency."</b>! "
         . "You'll get your next paycheck in approximately <b>".$timeToPaycheck." day";
-if($timeToPaycheck === "1"){ //Checks, if it is day or days
+if($timeToPaycheck !== "1"){ //Checks, if it is day or days
     echo "s";
 }
 echo "</b>.<br>";
