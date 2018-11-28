@@ -20,14 +20,14 @@ require_once('inc/index/moneySpent.php');
 
 
 
-require_once ('inc/template_end.php');
-
-
-
 /********************
 Generate some neat Charts
 ********************/
 require_once ('inc/index/chartMaker.php');
+
+
+
+require_once ('inc/template_end.php');
 
 ?>
 

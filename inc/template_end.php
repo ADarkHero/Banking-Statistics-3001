@@ -39,8 +39,7 @@
         });
     </script>
     
-    <!-- Chart.JS -->
-    <script src="js/Chart.bundle.min.js"></script>
+    
     
     <!-- Bootstrap tooltips -->
     <script>

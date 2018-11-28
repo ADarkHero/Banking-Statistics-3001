@@ -30,6 +30,9 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="css/jquery.minicolors.css">
+    
+    <!-- Chart.JS -->
+    <script src="js/Chart.bundle.min.js"></script>
 
   </head>
 
