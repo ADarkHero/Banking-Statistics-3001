@@ -11,7 +11,7 @@ echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b
 /********************
 How much money did we spent since then?
 ********************/
-$sql = "SELECT Value FROM statements WHERE EntryDate > '".$lastPaycheckDate."'";
+$sql = "SELECT Value FROM statements WHERE EntryDate >= '".$lastPaycheckDate."' AND Value < 0";
 $result = $conn->query($sql);
 
 $moneySpent = 0;
