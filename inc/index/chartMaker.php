@@ -1,7 +1,7 @@
 <div class="containter">
     <div class="row">
         <div class="col-12 col-lg-6"><h3 class="mt-5">Money spent this month</h3><canvas id="moneySpent"></canvas></div> 
-        <div class="col-12 col-lg-6"><h3 class="mt-5">Money over time</h3><canvas id="myChart03"></canvas></div> 
+        <div class="col-12 col-lg-6"><h3 class="mt-5">Money over time</h3><canvas id="moneyTime"></canvas></div> 
     </div>
     <div class="row">
         <div class="col-12 col-lg-6"><h3 class="mt-5">Money to save</h3><canvas id="moneySave"></canvas></div> 
@@ -27,6 +27,57 @@ var myChart = new Chart(ctx, {
                 'rgba(75, 192, 192, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255,99,132,1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        legend: {
+            display: false
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<script>
+var ctx = document.getElementById("moneyTime");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [
+            <?php 
+                $motLabels = "";
+                foreach ($moneyByDate as $key => $value) {
+                    $motLabels .= '"'.$key.'", ';
+                }
+                echo substr($motLabels, 0, -2); //Cut last ,
+            ?>
+        ],
+        datasets: [{
+            label: 'Money over time',
+            data: [
+                <?php 
+                    $motString = "";
+                    $motLeft = $lastPaycheckAmount;
+                    foreach ($moneyByDate as $key => $value) {
+                        $motLeft += $value;
+                        $motString .= '"'.$motLeft.'", ';
+                    }
+                    echo substr($motString, 0, -2); //Cut last ,
+                ?>
+            ],
+            backgroundColor: [
+                'rgba(255, 87, 51, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 87, 51, 1)'
             ],
             borderWidth: 1
         }]
@@ -76,14 +127,15 @@ var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
         labels: [
-        <?php 
-            $labelsString = "";
-            foreach ($moneyCategories as $key => $value) {
-                $labelsString .= '"'.$key.'", ';
-            }
-            echo $labelsString;
-            echo '"Money left"';
-        ?>],
+            <?php 
+                $labelsString = "";
+                foreach ($moneyCategories as $key => $value) {
+                    $labelsString .= '"'.$key.'", ';
+                }
+                echo $labelsString;
+                echo '"Money left"';
+            ?>
+        ],
         datasets: [{
             label: 'How much money did we spent in each category?',
             data: [
@@ -110,7 +162,7 @@ var myChart = new Chart(ctx, {
                 <?php
                     $borderString = "";
                     for($i = 0; $i <= sizeof($moneyCategories); $i++){
-                        $borderString .= "'rgba(0, 0, 0, 0.2)', ";
+                        $borderString .= "'rgba(100, 100, 100, 1)', ";
                     }
                     echo substr($borderString, 0, -2); //Removes last ,
                 ?>
