@@ -1,5 +1,9 @@
 <?php
-require_once('lastPaycheck.php');
+/********************
+DEPENDS ON
+ * inc/index/lastPaycheck.php
+ * inc/contract/paidContracts.php
+********************/
 
 $paycheckDay = date_create($lastPaycheckDate);
 $currentDate = new DateTime("now");
@@ -55,9 +59,10 @@ if ($result->num_rows > 0) {
 }
 
 $moneySpent *= -1;
-echo "You spent <b class='text-danger'>" . bankNumberFormat($moneySpent) . " ".$currency."</b> since your last paycheck.<br>";
+echo "You spent <b class='text-danger'>" . bankNumberFormat($moneySpent) . " ".$currency."</b> since your last paycheck. "
+        . "You still have to pay <b class='text-danger'>" . bankNumberFormat($contractCosts) . " ".$currency."</b> for your contracts.<br>";
 
-$moneyLeft = $lastPaycheckAmount - $moneySpent;
+$moneyLeft = $lastPaycheckAmount - $moneySpent - $contractCosts;
 echo "You have <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$currency."</b> left until your next paycheck.<br>";
 
 $moneyPerDay = $moneyLeft / $timeToPaycheck;

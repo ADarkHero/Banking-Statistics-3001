@@ -11,6 +11,7 @@ require_once('inc/index/lastPaycheck.php');
 Which contracts do you have? Did they already get paid?
 ********************/
 require_once('inc/contract/paidContracts.php');
+require_once('inc/contract/listContracts.php');
 echo '<br><br><br>';
 
 

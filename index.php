@@ -16,6 +16,8 @@ echo "<br><br>";
 /********************
 How much money did you spent since your last paycheck?
 ********************/
+require_once('inc/index/lastPaycheck.php');
+require_once('inc/contract/paidContracts.php');
 require_once('inc/index/moneySpent.php');
 
 

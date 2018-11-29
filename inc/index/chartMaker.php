@@ -37,19 +37,21 @@ var ctx = document.getElementById("moneySpent");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Paycheck", "Money left", "Money spent"],
+        labels: ["Paycheck", "Money left", "Money spent", "Unpaid contracts"],
         datasets: [{
             label: '',
-            data: [<?php echo str_replace(",", ".", $lastPaycheckAmount); ?>, <?php echo $moneyLeft; ?>, <?php echo $moneySpent; ?>],
+            data: [<?php echo str_replace(",", ".", $lastPaycheckAmount); ?>, <?php echo $moneyLeft; ?>, <?php echo $moneySpent; ?>, <?php echo $contractCosts; ?>],
             backgroundColor: [
                 'rgba(<?php echo $colorPaycheck; ?>, <?php echo $chartFill; ?>)',
                 'rgba(<?php echo $colorMoneyLeft; ?>, <?php echo $chartFill; ?>)',
-                'rgba(<?php echo $colorMoneySpent; ?>, <?php echo $chartFill; ?>)'
+                'rgba(<?php echo $colorMoneySpent; ?>, <?php echo $chartFill; ?>)',
+                'rgba(<?php echo $colorContractCosts; ?>, <?php echo $chartFill; ?>)'
             ],
             borderColor: [
                 'rgba(<?php echo $colorPaycheck; ?>, <?php echo $chartBorder; ?>)',
                 'rgba(<?php echo $colorMoneyLeft; ?>, <?php echo $chartBorder; ?>)',
-                'rgba(<?php echo $colorMoneySpent; ?>, <?php echo $chartBorder; ?>)'
+                'rgba(<?php echo $colorMoneySpent; ?>, <?php echo $chartBorder; ?>)',
+                'rgba(<?php echo $colorContractCosts; ?>, <?php echo $chartBorder; ?>)'
             ],
             borderWidth: <?php echo $chartBorderWidth; ?>
         }]
@@ -126,19 +128,28 @@ var ctx = document.getElementById("moneySave");
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ["Money to save", "Current money"],
+        labels: ["Money to save", "Current money", "Unpaid contracts"],
         datasets: [{
             label: '',
-            data: [<?php $moneyToSave = str_replace(",", ".", $lastPaycheckAmount)*$moneySaveRatio-str_replace(",", ".", $rows[1][5]); 
-                    if($moneyToSave > 0){ echo $moneyToSave; } else { echo "0"; } ?>,
-                   <?php echo str_replace(",", ".", $rows[1][5]); ?>],
+            data: [
+                <?php 
+                    $lPaycheck = str_replace(",", ".", $lastPaycheckAmount);
+                    $sumMoney = str_replace(",", ".", $rows[1][5]);
+                    $moneyToSave = $lPaycheck*$moneySaveRatio-$sumMoney+$contractCosts; 
+                    if($moneyToSave > 0){ echo $moneyToSave; } else { echo "0"; } 
+                ?>,
+                <?php echo str_replace(",", ".", $rows[1][5])-$contractCosts; ?>,
+                <?php echo $contractCosts; ?>
+            ],
             backgroundColor: [
                 'rgba(<?php echo $colorMoneyToSave; ?>, <?php echo $chartFill; ?>)',
-                'rgba(<?php echo $colorCurrentMoney; ?>, <?php echo $chartFill; ?>)'
+                'rgba(<?php echo $colorCurrentMoney; ?>, <?php echo $chartFill; ?>)',
+                'rgba(<?php echo $colorContractCosts; ?>, <?php echo $chartFill; ?>)'
             ],
             borderColor: [
                 'rgba(<?php echo $colorMoneyToSave; ?>, <?php echo $chartBorder; ?>)',
-                'rgba(<?php echo $colorCurrentMoney; ?>, <?php echo $chartBorder; ?>)'
+                'rgba(<?php echo $colorCurrentMoney; ?>, <?php echo $chartBorder; ?>)',
+                'rgba(<?php echo $colorContractCosts; ?>, <?php echo $chartBorder; ?>)'
             ],
             borderWidth: <?php echo $chartBorderWidth; ?>
         }]

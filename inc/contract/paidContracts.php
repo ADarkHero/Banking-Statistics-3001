@@ -1,59 +1,72 @@
 <?php
+/********************
+DEPENDS ON
+ * inc/index/lastPaycheck.php
+********************/
+
+
 
 /********************
 Contracts
 ********************/
 
 $contracts = array();
+$contractAmounts = array();
 
 $sql = "SELECT * FROM contracts";
 $result = $conn->query($sql);
 
-$moneySpent = 0;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-		$contracts[$row["ContractName"]]=$row["ContractValue"];
+	$contracts[$row["ContractName"]] = $row["ContractValue"];
+        $contractAmounts[$row["ContractName"]] = $row["ContractAmount"];
     }
 } else {
     echo "Error while fetching your last paycheck.";
 }
 
 
-
 /********************
 Which contracts did we pay?
 ********************/
-$sql = "SELECT Value, PaymtPurpose FROM statements WHERE EntryDate >= '".$lastPaycheckDate."'";
+$sql = "SELECT PaymtPurpose FROM statements WHERE EntryDate >= '".$lastPaycheckDate."'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-	$unpaidContracts = $contracts;
+    $unpaidContracts = $contracts;
+    $paidContracts = array();
     while($row = $result->fetch_assoc()) {
-		$purpose = $row["PaymtPurpose"];
-		$purpose = str_replace("|","",$purpose); //Removes | from the transactions to make it better readable (and copieable) for humans; You can copy the transaction string from the Volksbank-backend now
-		$in_array_r = in_array_return($purpose, $unpaidContracts);
-		if ($in_array_r) {
-			echo "You already <b class='text-success'>paid</b> your contract \"<b class='text-success'>".$in_array_r."</b>\"!<br>";
-			unset($unpaidContracts[$in_array_r]); //Remove the value from the unpaid contract array
-		}
+        $purpose = str_replace("|", "", $row["PaymtPurpose"]); //Removes | from the transactions to make it better readable (and copieable) for humans; You can copy the transaction string from the Volksbank-backend now
+        $in_array_r = in_array_return($purpose, $unpaidContracts);
+        
+        //If the contract was paid, remove it from the unpaid-array and add it to the paid array.
+        if ($in_array_r) { 
+            $paidContracts[$in_array_r] = $purpose;
+            unset($unpaidContracts[$in_array_r]); //Remove the value from the unpaid contract array
+        }
     }
 } else {
     echo "Error while fetching your contracts.";
 }
 
+$contractCosts = 0;
 foreach ($unpaidContracts as $key => $value){
-	echo "You <b class='text-danger'>didn't pay</b> your contract \"<b class='text-danger'>".$key."</b>\" yet!<br>";
+    $contractCosts += $contractAmounts[$key];
 }
+
+
+
+
 
 
 //Checks, if the string is in an array and returns the arraykey
 function in_array_return($needle, $haystack) {
     foreach ($haystack as $key => $item) {
         if (strpos($needle, $item) !== false) {
-			return $key;
-		}  
+            return $key;
+        }  
     }
     return false;
 }
