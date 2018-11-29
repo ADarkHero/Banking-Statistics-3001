@@ -49,7 +49,7 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
     //Display the current page and buttons to move to the next one
     ?>   
         <div class="col-1"><h1 class="mt-5 monospace">
-            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<?php require_once('inc/category/listCategories.php'); ?>">
+            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<?php require_once('inc/category/listCategoriesSimple.php'); ?>">
                 i
             </button>
         </h1></div> 

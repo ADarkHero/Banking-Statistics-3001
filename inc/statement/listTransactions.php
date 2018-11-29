@@ -1,6 +1,4 @@
 <?php
-require_once('inc/category/listCategories.php');
-
 $categories = getCategoryList($conn);
 
  if(isset($_POST["changeCategory"])){
