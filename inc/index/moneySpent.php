@@ -63,7 +63,7 @@ echo "You spent <b class='text-danger'>" . bankNumberFormat($moneySpent) . " ".$
         . "You still have to pay <b class='text-danger'>" . bankNumberFormat($contractCosts) . " ".$currency."</b> for your contracts.<br>";
 
 $moneyLeft = $lastPaycheckAmount - $moneySpent - $contractCosts;
-echo "You have <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$currency."</b> left until your next paycheck.<br>";
+echo "You have <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$currency."</b> left until your next paycheck. ";
 
 $moneyPerDay = $moneyLeft / $timeToPaycheck;
 echo "If you don't need to save money, you could spend <b class='text-primary'>" . bankNumberFormat($moneyPerDay) . " ".$currency."</b> per day.";
