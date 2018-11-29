@@ -72,10 +72,16 @@ var myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero: true,
+                    fontSize: 11
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 11
                 }
             }]
-        }
+        } 
     }
 });
 </script>
@@ -123,10 +129,16 @@ var myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero: true,
+                    fontSize: 11
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 11
                 }
             }]
-        },
+        } ,
         onClick: lineChartOpenStatements
     }
 });
@@ -162,6 +174,14 @@ var myChart = new Chart(ctx, {
             ],
             borderWidth: <?php echo $chartBorderWidth; ?>
         }]
+    },
+    options: {
+        legend: {
+                display: true,
+                labels: {
+                    fontSize: 11
+                }
+            }
     }
 });
 </script>
@@ -223,7 +243,13 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
-        onClick: pieChartOpenStatements
+        legend: {
+                display: true,
+                labels: {
+                    fontSize: 11
+                }
+            },
+        onClick: pieChartOpenStatements 
     }
 });
 </script>
