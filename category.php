@@ -6,9 +6,10 @@ echo '<h1 class="mt-5">Categories</h1>';
 
 
 /********************
-Form to add new categories
+List/Change categories
 ********************/
 
+require_once('inc/category/changeCategory.php');
 require_once('inc/category/listCategories.php');
 echo "<br><br><br>";
 
@@ -21,14 +22,6 @@ Form to add new categories
 require_once('inc/category/addNewCategory.php');
 echo "<br>";
 
-
-
-/********************
-Form to change categories
-********************/
-
-require_once('inc/category/changeCategory.php');
-echo "<br><br>";
 
 
 

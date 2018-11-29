@@ -9,7 +9,7 @@ if(isSet($_POST["changeContractName"]) && isSet($_POST["changeContractValue"]) &
             . "ContractName = '".htmlspecialchars($_POST["changeContractName"])."', "
             . "ContractValue = '".htmlspecialchars($_POST["changeContractValue"])."', "
             . "ContractAmount = '".htmlspecialchars($_POST["changeContractAmount"])."' "
-            . "WHERE ContractName = '".htmlspecialchars($_POST["changeContractName"])."'"; //SQL statement
+            . "WHERE ContractName = '".htmlspecialchars($_POST["changeContractNameOld"])."'"; //SQL statement
     
     if ($conn->query($sql) === TRUE) {
             echo "<p class='successMessage'>The contract \"".htmlspecialchars($_POST["changeContractName"])."\" was edited.</p>";

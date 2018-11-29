@@ -39,6 +39,7 @@ foreach ($paidContracts as $key => $value){
                 <div class="col-9"><input type="number" class="form-control" name="changeContractAmount" value="<?php echo $contractAmounts[$key]; ?>"></div>
             </div>
             <div class="form-group row">
+                <input type="hidden" class="form-control" name="changeContractNameOld" value="<?php echo $key; ?>">
                 <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Change settings"></div>
             </div>
         </form>
@@ -85,6 +86,7 @@ foreach ($unpaidContracts as $key => $value){
                     <div class="col-9"><input type="number" class="form-control" name="changeContractAmount" value="<?php echo $contractAmounts[$key]; ?>"></div>
                 </div>
                 <div class="form-group row">
+                    <input type="hidden" class="form-control" name="changeContractNameOld" value="<?php echo $key; ?>">
                     <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Change settings"></div>
                 </div>
             </form>
