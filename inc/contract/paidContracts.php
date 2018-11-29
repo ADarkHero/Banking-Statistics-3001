@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
         
         //If the contract was paid, remove it from the unpaid-array and add it to the paid array.
         if ($in_array_r) { 
-            $paidContracts[$in_array_r] = $purpose;
+            $paidContracts[$in_array_r] = $unpaidContracts[$in_array_r];
             unset($unpaidContracts[$in_array_r]); //Remove the value from the unpaid contract array
         }
     }
