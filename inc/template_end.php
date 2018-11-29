@@ -1,4 +1,8 @@
-    </div>
+<?php
+    echo "<br><br>"; //It looks better, with some breaks at the end
+?>
+
+</div>
     <!-- /.container -->
 
     <!-- Bootstrap core JavaScript -->

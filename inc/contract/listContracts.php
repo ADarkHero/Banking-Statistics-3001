@@ -3,6 +3,7 @@
 DEPENDS ON
  * inc/contract/paidContracts.php
 ********************/
+echo "<br>You still have to pay <b class='text-danger'>" . bankNumberFormat($contractCosts) . " ".$currency."</b> for your contracts.<br><br>";
 
 $i = 0;
 foreach ($paidContracts as $key => $value){
@@ -98,5 +99,3 @@ foreach ($unpaidContracts as $key => $value){
 
 $i++;
 }
-
-echo "<br>You still have to pay <b class='text-danger'>" . bankNumberFormat($contractCosts) . " ".$currency."</b> for your contracts.<br>";
