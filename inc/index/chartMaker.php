@@ -169,6 +169,7 @@ var myChart = new Chart(ctx, {
                     $labelsString .= '"'.$key.'", ';
                 }
                 echo $labelsString;
+                echo '"Unpaid contracts", ';
                 echo '"Money left"';
             ?>
         ],
@@ -181,6 +182,7 @@ var myChart = new Chart(ctx, {
                         $valuesString .= '"'.$value.'", ';
                     }
                     echo $valuesString;
+                    echo '"'.$contractCosts.'", ';
                     echo '"'.$moneyLeft.'"';
                 ?>
             ],
@@ -192,7 +194,8 @@ var myChart = new Chart(ctx, {
                         $colorsString .= "'rgba(".$r.", ".$g.", ".$b.", 0.4)', ";
                     }
                     echo $colorsString;
-                    echo "'rgba(54, 162, 235, ".$chartFill.")'";
+                    echo "'rgba(".$colorContractCosts.", ".$chartFill.")', ";
+                    echo "'rgba(".$colorMoneyLeft.", ".$chartFill.")'";
                 ?>
             ],
             borderColor: [
@@ -203,7 +206,8 @@ var myChart = new Chart(ctx, {
                         $borderString .= "'rgba(".$r.", ".$g.", ".$b.", 1)', ";
                     }
                     echo $borderString;
-                    echo "'rgba(54, 162, 235, ".$chartBorder.")'";
+                    echo "'rgba(".$colorContractCosts.", ".$chartBorder.")', ";
+                    echo "'rgba(".$colorMoneyLeft.", ".$chartBorder.")'";
                 ?>
             ],
             borderWidth: <?php echo $chartBorderWidth; ?>
