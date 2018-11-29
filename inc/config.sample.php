@@ -54,6 +54,7 @@ $colorMoneySpent = "255, 99, 132";
 $colorMoneyOverTime = "255, 87, 51";
 $colorMoneyToSave = "255, 206, 86";
 $colorCurrentMoney = $colorPaycheck;
+$colorContractCosts = $colorMoneyOverTime;
 
 $moneySaveRatio = 3; //Based on your (last) paycheck: How much money do you want to save?
 

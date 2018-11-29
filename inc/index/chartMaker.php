@@ -22,11 +22,20 @@
 
     function pieChartOpenStatements(event, data){
         if(data[0]){
-            console.log(data);
             var items = data[0]["_chart"]["legend"]["legendItems"];
             var index = data[0]["_index"];
             var clickedValue = items[index]["text"];
-            var link = 'statement.php?search=' + clickedValue;
+            var link = "";
+            switch(clickedValue){
+                case "Unpaid contracts":
+                    link = 'contract.php';
+                    break;
+                case "Money left":
+                    link = 'statement.php';
+                    break;
+                default:
+                    link = 'statement.php?search=' + clickedValue;
+            }
             window.open(link, '_blank');
         }
     } 
