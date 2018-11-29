@@ -73,12 +73,12 @@ var myChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    fontSize: 11
+                    fontSize: <?php echo $chartFontSize; ?>
                 }
             }],
             xAxes: [{
                 ticks: {
-                    fontSize: 11
+                    fontSize: <?php echo $chartFontSize; ?>
                 }
             }]
         } 
@@ -130,12 +130,12 @@ var myChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    fontSize: 11
+                    fontSize: <?php echo $chartFontSize; ?>
                 }
             }],
             xAxes: [{
                 ticks: {
-                    fontSize: 11
+                    fontSize: <?php echo $chartFontSize; ?>
                 }
             }]
         } ,
@@ -179,7 +179,7 @@ var myChart = new Chart(ctx, {
         legend: {
                 display: true,
                 labels: {
-                    fontSize: 11
+                    fontSize: <?php echo $chartFontSize; ?>
                 }
             }
     }
@@ -246,7 +246,7 @@ var myChart = new Chart(ctx, {
         legend: {
                 display: true,
                 labels: {
-                    fontSize: 11
+                    fontSize: <?php echo $chartFontSize; ?>
                 }
             },
         onClick: pieChartOpenStatements 

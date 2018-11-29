@@ -47,6 +47,7 @@ function bankNumberFormatComma($number){ //How should numbers be formatted?
 $chartFill = "0.4"; //How dark is the chart background color? (0.4 - 1)
 $chartBorder = "1"; //Darkness of the chart borders (0.4 - 1)
 $chartBorderWidth = "1"; //Thickness of the charts borders
+$chartFontSize = "11"; //Font size, obviously.
 
 $colorPaycheck = "75, 192, 192";
 $colorMoneyLeft = "54, 162, 235";
