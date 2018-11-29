@@ -1,3 +1,5 @@
+<div id="accordion"> 
+    
 <?php
 
 /********************
@@ -53,3 +55,6 @@ if ($result->num_rows > 0) {
 } else {
     echo "Error while fetching your categories. Do you have any?";
 }
+?>
+    
+</div>
