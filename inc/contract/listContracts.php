@@ -1,3 +1,5 @@
+<div id="accordion"> 
+    
 <?php
 /********************
 DEPENDS ON
@@ -8,7 +10,6 @@ $i = 0;
 foreach ($paidContracts as $key => $value){
 ?>
 
-<div id="accordion"> 
 <div class="card">
     <div class="card-header" id="heading<?php echo $i; ?>">
       <h5 class="mb-0">
@@ -94,9 +95,13 @@ foreach ($unpaidContracts as $key => $value){
       </div>
     </div>
   </div>
-</div>
+
 
 <?php
 
 $i++;
 }
+
+?>
+
+</div>
