@@ -22,8 +22,8 @@ if ($result->num_rows > 0) {
                 <button class="btn btn-link collapsed full-size-button" data-toggle="collapse" data-target="#collapse<?php echo $i; ?>" aria-expanded="false" aria-controls="collapse<?php echo $i; ?>">
                     <div class="container">
                       <div class="row" >
-                          <div class="col-10 cut l-align"><span style='color:<?php echo $row["CategoryColor"]; ?>'><?php echo $row["CategoryName"]; ?></span></div>   
-                          <div class="col-2"><span style='color:<?php echo $row["CategoryColor"]; ?>'><?php echo $row["CategoryColor"]; ?></span></div> 
+                          <div class="col-12 col-lg-10 cut col-lg-l-align"><span style='color:<?php echo $row["CategoryColor"]; ?>'><?php echo $row["CategoryName"]; ?></span></div>   
+                          <div class="col-12 col-lg-2"><span style='color:<?php echo $row["CategoryColor"]; ?>'><?php echo $row["CategoryColor"]; ?></span></div> 
                       </div>    
                     </div>         
                 </button>

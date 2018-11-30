@@ -37,9 +37,9 @@ if ($result->num_rows > 0) {
                   <button class="btn btn-link collapsed full-size-button" data-toggle="collapse" data-target="#collapse<?php echo $i; ?>" aria-expanded="false" aria-controls="collapse<?php echo $i; ?>">
                       <div class="container">
                         <div class="row" style="color: <?php echo $row["CategoryColor"]; ?>">
-                            <div class="col-2"><?php echo $row["EntryDate"]; ?></div>   
-                            <div class="col-8 cut"><?php echo $purpose_text; ?></div> 
-                            <div class="col-2 r-align"><?php echo bankNumberFormatComma($row["Value"])." ".$currency; ?></div> 
+                            <div class="col-12 col-lg-2"><?php echo $row["EntryDate"]; ?></div>   
+                            <div class="col-12 col-lg-8 cut"><?php echo $purpose_text; ?></div> 
+                            <div class="col-12 col-lg-2 col-lg-r-align"><?php echo bankNumberFormatComma($row["Value"])." ".$currency; ?></div> 
                         </div>    
                       </div>         
                   </button>

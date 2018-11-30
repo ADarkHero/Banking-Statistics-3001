@@ -16,9 +16,9 @@ foreach ($paidContracts as $key => $value){
         <button class="btn btn-link collapsed full-size-button" data-toggle="collapse" data-target="#collapse<?php echo $i; ?>" aria-expanded="false" aria-controls="collapse<?php echo $i; ?>">
             <div class="container">
               <div class="row" >
-                  <div class="col-2"><span class="text-success">PAID</span></div>   
-                  <div class="col-8 cut"><span class="text-success"><?php echo $key; ?></span></div>   
-                  <div class="col-2"><span class="text-success"><?php echo bankNumberFormat($contractAmounts[$key])." ".$currency; ?></span></div> 
+                  <div class="col-12 col-lg-2"><span class="text-success">PAID</span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-success"><?php echo $key; ?></span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-success"><?php echo bankNumberFormat($contractAmounts[$key])." ".$currency; ?></span></div> 
               </div>    
             </div>         
         </button>
@@ -63,9 +63,9 @@ foreach ($unpaidContracts as $key => $value){
         <button class="btn btn-link collapsed full-size-button" data-toggle="collapse" data-target="#collapse<?php echo $i; ?>" aria-expanded="false" aria-controls="collapse<?php echo $i; ?>">
             <div class="container">
               <div class="row" >
-                  <div class="col-2"><span class="text-danger">UNPAID</span></div>   
-                  <div class="col-8 cut"><span class="text-danger"><?php echo $key; ?></span></div>   
-                  <div class="col-2"><span class="text-danger"><?php echo bankNumberFormat($contractAmounts[$key])." ".$currency; ?></span></div> 
+                  <div class="col-12 col-lg-2"><span class="text-danger">UNPAID</span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-danger"><?php echo $key; ?></span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-danger"><?php echo bankNumberFormat($contractAmounts[$key])." ".$currency; ?></span></div> 
               </div>    
             </div>         
         </button>

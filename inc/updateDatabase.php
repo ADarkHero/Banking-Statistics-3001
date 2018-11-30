@@ -51,7 +51,7 @@ Success Message
 ********************/
 if($newEntriesCounter > 0){
     echo "<p class='newEntries'><b class='successMessage'>".$newEntriesCounter."</b> new transaction";
-    if($newEntriesCounter = 1){
+    if($newEntriesCounter !== 1){
         echo "s";
     }
     echo " got inserted into the database!</p>";
