@@ -23,6 +23,10 @@
                 <div class="col-9"><input type="text" class="form-control" name="contractValue" placeholder="Unique statement of the contract"></div>
             </div>
             <div class="form-group row">
+                <label for="contractNote" class="col-3 col-form-label">Contract note</label>
+                <div class="col-9"><input type="text" class="form-control" name="contractNote" placeholder="You can add a little note here."></div>
+            </div>
+            <div class="form-group row">
                 <label for="contractAmount" class="col-3 col-form-label">Contract cost</label>
                 <div class="col-9"><input type="number" step="0.01" class="form-control" name="contractAmount" placeholder="The monthly amount, you pay for your contract"></div>
             </div>
@@ -40,6 +44,7 @@
 	if(isSet($_POST["contractName"]) & isSet($_POST["contractValue"]) & isSet($_POST["contractAmount"])){
             $sql = "INSERT INTO contracts VALUES ('".htmlspecialchars($_POST["contractName"])."', "
                     . "'".htmlspecialchars($_POST["contractValue"])."', "
+                    . "'".htmlspecialchars($_POST["contractNote"])."', "
                     . "".htmlspecialchars($_POST["contractAmount"]).")"; //SQL statement
             
             if ($conn->query($sql) === TRUE) {

@@ -12,6 +12,7 @@ Contracts
 
 $contracts = array();
 $contractAmounts = array();
+$contractNotes = array();
 
 $sql = "SELECT * FROM contracts";
 $result = $conn->query($sql);
@@ -21,6 +22,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
 	$contracts[$row["ContractName"]] = $row["ContractValue"];
         $contractAmounts[$row["ContractName"]] = $row["ContractAmount"];
+        $contractNotes[$row["ContractName"]] = $row["ContractNote"];
     }
 } else {
     echo "Error while fetching your last paycheck.";

@@ -8,7 +8,8 @@ if(isSet($_POST["changeContractName"]) && isSet($_POST["changeContractValue"]) &
     $sql = "UPDATE contracts SET  "
             . "ContractName = '".htmlspecialchars($_POST["changeContractName"])."', "
             . "ContractValue = '".htmlspecialchars($_POST["changeContractValue"])."', "
-            . "ContractAmount = '".htmlspecialchars($_POST["changeContractAmount"])."' "
+            . "ContractAmount = '".htmlspecialchars($_POST["changeContractAmount"])."', "
+            . "ContractNote = '".htmlspecialchars($_POST["changeContractNote"])."' "
             . "WHERE ContractName = '".htmlspecialchars($_POST["changeContractNameOld"])."'"; //SQL statement
     
     if ($conn->query($sql) === TRUE) {
