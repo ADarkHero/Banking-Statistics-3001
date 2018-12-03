@@ -159,7 +159,7 @@ var myChart = new Chart(ctx, {
                     $moneyToSave = $lPaycheck*$moneySaveRatio-$sumMoney+$contractCosts; 
                     if($moneyToSave > 0){ echo $moneyToSave; } else { echo "0"; } 
                 ?>,
-                <?php echo str_replace(",", ".", $rows[1][5])-$contractCosts; ?>,
+                <?php echo $spendableMoney; ?>,
                 <?php echo $contractCosts; ?>
             ],
             backgroundColor: [
