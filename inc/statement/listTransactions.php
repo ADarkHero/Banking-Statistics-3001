@@ -79,7 +79,7 @@ if ($result->num_rows > 0) {
 function categoryDropdown($categories, $categoryID, $categoryName, $categoryColor, $purpose){
     echo "<tr><td><b>Category</b></td><td class='word-break'>";
 ?>
-    <form action="statement.php?page=<?php if(isset($_GET["page"])){ echo htmlspecialchars($_GET["page"]); } else { echo "1"; } ?>" method="post">
+    <form action="statement.php?search=<?php if(isset($_GET["search"])){ echo htmlspecialchars($_GET["search"]); }?>&page=<?php if(isset($_GET["page"])){ echo htmlspecialchars($_GET["page"]); } else { echo "1"; } ?>" method="post">
         <div class="form-group row">
             <div class="col-10">
                 <select name="changeCategory" class="form-control">
