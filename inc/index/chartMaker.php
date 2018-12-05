@@ -212,7 +212,7 @@ var myChart = new Chart(ctx, {
                     }
                     echo $valuesString;
                     echo '"'.$contractCosts.'", ';
-                    echo '"'.$moneyLeft.'"';
+                    if($moneyLeft > 0){ echo '"'.$moneyLeft.'"'; } else { echo '"0"'; }
                 ?>
             ],
             backgroundColor: [
