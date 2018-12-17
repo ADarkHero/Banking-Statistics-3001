@@ -17,9 +17,11 @@ exec("bat\getBalance.bat");
 
 /********************
 Parse the downloaded csv into an array
-The filename is "out.csv" and its seperated with semicolons
+The filename is "statement.csv" and its seperated with semicolons
 ********************/
-$rows = array_map(function($row) { return str_getcsv($row, ';'); }, file('csv/statement.csv'));
+$statementrows = array_map(function($statementrows) { return str_getcsv($statementrows, ';'); }, file('csv/statement.csv'));
+$balancerows = array_map(function($balancerows) { return str_getcsv($balancerows, ';'); }, file('csv/balance.csv'));
+echo "<pre>".var_dump($balancerows)."</pre>";
 
 
 
@@ -27,11 +29,11 @@ $rows = array_map(function($row) { return str_getcsv($row, ';'); }, file('csv/st
 Generate and execute sql queries
 ********************/
 $newEntriesCounter = 0; //Counts, how much new entries are being made
-for($x = 1; $x < sizeof($rows); $x++){
+for($x = 1; $x < sizeof($statementrows); $x++){
 	$sql = "INSERT INTO statements VALUES ("; //Beginning of the sql statement
-	if(isSet($rows[$x][1])){ //Theres sometimes a empty line in the csv. Empty lines count as one single column. Empty lines get skipped, of course.
+	if(isSet($statementrows[$x][1])){ //Theres sometimes a empty line in the csv. Empty lines count as one single column. Empty lines get skipped, of course.
 		for($i = 0; $i < 16; $i++){ //Iterate throught the csv colums and adds it to the sql statement
-			$sql .= "'".$rows[$x][$i]."', ";
+			$sql .= "'".$statementrows[$x][$i]."', ";
 		}
 	}
 	$sql = substr($sql, 0, -2);
@@ -43,6 +45,10 @@ for($x = 1; $x < sizeof($rows); $x++){
 		$newEntriesCounter++;
 	} 
 }
+
+//Update account value
+$sql = "UPDATE account SET AccountValue = '".$balancerows[1][5]."' WHERE AccountNumber = '".$balancerows[1][2]."'";
+$conn->query($sql);
 
 
 

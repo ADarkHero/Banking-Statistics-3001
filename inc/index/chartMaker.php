@@ -155,7 +155,7 @@ var myChart = new Chart(ctx, {
             data: [
                 <?php 
                     $lPaycheck = str_replace(",", ".", $lastPaycheckAmount);
-                    $sumMoney = str_replace(",", ".", $rows[1][5]);
+                    $sumMoney = str_replace(",", ".", $bankAccountValue);
                     $moneyToSave = $lPaycheck*$moneySaveRatio-$sumMoney+$contractCosts; 
                     if($moneyToSave > 0){ echo $moneyToSave; } else { echo "0"; } 
                 ?>,
