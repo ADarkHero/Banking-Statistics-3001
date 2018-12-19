@@ -59,14 +59,10 @@ foreach ($unpaidContracts as $key => $value){
 }
 
 
-
-
-
-
 //Checks, if the string is in an array and returns the arraykey
-function in_array_return($needle, $haystack) {
-    foreach ($haystack as $key => $item) {
-        if (strpos($needle, $item) !== false) {
+function in_array_return($haystack, $needle) {
+    foreach ($needle as $key => $item) {
+        if (strpos($haystack, $item) !== false) {
             return $key;
         }  
     }

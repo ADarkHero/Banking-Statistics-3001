@@ -77,7 +77,7 @@ if ($result->num_rows > 0) {
 
 //Generates a dropdown, so the user can choose a category
 function categoryDropdown($categories, $categoryID, $categoryName, $categoryColor, $purpose){
-    echo "<tr><td><b>Category</b></td><td class='word-break'>";
+    echo "<tr><td><b>Category</b></td><td class=''>";
 ?>
     <form action="statement.php?search=<?php if(isset($_GET["search"])){ echo htmlspecialchars($_GET["search"]); }?>&page=<?php if(isset($_GET["page"])){ echo htmlspecialchars($_GET["page"]); } else { echo "1"; } ?>" method="post">
         <div class="form-group row">

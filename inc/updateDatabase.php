@@ -21,7 +21,6 @@ The filename is "statement.csv" and its seperated with semicolons
 ********************/
 $statementrows = array_map(function($statementrows) { return str_getcsv($statementrows, ';'); }, file('csv/statement.csv'));
 $balancerows = array_map(function($balancerows) { return str_getcsv($balancerows, ';'); }, file('csv/balance.csv'));
-echo "<pre>".var_dump($balancerows)."</pre>";
 
 
 
