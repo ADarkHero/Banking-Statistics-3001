@@ -1,3 +1,12 @@
+<?php
+/********************
+DEPENDS ON
+ * inc/index/lastPaycheck.php
+ * inc/index/getCurrentMoney.php
+ * inc/contract/paidContracts.php
+********************/
+?>
+
 <div class="containter">
     <div class="row">
         <div class="col-12 col-lg-6"><h3 class="mt-5">Money spent this month</h3><canvas id="moneySpent"></canvas></div> 

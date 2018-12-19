@@ -1,6 +1,5 @@
 <?php
 require_once ('inc/template.php');
-echo '<h1 class="mt-5">Dashboard</h1>';
 
 
 /********************
@@ -12,9 +11,22 @@ require_once('inc/index/lastPaycheck.php');
 
 
 /********************
+Pages for paychecks
+********************/
+require_once('inc/index/pageFunctions.php');
+getPagedisplay($conn, true, $customPaycheckDay, $pageback, $pageforward, $lastPaycheckDate);
+
+
+
+/********************
 Which contracts do you have to pay?
 ********************/
-require_once('inc/contract/paidContracts.php');
+if($customPaycheckDay == 0){
+    require_once('inc/contract/paidContracts.php');
+}
+else{
+    $contractCosts = 0;
+}
 
 
 

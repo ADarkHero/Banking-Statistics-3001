@@ -10,8 +10,8 @@ $currentDate = new DateTime("now");
 
 $interval = date_diff($paycheckDay, $currentDate);
 $timeToPaycheck = cal_days_in_month(CAL_GREGORIAN, date_format($paycheckDay, 'm'), 2018) - $interval->format('%a');
-if($timeToPaycheck < 0){
-    $timeToPaycheck = 0;
+if($timeToPaycheck < 1){
+    $timeToPaycheck = 1;
 }
 
 echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . 
@@ -27,8 +27,8 @@ How much money did we spent since then?
 ********************/
 $sql = "SELECT Value, EntryDate, CategoryName, CategoryColor FROM statements "
         . "LEFT JOIN categories ON statements.CategoryID = categories.CategoryID "
-        . "WHERE EntryDate >= '".$lastPaycheckDate."' AND Value < 0 ORDER BY EntryDate";
-        
+        . "WHERE EntryDate >= '".$lastPaycheckDate."' AND EntryDate <= '".$nextPaycheckDate."'"
+        . "AND Value < 0 ORDER BY EntryDate";
 $result = $conn->query($sql);
 
 $moneySpent = 0; //Total money spent
