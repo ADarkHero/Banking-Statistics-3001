@@ -39,7 +39,7 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward, $lastP
         <div class="col-2 col-md-1"><h1 class="mt-3 monospace">
             <a href="index.php?paycheckDate=<?php echo $pageforward; ?>"><</a>
         </h1></div> 
-        <div class="col-2 col-md-3"><h1 class="mt-3 monospace"><?php echo $lastPaycheckDate; ?></h1></div> 
+        <div class="col-8 col-md-3"><h1 class="mt-3 monospace"><?php echo $lastPaycheckDate; ?></h1></div> 
         <div class="col-2 col-md-1"><h1 class="mt-3 monospace">
             <a href="index.php?paycheckDate=<?php echo $pageback; ?>">></a>
         </h1></div>
