@@ -1,6 +1,6 @@
-<form action="index.php" method="post">
+<form action="index.php" class="inline" method="post">
 	<input type="hidden" name="updateDB" value="true">
-	<input type="submit" value="Update Database">
+	<input type="submit" class="inline" value="Update Database">
 </form>
 
 
@@ -55,14 +55,14 @@ $conn->query($sql);
 Success Message
 ********************/
 if($newEntriesCounter > 0){
-    echo "<p class='newEntries'><b class='successMessage'>".$newEntriesCounter."</b> new transaction";
+    echo "<p class='newEntries inline'><b class='successMessage'>".$newEntriesCounter."</b> new transaction";
     if($newEntriesCounter !== 1){
         echo "s";
     }
     echo " got inserted into the database!</p>";
 }
 else{
-    echo "<p class='newEntries errorMessage'>No new transactions!</p>";
+    echo "<p class='newEntries inline errorMessage'>No new transactions!</p>";
 }
 
 }
