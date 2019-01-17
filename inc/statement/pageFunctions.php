@@ -38,10 +38,10 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
     echo '<div class="container"><div class="row">'; //Generate div containers
     //Display "Statements", if on top of the page
     if($headline){
-        echo '<div class="col-12 col-md-8"><h1 class="mt-3">Statements</h1></div>';
+        echo '<div class="col-12 col-md-7"><h1 class="mt-3">Statements</h1></div>';
     }
     else{
-        echo '<div class="col-0 col-md-8"></div>';
+        echo '<div class="col-0 col-md-7"></div>';
     }
     
     if(isset($_GET["search"])){
@@ -53,18 +53,21 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
 
     //Display the current page and buttons to move to the next one
     ?>   
-        <div class="col-6 col-md-1"><h1 class="mt-3 monospace">
-            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<?php require_once('inc/category/listCategoriesSimple.php'); ?>">
-                i
-            </button>
-        </h1></div> 
-        <div class="col-2 col-md-1"><h1 class="mt-3 monospace">
-            <a href="statement.php?page=<?php echo $pageback; ?>&search=<?php echo $search; ?>"><</a>
-        </h1></div> 
-        <div class="col-2 col-md-1"><h1 class="mt-3 monospace"><?php echo $page; ?></h1></div> 
-        <div class="col-2 col-md-1"><h1 class="mt-3 monospace">
-            <a href="statement.php?page=<?php echo $pageforward; ?>&search=<?php echo $search; ?>">></a>
-        </h1></div>
+        <div class="col-12 col-md-5">
+            <nav aria-label="Statement Navigation">
+                <ul class="pagination mt-4 center justify-content-end">
+                  <li class="page-item">
+                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<?php require_once('inc/category/listCategoriesSimple.php'); ?>">
+                            Info
+                        </button>
+                  </li>
+                  <li class="page-item <?php if($page == $pageback){ echo "disabled"; } ?>"><a class="page-link" href="statement.php?page=<?php echo $pageback; ?>&search=<?php echo $search; ?>">Previous</a></li>
+                  <li class="page-item disabled"><a class="page-link" href="#"><b><?php echo $page; ?></b></a></li>
+                  <li class="page-item <?php if($page == $pageforward){ echo "disabled"; } ?>"><a class="page-link" href="statement.php?page=<?php echo $pageforward; ?>&search=<?php echo $search; ?>">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+
         </div></div>
      <?php
 }

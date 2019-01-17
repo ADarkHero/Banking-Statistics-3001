@@ -36,13 +36,16 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward, $lastP
 
     //Display the current page and buttons to move to the next one
     ?>   
-        <div class="col-2 col-md-1"><h1 class="mt-3 monospace">
-            <a href="index.php?paycheckDate=<?php echo $pageforward; ?>"><</a>
-        </h1></div> 
-        <div class="col-8 col-md-3"><h1 class="mt-3 monospace"><?php echo $lastPaycheckDate; ?></h1></div> 
-        <div class="col-2 col-md-1"><h1 class="mt-3 monospace">
-            <a href="index.php?paycheckDate=<?php echo $pageback; ?>">></a>
-        </h1></div>
+        <div class="col-12 col-md-5">
+            <nav aria-label="Navigation">
+                <ul class="pagination mt-4 center justify-content-end">
+                  <li class="page-item <?php if($page == $pageforward){ echo "disabled"; } ?>"><a class="page-link" href="index.php?paycheckDate=<?php echo $pageforward; ?>">Previous</a></li>
+                  <li class="page-item disabled"><a class="page-link" href="#"><b><?php echo $lastPaycheckDate; ?></b></a></li>
+                  <li class="page-item <?php if($page == $pageback){ echo "disabled"; } ?>"><a class="page-link" href="index.php?paycheckDate=<?php echo $pageback; ?>">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+
         </div></div>
      <?php
 }
