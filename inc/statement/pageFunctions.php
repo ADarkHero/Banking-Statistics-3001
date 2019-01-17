@@ -38,10 +38,7 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
     echo '<div class="container"><div class="row">'; //Generate div containers
     //Display "Statements", if on top of the page
     if($headline){
-        echo '<div class="col-12 col-md-7"><h1 class="mt-3">Statements</h1></div>';
-    }
-    else{
-        echo '<div class="col-0 col-md-7"></div>';
+        echo '<div class="col-12 col-md-4"><h1 class="mt-3">Statements</h1></div>';
     }
     
     if(isset($_GET["search"])){
@@ -53,7 +50,13 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
 
     //Display the current page and buttons to move to the next one
     ?>   
-        <div class="col-12 col-md-5">
+        <div class="col-12 <?php if($headline){ echo "col-md-4"; } else { echo "col-md-8"; } ?>">
+            <br>
+            <form action="statement.php" method="get" class="form-horizontal">
+              <input type="text" name="search" placeholder="Search..." <?php if(isset($_GET["search"])){ echo 'value="'.$_GET["search"].'"'; } ?> class="form-control search" >
+            </form>
+        </div>
+        <div class="col-12 col-md-4">
             <nav aria-label="Statement Navigation">
                 <ul class="pagination mt-4 center justify-content-end">
                   <li class="page-item">

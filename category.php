@@ -1,7 +1,7 @@
 <?php
 
 require_once ('inc/template.php');
-echo '<h1 class="mt-5">Categories</h1>';
+echo '<div class="col-12"><h1 class="mt-3">Categories</h1></div>';
 
 
 

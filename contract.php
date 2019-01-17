@@ -1,7 +1,7 @@
 <?php
 
 require_once ('inc/template.php');
-echo '<h1 class="mt-5">Contracts</h1>';
+echo '<div class="col-12"><h1 class="mt-3">Contracts</h1></div>';
 
 require_once('inc/index/lastPaycheck.php');
 

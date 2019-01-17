@@ -27,7 +27,7 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward, $lastP
     echo '<div class="container"><div class="row">'; //Generate div containers
     //Display "Dashboard", if on top of the page
     if($headline){
-        echo '<div class="col-12 col-md-7"><h1 class="mt-3">Dashboard</h1></div>';
+        echo '<div class="col-12 col-md-8"><h1 class="mt-3">Dashboard</h1></div>';
     }
     else{
         echo '<div class="col-0 col-md-8"></div>';
@@ -36,7 +36,7 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward, $lastP
 
     //Display the current page and buttons to move to the next one
     ?>   
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-md-4">
             <nav aria-label="Navigation">
                 <ul class="pagination mt-4 center justify-content-end">
                   <li class="page-item <?php if($page == $pageforward){ echo "disabled"; } ?>"><a class="page-link" href="index.php?paycheckDate=<?php echo $pageforward; ?>">Previous</a></li>
