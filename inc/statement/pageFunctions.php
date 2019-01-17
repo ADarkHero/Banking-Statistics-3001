@@ -51,9 +51,8 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
     //Display the current page and buttons to move to the next one
     ?>   
         <div class="col-12 <?php if($headline){ echo "col-md-4"; } else { echo "col-md-8"; } ?>">
-            <br>
             <form action="statement.php" method="get" class="form-horizontal">
-              <input type="text" name="search" placeholder="Search..." <?php if(isset($_GET["search"])){ echo 'value="'.$_GET["search"].'"'; } ?> class="form-control search" >
+              <input type="text" name="search" placeholder="Search..." <?php if(isset($_GET["search"])){ echo 'value="'.$_GET["search"].'"'; } ?> class="form-control search mt-4" >
             </form>
         </div>
         <div class="col-12 col-md-4">
