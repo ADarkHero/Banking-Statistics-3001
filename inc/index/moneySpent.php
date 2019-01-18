@@ -14,6 +14,10 @@ if($timeToPaycheck < 1){
     $timeToPaycheck = 1;
 }
 
+
+generateProgressBar($timeToPaycheck);
+
+
 echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . 
         bankNumberFormatComma($lastPaycheckAmount) . " ".$currency."</b>! "
         . "You'll get your next paycheck in approximately <b>".$timeToPaycheck." day";
@@ -23,7 +27,7 @@ if($timeToPaycheck !== "1"){ //Checks, if it is day or days
 echo "</b>.<br>";
 
 /********************
-How much money did we spent since then?
+ * How much money did we spent since then?
 ********************/
 $sql = "SELECT Value, EntryDate, CategoryName, CategoryColor FROM statements "
         . "LEFT JOIN categories ON statements.CategoryID = categories.CategoryID "
@@ -67,3 +71,36 @@ echo "You have <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$c
 
 $moneyPerDay = $moneyLeft / $timeToPaycheck;
 echo "If you don't need to save money, you could spend <b class='text-primary'>" . bankNumberFormat($moneyPerDay) . " ".$currency."</b> per day.";
+
+
+
+/********************
+ * Generates the progress bar, so the user quickly sees, how much of the month passed.
+********************/
+function generateProgressBar($timeToPaycheck){
+    $paycheckPercent = round(100 - $timeToPaycheck / 30 * 100, 2);  
+?>
+    <div class="progress" data-toggle="tooltip" title="<?php echo $paycheckPercent;?>% of the month passed.">
+        <div class="progress-bar progress-bar-striped <?php echo getProgressColor($paycheckPercent); ?>" role="progressbar" 
+             style="width: <?php echo $paycheckPercent."%"; ?>" 
+             aria-valuenow="<?php echo $paycheckPercent;?>" aria-valuemin="0" aria-valuemax="100">
+        </div>
+    </div>
+<?php
+}
+
+/********************
+ * Returns the color of the progress bar, based on the time left until the next paycheck arrives.
+********************/
+function getProgressColor($paycheckPercent){
+    $progresscolor = "";
+    
+    switch(true){
+        case ($paycheckPercent > 75): $progresscolor = "bg-success"; break;
+        case ($paycheckPercent > 50): $progresscolor = "bg-info"; break;
+        case ($paycheckPercent > 25): $progresscolor = "bg-warning"; break;
+        default: $progresscolor = "bg-danger";
+    }
+    
+    return $progresscolor;
+}

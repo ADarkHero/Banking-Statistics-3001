@@ -57,7 +57,7 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward){
         </div>
         <div class="col-12 col-md-4">
             <nav aria-label="Statement Navigation">
-                <ul class="pagination mt-4 center justify-content-end">
+                <ul class="pagination mt-4 center justify-content-center justify-content-md-end">
                   <li class="page-item">
                         <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<?php require('inc/category/listCategoriesSimple.php'); ?>">
                             Info

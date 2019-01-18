@@ -38,7 +38,7 @@ function getPagedisplay($conn, $headline, $page, $pageback, $pageforward, $lastP
     ?>   
         <div class="col-12 col-md-4">
             <nav aria-label="Navigation">
-                <ul class="pagination mt-4 center justify-content-end">
+                <ul class="pagination mt-4 center justify-content-center justify-content-md-end">
                   <li class="page-item <?php if($page == $pageforward){ echo "disabled"; } ?>"><a class="page-link" href="index.php?paycheckDate=<?php echo $pageforward; ?>">Previous</a></li>
                   <li class="page-item disabled"><a class="page-link" href="#"><b><?php echo $lastPaycheckDate; ?></b></a></li>
                   <li class="page-item <?php if($page == $pageback){ echo "disabled"; } ?>"><a class="page-link" href="index.php?paycheckDate=<?php echo $pageback; ?>">Next</a></li>
