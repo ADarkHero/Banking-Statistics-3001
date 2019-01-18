@@ -15,4 +15,4 @@ if ($result->num_rows > 0) {
 
 $spendableMoney = str_replace(",", ".", $bankAccountValue)-$contractCosts;
 echo "You currently have <b class='text-success moneyTotal'>" . bankNumberFormatComma($bankAccountValue) . " €</b> on your " . $bankAccountNumber . " bank account!<br>";
-if($_GET["paycheckDate"] == 0){ echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " €</b> if you dislike saving money!"; }
+if(isCurrentMonth()){ echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " €</b> if you dislike saving money!"; }

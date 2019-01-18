@@ -104,14 +104,7 @@ if(isCurrentMonth()){
 
 
 
-function isCurrentMonth(){
-    if($_GET["paycheckDate"] == 0){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
+
 
 
 

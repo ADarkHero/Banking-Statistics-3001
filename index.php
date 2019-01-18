@@ -57,3 +57,16 @@ require_once ('inc/index/chartMaker.php');
 
 require_once ('inc/template_end.php');
 
+
+/********************
+ * Checks, if we are in the current month, or if we are in a past one.
+********************/
+function isCurrentMonth(){
+    if(isset($_GET["paycheckDate"])){
+        if($_GET["paycheckDate"] == 0){
+            return true;
+        } 
+        return false;
+    }
+    return true;
+}
