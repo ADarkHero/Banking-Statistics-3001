@@ -10,21 +10,35 @@ $currentDate = new DateTime("now");
 
 $interval = date_diff($paycheckDay, $currentDate);
 $timeToPaycheck = cal_days_in_month(CAL_GREGORIAN, date_format($paycheckDay, 'm'), 2018) - $interval->format('%a');
+
 if($timeToPaycheck < 1){
     $timeToPaycheck = 1;
 }
 
-
-generateProgressBar($timeToPaycheck);
-
-
-echo "You got your last paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . 
-        bankNumberFormatComma($lastPaycheckAmount) . " ".$currency."</b>! "
-        . "You'll get your next paycheck in approximately <b>".$timeToPaycheck." day";
-if($timeToPaycheck !== "1"){ //Checks, if it is day or days
-    echo "s";
+//Progress bar should always be 100%, when the month passed
+if(isCurrentMonth()){
+    generateProgressBar($timeToPaycheck);
 }
-echo "</b>.<br>";
+else{
+    generateProgressBar(0);
+}
+
+
+echo "You got your ";
+if(isCurrentMonth()){ echo "last "; }
+echo "paycheck on <b>" . $lastPaycheckDate . "</b>! It were <b class='text-success'>" . 
+        bankNumberFormatComma($lastPaycheckAmount) . " ".$currency."</b>! ";
+
+//Next paycheck date is unneccessary in past months
+if(isCurrentMonth()){
+    echo "You'll get your next paycheck in approximately <b>".$timeToPaycheck." day";
+    if($timeToPaycheck !== 1){ //Checks, if it is day or days
+        echo "s";
+    }  
+    echo "</b>. ";
+}
+
+echo "<br>";
 
 /********************
  * How much money did we spent since then?
@@ -63,14 +77,42 @@ if ($result->num_rows > 0) {
 }
 
 $moneySpent *= -1;
-echo "You spent <b class='text-danger'>" . bankNumberFormat($moneySpent) . " ".$currency."</b> since your last paycheck. "
-        . "You still have to pay <b class='text-danger'>" . bankNumberFormat($contractCosts) . " ".$currency."</b> for your contracts.<br>";
+if(isCurrentMonth()){
+    echo "You spent <b class='text-danger'>" . bankNumberFormat($moneySpent) . " ".$currency."</b> since your last paycheck. ";
+}
+else{
+    echo "You spent <b class='text-danger'>" . bankNumberFormat($moneySpent) . " ".$currency."</b> that month. ";
+}
+
+if(isCurrentMonth()){
+    echo "You still have to pay <b class='text-danger'>" . bankNumberFormat($contractCosts) . " ".$currency."</b> for your contracts.";
+}
+echo "<br>";
 
 $moneyLeft = $lastPaycheckAmount - $moneySpent - $contractCosts;
-echo "You have <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$currency."</b> left until your next paycheck. ";
+if(isCurrentMonth()){
+    echo "You have <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$currency."</b> left until your next paycheck. ";
+}
+else{
+    echo "You had <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$currency."</b> left that month. ";
+}
 
-$moneyPerDay = $moneyLeft / $timeToPaycheck;
-echo "If you don't need to save money, you could spend <b class='text-primary'>" . bankNumberFormat($moneyPerDay) . " ".$currency."</b> per day.";
+if(isCurrentMonth()){
+    $moneyPerDay = $moneyLeft / $timeToPaycheck;
+    echo "If you don't need to save money, you could spend <b class='text-primary'>" . bankNumberFormat($moneyPerDay) . " ".$currency."</b> per day.";
+}
+
+
+
+function isCurrentMonth(){
+    if($_GET["paycheckDate"] == 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 
 
 
