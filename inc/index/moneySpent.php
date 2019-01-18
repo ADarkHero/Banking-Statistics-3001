@@ -78,7 +78,10 @@ echo "If you don't need to save money, you could spend <b class='text-primary'>"
  * Generates the progress bar, so the user quickly sees, how much of the month passed.
 ********************/
 function generateProgressBar($timeToPaycheck){
-    $paycheckPercent = round(100 - $timeToPaycheck / 30 * 100, 2);  
+    $paycheckPercent = round(100 - $timeToPaycheck / 30 * 100, 2);
+    if($paycheckPercent < 0){ $paycheckPercent = 0; }
+    if($paycheckPercent > 100){ $paycheckPercent = 100; }
+    
 ?>
     <div class="progress" data-toggle="tooltip" title="<?php echo $paycheckPercent;?>% of the month passed.">
         <div class="progress-bar progress-bar-striped <?php echo getProgressColor($paycheckPercent); ?>" role="progressbar" 
