@@ -37,15 +37,12 @@ for($x = 1; $x < sizeof($statementrows); $x++){
 	//Note: The database checks for duplicates. A more effective/faster way should be implemented sometime.
 	if ($conn->query($sql) === TRUE) {
 		$newEntriesCounter++;
-	} 
+	}
 }
 
 //Update account value
 $sql = "UPDATE account SET AccountValue = '".$balancerows[1][5]."' WHERE AccountNumber = '".$balancerows[1][2]."'";
 $conn->query($sql);
-
-
-
 
 
 }

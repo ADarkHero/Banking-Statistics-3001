@@ -9,7 +9,8 @@ $paycheckDay = date_create($lastPaycheckDate);
 $currentDate = new DateTime("now");
 
 $interval = date_diff($paycheckDay, $currentDate);
-$timeToPaycheck = cal_days_in_month(CAL_GREGORIAN, date_format($paycheckDay, 'm'), 2018) - $interval->format('%a');
+//Time until next paycheck
+$timeToPaycheck = cal_days_in_month(CAL_GREGORIAN, date_format($paycheckDay->add(new DateInterval("P1M")), 'm'), 2019) - $interval->format('%a');
 
 if($timeToPaycheck < 1){
     $timeToPaycheck = 1;
