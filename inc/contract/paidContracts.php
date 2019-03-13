@@ -44,9 +44,10 @@ if ($result->num_rows > 0) {
         $in_array_r = in_array_return($purpose, $unpaidContracts);
         
         //If the contract was paid, remove it from the unpaid-array and add it to the paid array.
-        if ($in_array_r) { 
+        while ($in_array_r) { 
             $paidContracts[$in_array_r] = $unpaidContracts[$in_array_r];
             unset($unpaidContracts[$in_array_r]); //Remove the value from the unpaid contract array
+            $in_array_r = in_array_return($purpose, $unpaidContracts); //Fix, if more than one contract has the same ContractValue; Now removes all of them
         }
     }
 } else {

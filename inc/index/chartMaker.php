@@ -3,6 +3,7 @@
 DEPENDS ON
  * inc/index/lastPaycheck.php
  * inc/index/getCurrentMoney.php
+ * inc/index/moneySpent.php
  * inc/contract/paidContracts.php
 ********************/
 ?>
