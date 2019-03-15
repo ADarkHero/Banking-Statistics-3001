@@ -47,7 +47,7 @@ echo "<br>";
 $sql = "SELECT Value, EntryDate, CategoryName, CategoryColor FROM statements "
         . "LEFT JOIN categories ON statements.CategoryID = categories.CategoryID "
         . "WHERE EntryDate >= '".$lastPaycheckDate."' AND EntryDate <= '".$nextPaycheckDate."'"
-        . "AND Value < 0 ORDER BY EntryDate";
+        . "AND AcctNo != '".$payCheckAccount."' ORDER BY EntryDate";
 $result = $conn->query($sql);
 
 $moneySpent = 0; //Total money spent

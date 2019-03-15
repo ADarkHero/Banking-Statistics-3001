@@ -218,7 +218,11 @@ var myChart = new Chart(ctx, {
                 <?php 
                     $valuesString = "";
                     foreach ($moneyCategories as $key => $value) {
-                        $valuesString .= '"'.$value.'", ';
+                        //Only show entries, you SPENT money on.
+                        //Don't show entries, where you gained money.
+                        if($value < 0){
+                           $valuesString .= '"'.$value.'", '; 
+                        }
                     }
                     echo $valuesString;
                     echo '"'.$contractCosts.'", ';
@@ -242,7 +246,7 @@ var myChart = new Chart(ctx, {
                     $borderString = "";
                     foreach ($categorieColors as $key => $value) {
                         list($r, $g, $b) = sscanf($value, "#%02x%02x%02x");     
-                        $borderString .= "'rgba(".$r.", ".$g.", ".$b.", 1)', ";
+                        $borderString .= "'rgba(".$r.", ".$g.", ".$b.", 1)', "; 
                     }
                     echo $borderString;
                     echo "'rgba(".$colorContractCosts.", ".$chartBorder.")', ";
