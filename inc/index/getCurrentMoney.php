@@ -7,12 +7,21 @@ DEPENDS ON
 $sql = "SELECT AccountNumber, AccountValue FROM account";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
+    $bankAccountNumber = array();
+    $bankAccountValue = array();
      while($row = $result->fetch_assoc()) {
-         $bankAccountNumber = $row["AccountNumber"];
-         $bankAccountValue = $row["AccountValue"];
+        array_push($bankAccountNumber, $row["AccountNumber"]);
+        array_push($bankAccountValue, $row["AccountValue"]);
      }
 }
 
-$spendableMoney = str_replace(",", ".", $bankAccountValue)-$contractCosts;
-echo "You currently have <b class='text-success moneyTotal'>" . bankNumberFormatComma($bankAccountValue) . " €</b> on your " . $bankAccountNumber . " bank account!<br>";
-if(isCurrentMonth()){ echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " €</b> if you dislike saving money!"; }
+
+$moneySum = 0;
+for($i = 0; $i < sizeof($bankAccountNumber); $i++){
+    echo "You currently have <b class='text-success moneyTotal'>" . bankNumberFormatComma($bankAccountValue[$i]) . " €</b> on your " . $bankAccountNumber[$i] . " bank account!<br>";
+    $moneySum += $bankAccountValue[$i];
+}
+
+$spendableMoney = $moneySum - $contractCosts;
+if(isCurrentMonth()){ echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " €</b> "
+        . "of your <b class='text-success moneyTotal'>" . bankNumberFormat($moneySum) . " €</b> if you dislike saving money!"; }
