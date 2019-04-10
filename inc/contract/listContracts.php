@@ -7,6 +7,8 @@ DEPENDS ON
 ********************/
 
 $i = 0;
+$paidSum = 0;
+$leftSum = 0;
 foreach ($paidContracts as $key => $value){
 ?>
 
@@ -19,6 +21,7 @@ foreach ($paidContracts as $key => $value){
                   <div class="col-12 col-lg-2"><span class="text-success">PAID</span></div>   
                   <div class="col-12 col-lg-8 cut"><span class="text-success"><?php echo $key; ?></span></div>   
                   <div class="col-12 col-lg-2"><span class="text-success"><?php echo bankNumberFormat($contractAmounts[$key])." ".$currency; ?></span></div> 
+                  <?php $paidSum += $contractAmounts[$key]; ?>
               </div>    
             </div>         
         </button>
@@ -70,6 +73,7 @@ foreach ($unpaidContracts as $key => $value){
                   <div class="col-12 col-lg-2"><span class="text-danger">UNPAID</span></div>   
                   <div class="col-12 col-lg-8 cut"><span class="text-danger"><?php echo $key; ?></span></div>   
                   <div class="col-12 col-lg-2"><span class="text-danger"><?php echo bankNumberFormat($contractAmounts[$key])." ".$currency; ?></span></div> 
+                  <?php $leftSum += $contractAmounts[$key]; ?>
               </div>    
             </div>         
         </button>
@@ -111,5 +115,52 @@ $i++;
 }
 
 ?>
-
 </div>
+
+<br>
+
+<div class="card">
+    <div class="card-header" id="heading9996">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed full-size-button">
+            <div class="container">
+              <div class="row" >
+                  <div class="col-12 col-lg-2"><span class="text-primary">TOTAL CONTRACTS</span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-primary">You pay this much for contracts every month: </span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-primary"><?php $totalSum = $paidSum+$leftSum; echo bankNumberFormat($totalSum)." ".$currency; ?></span></div>   
+              </div>    
+            </div>         
+        </button>
+      </h5>
+    </div>
+  </div>
+<div class="card">
+    <div class="card-header" id="heading9997">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed full-size-button">
+            <div class="container">
+              <div class="row" >
+                  <div class="col-12 col-lg-2"><span class="text-success">TOTAL PAID</span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-success">This month you already paid: </span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-success"><?php echo bankNumberFormat($paidSum)." ".$currency; ?></span></div>   
+              </div>    
+            </div>         
+        </button>
+      </h5>
+    </div>
+  </div>
+<div class="card">
+    <div class="card-header" id="heading9998">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed full-size-button">
+            <div class="container">
+              <div class="row" >
+                  <div class="col-12 col-lg-2"><span class="text-danger">TOTAL UNPAID</span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-danger">This month you still have to pay: </span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-danger"><?php echo bankNumberFormat($leftSum)." ".$currency; ?></span></div>   
+              </div>    
+            </div>         
+        </button>
+      </h5>
+    </div>
+  </div>
