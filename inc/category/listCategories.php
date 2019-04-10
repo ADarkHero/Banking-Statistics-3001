@@ -42,6 +42,10 @@ if ($result->num_rows > 0) {
                             <div class="col-9"><input type="text" id="hue-demo" class="form-control demo" data-control="hue" name="categoryChangeColor" value="<?php echo $row["CategoryColor"]; ?>"></div> 
                         </div>
                         <div class="form-group row">
+                            <label for="categoryChangeExcludeStats" class="col-3 col-form-label">Exclude from statistics</label>
+                            <div class="col-9"><input type="checkbox" class="form-control" name="categoryChangeExcludeStats" <?php if($row["CategoryExcludeStats"] == 1){ echo "checked"; } ?>></div>
+                        </div>
+                        <div class="form-group row">
                             <input type="hidden" name="categoryChangeNameOld" value="<?php echo $row["CategoryName"]; ?>">
                             <div class="col-12"><input type="submit" class="btn btn-primary form-control" value="Change settings"></div>
                         </div>

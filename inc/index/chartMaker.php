@@ -236,7 +236,7 @@ var myChart = new Chart(ctx, {
                     $colorsString = "";
                     foreach ($categorieColors as $key => $value) {
                         list($r, $g, $b) = sscanf($value, "#%02x%02x%02x");     
-                        $colorsString .= "'rgba(".$r.", ".$g.", ".$b.", 0.4)', ";
+                        $colorsString .= "'rgba(".$r.", ".$g.", ".$b.", 0.4)', ";  
                     }
                     echo $colorsString;
                     echo "'rgba(".$colorContractCosts.", ".$chartFill.")', ";
@@ -248,7 +248,7 @@ var myChart = new Chart(ctx, {
                     $borderString = "";
                     foreach ($categorieColors as $key => $value) {
                         list($r, $g, $b) = sscanf($value, "#%02x%02x%02x");     
-                        $borderString .= "'rgba(".$r.", ".$g.", ".$b.", 1)', "; 
+                        $borderString .= "'rgba(".$r.", ".$g.", ".$b.", 1)', ";
                     }
                     echo $borderString;
                     echo "'rgba(".$colorContractCosts.", ".$chartBorder.")', ";

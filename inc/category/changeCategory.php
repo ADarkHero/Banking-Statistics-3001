@@ -5,9 +5,16 @@ DEPENDS ON
 ********************/
 
     if(isSet($_POST["categoryChangeName"]) && isSet($_POST["categoryChangeColor"])){
+        if(isset($_POST["categoryChangeExcludeStats"])){
+            $moneyBy = 1;
+        }
+        else { $moneyBy = 0; }
+        
+        
         $sql = "UPDATE categories SET  "
             . "CategoryName = '".htmlspecialchars($_POST["categoryChangeName"])."', "
-            . "CategoryColor = '".htmlspecialchars($_POST["categoryChangeColor"])."' "
+            . "CategoryColor = '".htmlspecialchars($_POST["categoryChangeColor"])."', "
+            . "CategoryExcludeStats = '".$moneyBy."' "
             . "WHERE CategoryName = '".htmlspecialchars($_POST["categoryChangeNameOld"])."'"; //SQL statement
         
         if ($conn->query($sql) === TRUE) {

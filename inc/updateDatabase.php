@@ -46,7 +46,6 @@ for($y = 1; $y < sizeof($balancerows); $y++){
     if(isset($balancerows[$y][5])){
         if($balancerows[$y][5] > 0){
             $sql = "UPDATE account SET AccountValue = '".$balancerows[$y][5]."' WHERE AccountNumber = '".$balancerows[$y][2]."'";
-            echo "<script>alert(\"".$sql."\")</script>";
             $conn->query($sql);
             if($conn->affected_rows == 0){
                 $sql = "INSERT INTO account (AccountValue, AccountNumber) VALUES ('".$balancerows[$y][5]."', '".$balancerows[$y][2]."')";
