@@ -65,7 +65,7 @@ if ($result->num_rows > 0) {
                 }
                 
                 if(!isset($categorieColors[$row["CategoryName"]])){ //Do we already have the category color?
-                    if($row["Value"] < 0){ //We don't need categories for positive values
+                    if($row["Value"] <= 0){ //We don't need categories for positive values
                         $categorieColors[$row["CategoryName"]] = $row["CategoryColor"];
                     }
                 }
