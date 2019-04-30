@@ -205,9 +205,7 @@ var myChart = new Chart(ctx, {
             <?php 
                 $labelsString = "";
                 foreach ($moneyCategories as $key => $value) {
-                    if($value < 0){
-                        $labelsString .= '"'.$key.'", ';
-                    }
+                    $labelsString .= '"'.$key.'", ';
                 }
                 echo $labelsString;
                 echo '"Unpaid contracts", ';
@@ -222,9 +220,7 @@ var myChart = new Chart(ctx, {
                     foreach ($moneyCategories as $key => $value) {
                         //Only show entries, you SPENT money on.
                         //Don't show entries, where you gained money.
-                        if($value <= 0){
-                           $valuesString .= '"'.$value.'", '; 
-                        }
+                        $valuesString .= '"'.$value.'", '; 
                     }
                     echo $valuesString;
                     echo '"-'.$contractCosts.'", ';
