@@ -222,7 +222,7 @@ var myChart = new Chart(ctx, {
                     foreach ($moneyCategories as $key => $value) {
                         //Only show entries, you SPENT money on.
                         //Don't show entries, where you gained money.
-                        if($value < 0){
+                        if($value <= 0){
                            $valuesString .= '"'.$value.'", '; 
                         }
                     }
