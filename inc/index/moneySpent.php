@@ -44,7 +44,7 @@ echo "<br>";
 /********************
  * How much money did we spent since then?
 ********************/
-$sql = "SELECT Value, EntryDate, CategoryName, CategoryColor, CategoryExcludeStats FROM statements "
+$sql = "SELECT Value, EntryDate, CategoryName, CategoryColor FROM statements "
         . "LEFT JOIN categories ON statements.CategoryID = categories.CategoryID "
         . "WHERE EntryDate >= '".$lastPaycheckDate."' AND EntryDate <= '".$nextPaycheckDate."' "
         . "AND AcctNo != '".$payCheckAccount."' "
@@ -71,16 +71,14 @@ if ($result->num_rows > 0) {
                 }
                 $moneyCategories[$row["CategoryName"]] += doubleval(str_replace(',', '.', $row["Value"])); 
                 
-                if($row["CategoryExcludeStats"] == 0){
-                    if(!isset($moneyByDate[$row["EntryDate"]])){ //If the date has no value yet, set it.
-                        $moneyByDate[$row["EntryDate"]] = 0;
-                    }
-                    $moneyByDate[$row["EntryDate"]] += doubleval(str_replace(',', '.', $row["Value"]));  
+                if(!isset($moneyByDate[$row["EntryDate"]])){ //If the date has no value yet, set it.
+                    $moneyByDate[$row["EntryDate"]] = 0;
                 }
+                $moneyByDate[$row["EntryDate"]] += doubleval(str_replace(',', '.', $row["Value"]));  
                      
     }
 } else {
-    echo "Error while fetching your last paycheck.";
+    //echo "You didn't spend money since your last paycheck. ";
 }
 
 $moneySpent *= -1;
