@@ -19,13 +19,20 @@ if ($result->num_rows > 0) {
 
 
 $moneySum = 0;
+$moneyPrimaryAccount = $bankAccountValue[0]; //Currently the first account is the "primary" account
 for($i = 0; $i < sizeof($bankAccountNumber); $i++){
-    echo "You currently have <b class='text-success moneyTotal'>" . bankNumberFormatComma($bankAccountValue[$i]) . " €</b> on your " . $bankAccountNumber[$i] . 
+    echo "You currently have <b class='text-success moneyTotal'>" . bankNumberFormatComma($bankAccountValue[$i]) . " ".$currency."</b> on your " . $bankAccountNumber[$i] . 
             " (".$bankAccountAlias[$i].") "
             . "bank account!<br>";
     $moneySum += $bankAccountValue[$i];
 }
 
 $spendableMoney = $moneySum - $contractCosts;
-if(isCurrentMonth()){ echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " €</b> "
-        . "of your <b class='text-success moneyTotal'>" . bankNumberFormat($moneySum) . " €</b> if you dislike saving money!"; }
+$spendableMoneyPrimary = $moneyPrimaryAccount - $contractCosts;
+if(isCurrentMonth()){ 
+    echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " ".$currency."</b> "
+        . "of your <b class='text-success moneyTotal'>" . bankNumberFormat($moneySum) . " ".$currency." (".bankNumberFormat($spendableMoneyPrimary)." ".$currency.")</b> if you dislike saving money!"; 
+}
+else{
+    echo "You currently have <b class='text-success moneyTotal'>" . bankNumberFormat($moneySum) . " ".$currency."</b> in total!"; 
+}
