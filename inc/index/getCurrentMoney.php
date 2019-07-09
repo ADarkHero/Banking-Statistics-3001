@@ -30,8 +30,8 @@ for($i = 0; $i < sizeof($bankAccountNumber); $i++){
 $spendableMoney = $moneySum - $contractCosts;
 $spendableMoneyPrimary = $moneyPrimaryAccount - $contractCosts;
 if(isCurrentMonth()){ 
-    echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " ".$currency."</b> "
-        . "of your <b class='text-success moneyTotal'>" . bankNumberFormat($moneySum) . " ".$currency." (".bankNumberFormat($spendableMoneyPrimary)." ".$currency.")</b> if you dislike saving money!"; 
+    echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " ".$currency." (".bankNumberFormat($spendableMoneyPrimary)." ".$currency.")</b> "
+        . "of your <b class='text-success moneyTotal'>" . bankNumberFormat($moneySum) . " ".$currency."</b> if you dislike saving money!"; 
 }
 else{
     echo "You currently have <b class='text-success moneyTotal'>" . bankNumberFormat($moneySum) . " ".$currency."</b> in total!"; 
