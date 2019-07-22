@@ -92,7 +92,7 @@ if(isCurrentMonth()){
 }
 echo "<br>";
 
-$moneyLeft = $lastPaycheckAmount - $moneySpent - $contractCosts;
+$moneyLeft = floatval($lastPaycheckAmount) - $moneySpent - $contractCosts;
 if(isCurrentMonth()){
     echo "You have <b class='text-primary'>" . bankNumberFormat($moneyLeft) . " ".$currency."</b> left until your next paycheck. ";
 }

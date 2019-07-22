@@ -115,9 +115,9 @@ var myChart = new Chart(ctx, {
             data: [
                 <?php 
                     $motString = "";
-                    $motLeft = $lastPaycheckAmount;
+                    $motLeft = floatval($lastPaycheckAmount);
                     foreach ($moneyByDate as $key => $value) {
-                        $motLeft += $value;
+                        $motLeft += floatval($value);
                         $motString .= '"'.$motLeft.'", ';
                     }
                     echo substr($motString, 0, -2); //Cut last ,

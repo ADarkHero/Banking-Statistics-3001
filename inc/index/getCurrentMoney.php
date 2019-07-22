@@ -24,11 +24,11 @@ for($i = 0; $i < sizeof($bankAccountNumber); $i++){
     echo "You currently have <b class='text-success moneyTotal'>" . bankNumberFormatComma($bankAccountValue[$i]) . " ".$currency."</b> on your " . $bankAccountNumber[$i] . 
             " (".$bankAccountAlias[$i].") "
             . "bank account!<br>";
-    $moneySum += $bankAccountValue[$i];
+    $moneySum += floatval($bankAccountValue[$i]);
 }
 
 $spendableMoney = $moneySum - $contractCosts;
-$spendableMoneyPrimary = $moneyPrimaryAccount - $contractCosts;
+$spendableMoneyPrimary = floatval($moneyPrimaryAccount) - $contractCosts;
 if(isCurrentMonth()){ 
     echo "You could spend <b class='text-success moneyTotal'>" . bankNumberFormat($spendableMoney) . " ".$currency." (".bankNumberFormat($spendableMoneyPrimary)." ".$currency.")</b> "
         . "of your <b class='text-success moneyTotal'>" . bankNumberFormat($moneySum) . " ".$currency."</b> if you dislike saving money!"; 
