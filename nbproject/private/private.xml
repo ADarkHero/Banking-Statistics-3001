@@ -3,16 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/banking/inc/updateDatabase.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/fints/statement.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/index/moneySpent.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/fints/saldo.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/fints/saldo.sample.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/statement/listTransactions.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/config.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/index/getCurrentMoney.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/index/lastPaycheck.php</file>
-            <file>file:/C:/xampp/htdocs/banking/inc/index/chartMaker.php</file>
+            <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/css/main.css</file>
+            <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/README.md</file>
+            <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/index.php</file>
         </group>
     </open-files>
 </project-private>

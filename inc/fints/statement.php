@@ -31,7 +31,11 @@ for($i = 0; $i < sizeof($accounts); $i++){
             foreach ($statement->getTransactions() as $transaction) {
                 //SQL Statement
                 $sql = "";
-                $amnt = floatval($transaction->getAmount())*-1;
+                $amnt = floatval($transaction->getAmount());
+                if($transaction->getCreditDebit() == "debit"){
+                    $amnt *= -1;
+                }
+                
                 $sql .= "INSERT INTO statements (EntryDate, Value, AcctNo, BankCode, Name1, PaymtPurpose)"
                         . " VALUES ("  
                         . "'".$transaction->getBookingDate()->format('Y-m-d')."',"
@@ -41,10 +45,15 @@ for($i = 0; $i < sizeof($accounts); $i++){
                         . "'".$transaction->getName()."',"
                         . "'".$transaction->getDescription1()."'"
                         . ")";
+                
                 //Execute the query. If no error occured (like a duplicate entry), raise the counter.
+                //If there are no new entries: break the loop
                 //Note: The database checks for duplicates. A more effective/faster way should be implemented sometime.
                 if ($conn->query($sql) === TRUE) {
                     $newEntriesCounter++;
+                }
+                else{
+                    break 3;
                 }
             }
         }	
