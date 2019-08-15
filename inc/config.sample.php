@@ -99,6 +99,13 @@ if ($result->num_rows > 0) {
                 $uploadPath = $row["SettingValue"];//Upload path for credit card csv import 
             case "502":
                 $creditCardCategory =  $row["SettingValue"];//Category for credit card imports
+                
+                
+            /*
+             * DARK MODE
+             */
+            case "666":
+                $darkMode = $row["SettingValue"];
             
 
                 break;

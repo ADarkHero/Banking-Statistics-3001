@@ -143,7 +143,7 @@ $totalSpendable = $lastPaycheckAmount - $totalSum;
             <div class="container">
               <div class="row" >
                   <div class="col-12 col-lg-2"><span class="text-danger">TOTAL CONTRACTS</span></div>   
-                  <div class="col-12 col-lg-8 cut"><span class="text-danger">You pay this much for contracts every month: </span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-danger">You pay this much for contracts this month: </span></div>   
                   <div class="col-12 col-lg-2"><span class="text-danger"><?php  echo bankNumberFormat($totalSum)." ".$currency; ?></span></div>   
               </div>    
             </div>         

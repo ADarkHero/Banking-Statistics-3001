@@ -1,9 +1,3 @@
-body{
-    /* Dark Mode */
-    background-color: #192734 !important;
-    color: #999999 !important;
-}
-
 .moneyTotal{
     font-weight: 900;
     text-decoration: underline;
