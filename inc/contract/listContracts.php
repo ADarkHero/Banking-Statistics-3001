@@ -114,20 +114,52 @@ foreach ($unpaidContracts as $key => $value){
 $i++;
 }
 
+$totalSum = $paidSum + $leftSum; 
+$totalSpendable = $lastPaycheckAmount - $totalSum; 
 ?>
 </div>
 
 <br>
 
 <div class="card">
+    <div class="card-header" id="heading9994">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed full-size-button">
+            <div class="container">
+              <div class="row" >
+                  <div class="col-12 col-lg-2"><span class="text-primary">LAST PAYCHECK</span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-primary">You got that much money this month: </span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-primary"><?php echo $lastPaycheckAmount." ".$currency; ?></span></div>   
+              </div>    
+            </div>         
+        </button>
+      </h5>
+    </div>
+  </div>
+<div class="card">
+    <div class="card-header" id="heading9995">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed full-size-button">
+            <div class="container">
+              <div class="row" >
+                  <div class="col-12 col-lg-2"><span class="text-danger">TOTAL CONTRACTS</span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-danger">You pay this much for contracts every month: </span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-danger"><?php  echo bankNumberFormat($totalSum)." ".$currency; ?></span></div>   
+              </div>    
+            </div>         
+        </button>
+      </h5>
+    </div>
+  </div>
+<div class="card">
     <div class="card-header" id="heading9996">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed full-size-button">
             <div class="container">
               <div class="row" >
-                  <div class="col-12 col-lg-2"><span class="text-primary">TOTAL CONTRACTS</span></div>   
-                  <div class="col-12 col-lg-8 cut"><span class="text-primary">You pay this much for contracts every month: </span></div>   
-                  <div class="col-12 col-lg-2"><span class="text-primary"><?php $totalSum = $paidSum+$leftSum; echo bankNumberFormat($totalSum)." ".$currency; ?></span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-success">MONEY ABLE TO SPEND</span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-success">You are able to spent that much money freely this month: </span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-success"><?php echo $totalSpendable." ".$currency; ?></span></div>   
               </div>    
             </div>         
         </button>
@@ -140,8 +172,24 @@ $i++;
         <button class="btn btn-link collapsed full-size-button">
             <div class="container">
               <div class="row" >
+                  <div class="col-12 col-lg-2"><span class="text-primary"></span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-primary"> </span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-primary"></span></div>   
+              </div>    
+            </div>         
+        </button>
+      </h5>
+    </div>
+  </div>
+
+<div class="card">
+    <div class="card-header" id="heading9998">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed full-size-button">
+            <div class="container">
+              <div class="row" >
                   <div class="col-12 col-lg-2"><span class="text-success">TOTAL PAID</span></div>   
-                  <div class="col-12 col-lg-8 cut"><span class="text-success">This month you already paid: </span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-success">This month you already paid that much for your contracts: </span></div>   
                   <div class="col-12 col-lg-2"><span class="text-success"><?php echo bankNumberFormat($paidSum)." ".$currency; ?></span></div>   
               </div>    
             </div>         
@@ -150,13 +198,13 @@ $i++;
     </div>
   </div>
 <div class="card">
-    <div class="card-header" id="heading9998">
+    <div class="card-header" id="heading9999">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed full-size-button">
             <div class="container">
               <div class="row" >
                   <div class="col-12 col-lg-2"><span class="text-danger">TOTAL UNPAID</span></div>   
-                  <div class="col-12 col-lg-8 cut"><span class="text-danger">This month you still have to pay: </span></div>   
+                  <div class="col-12 col-lg-8 cut"><span class="text-danger">This month you still have to pay that much for your contracts: </span></div>   
                   <div class="col-12 col-lg-2"><span class="text-danger"><?php echo bankNumberFormat($leftSum)." ".$currency; ?></span></div>   
               </div>    
             </div>         
