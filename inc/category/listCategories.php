@@ -34,6 +34,10 @@ if ($result->num_rows > 0) {
               <div class="card-body">
                     <form action="category.php" method="POST">
                         <div class="form-group row">
+                            <label for="categoryChangeID" class="col-3 col-form-label">Category ID</label>
+                            <div class="col-9"><input type="text" class="form-control" name="categoryChangeID" disabled value="<?php echo $row["CategoryID"]; ?>"></div>
+                        </div>
+                        <div class="form-group row">
                             <label for="categoryChangeName" class="col-3 col-form-label">Category name</label>
                             <div class="col-9"><input type="text" class="form-control" name="categoryChangeName" value="<?php echo $row["CategoryName"]; ?>"></div>
                         </div>
