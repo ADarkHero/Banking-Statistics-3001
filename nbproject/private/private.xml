@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/css/main.css</file>
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/README.md</file>
+            <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/inc/updateDatabase.php</file>
+            <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/inc/fints/statement.php</file>
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/index.php</file>
         </group>
     </open-files>

@@ -66,6 +66,9 @@
             <li class="nav-item <?php isCurrentPage("category"); ?>">
               <a class="nav-link" href="category.php">Categories</a>
             </li>
+            <li class="nav-item <?php isCurrentPage("settings"); ?>">
+              <a class="nav-link" href="settings.php">Settings</a>
+            </li>
           </ul>
         </div>
       </div>

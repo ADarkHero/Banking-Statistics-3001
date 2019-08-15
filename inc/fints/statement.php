@@ -53,7 +53,8 @@ for($i = 0; $i < sizeof($accounts); $i++){
                     $newEntriesCounter++;
                 }
                 else{
-                    break 3;
+                    //Currently buggy?
+                    //break 3;
                 }
             }
         }	
