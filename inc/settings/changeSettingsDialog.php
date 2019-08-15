@@ -24,8 +24,8 @@ if ($result->num_rows > 0) {
                 <button class="btn btn-link collapsed full-size-button" data-toggle="collapse" data-target="#collapse<?php echo $i; ?>" aria-expanded="false" aria-controls="collapse<?php echo $i; ?>">
                     <div class="container">
                       <div class="row" >
-                          <div class="col-12 col-lg-10 cut col-lg-l-align"><span><?php echo $row["SettingName"]; ?></span></div>   
-                          <div class="col-12 col-lg-2"><span><?php echo $row["SettingValue"]; ?></span></div> 
+                          <div class="col-12 col-lg-6 cut col-lg-l-align"><span><?php echo $row["SettingName"]; ?></span></div>   
+                          <div class="col-12 col-lg-6 col-lg-r-align"><span><?php echo $row["SettingValue"]; ?></span></div> 
                       </div>    
                     </div>         
                 </button>
@@ -35,6 +35,10 @@ if ($result->num_rows > 0) {
             <div id="collapse<?php echo $i; ?>" class="collapse" aria-lebelledby="heading<?php echo $i; ?>" data-parent="#accordion">
               <div class="card-body">
                     <form action="settings.php" method="POST">
+                        <div class="form-group row">
+                            <label for="settingsChangeID" class="col-3 col-form-label">Settings ID</label>
+                            <div class="col-9"><input type="text" class="form-control" name="settingsChangeID" disabled value="<?php echo $row["SettingID"]; ?>"></div>
+                        </div>
                         <div class="form-group row">
                             <label for="settingsChangeName" class="col-3 col-form-label">Settings name</label>
                             <div class="col-9"><input type="text" class="form-control" name="settingsChangeName" value="<?php echo $row["SettingName"]; ?>"></div>

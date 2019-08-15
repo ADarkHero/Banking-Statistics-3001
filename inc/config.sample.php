@@ -21,19 +21,102 @@ if ($conn->connect_error) {
 }
 
 
+/********************
+Read settings from Database
+********************/
+$sql = "SELECT * FROM settings";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        switch ($row["SettingID"]) {
+            /*
+             *   PAYCHECK
+             */
+            case "1":
+                $payCheckAccount = $row["SettingValue"]; //IBAN of the person, that gives you your paycheck
+
+                
+            /*
+             *   GENERAL OPTIONS
+             */   
+            
+            case "2":
+                $currency = $row["SettingValue"]; //Which currency do you want to use?
+               
+                
+            /*
+             * CHART OPTIONS
+             */    
+            case "51":
+                $chartFill = $row["SettingValue"]; //How dark is the chart background color? (0.4 - 1)
+                
+            case "52":
+                $chartBorder = $row["SettingValue"]; //Darkness of the chart borders (0.4 - 1)
+                
+            case "53":
+                $chartBorderWidth = $row["SettingValue"]; //Thickness of the charts borders
+                
+            case "54":
+                $chartFontSize = $row["SettingValue"]; //Font size, obviously.
+
+            case "55":
+                $colorPaycheck = $row["SettingValue"];
+                
+            case "56":
+                $colorMoneyLeft = $row["SettingValue"];
+                
+            case "57":
+                $colorMoneySpent = $row["SettingValue"];
+                
+            case "58":
+                $colorMoneyOverTime = $row["SettingValue"];
+                
+            case "59":
+                $colorMoneyToSave = $row["SettingValue"];
+                
+            case "60":
+                $colorCurrentMoney = $row["SettingValue"];
+                
+            case "61":
+                $colorContractCosts = $row["SettingValue"];
+               
+            case "71":
+                $moneySaveRatio = $row["SettingValue"]; //Based on your (last) paycheck: How much money do you want to save?
+
+            /*
+             * STATEMENTS
+             */  
+              
+            case "101":
+                $pagesize = $row["SettingValue"]; //How many statements are displayed?
+                
+                
+            /*
+             * CREDIT CARD IMPORT
+             */
+            case "501":
+                $uploadPath = $row["SettingValue"];//Upload path for credit card csv import 
+            case "502":
+                $creditCardCategory =  $row["SettingValue"];//Category for credit card imports
+            
+
+                break;
+
+            default:
+                break;
+        }
+    }
+}
+
+
+
+
+
 
 /********************
-Paycheck variables
+Formatting options
 ********************/
-$payCheckAccount = ""; //IBAN of the person, that gives you your paycheck
-
-
-
-/********************
-Some more options
-********************/
-//General options
-$currency = "€";
 function bankNumberFormat($number){ //How should numbers be formatted?
     return number_format($number, 2, ",", ".");
 }
@@ -43,27 +126,17 @@ function bankNumberFormatComma($number){ //How should numbers be formatted?
 }
 
 
-//Chart options
-$chartFill = "0.4"; //How dark is the chart background color? (0.4 - 1)
-$chartBorder = "1"; //Darkness of the chart borders (0.4 - 1)
-$chartBorderWidth = "1"; //Thickness of the charts borders
-$chartFontSize = "11"; //Font size, obviously.
-
-$colorPaycheck = "75, 192, 192";
-$colorMoneyLeft = "54, 162, 235";
-$colorMoneySpent = "255, 99, 132";
-$colorMoneyOverTime = "255, 87, 51";
-$colorMoneyToSave = "255, 206, 86";
-$colorCurrentMoney = $colorPaycheck;
-$colorContractCosts = $colorMoneyOverTime;
-
-$moneySaveRatio = 3; //Based on your (last) paycheck: How much money do you want to save?
 
 
-//Statement options
+
+
+
+/********************
+Search options
+********************/
 $searchString = ""; //Generetes searchstring for statements
 if(isset($_GET["search"])){ 
-    $s = htmlspecialchars($_GET["search"]);
+    $s = $_GET["search"];
     $searchString = "WHERE EntryDate LIKE '%".$s."%' "
             . "OR AcctNo LIKE '%".$s."%' "
             . "OR BankCode LIKE '%".$s."%' "
@@ -73,4 +146,8 @@ if(isset($_GET["search"])){
             . "OR Value LIKE '%".$s."%' "
             . "OR CategoryName LIKE '%".$s."%'";
 }
-$pagesize = 25; //How many statements are displayed?
+
+
+
+
+
