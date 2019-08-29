@@ -95,7 +95,7 @@ if ($result->num_rows > 0) {
              * CONTRACTS
              */ 
             case "201":
-                $contractsOrder = $row["SettingValue"]; //1: Order contracts in this schema: 1) !   2) a-z   3) [] 
+                $contractsOrder = $row["SettingValue"]; //1: Order contracts in this schema: 1) !   2) a-z   3) (   4) [   5) {
                 
             /*
              * CREDIT CARD IMPORT

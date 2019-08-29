@@ -23,7 +23,9 @@ $sql = "SELECT * FROM contracts ORDER BY ";
 */
 if($contractsOrder == 1){
     $sql .= "CASE WHEN ContractName LIKE '!%' THEN 1"
-            . "   WHEN ContractName LIKE '[%' OR ContractName LIKE '(%' THEN 3"
+            . "   WHEN ContractName LIKE '(%' THEN 3"
+            . "   WHEN ContractName LIKE '[%' THEN 4"
+            . "   WHEN ContractName LIKE '{%' THEN 5"
             . "   ELSE 2 END, ContractName";
 }
 else{
