@@ -14,7 +14,22 @@ $contracts = array();
 $contractAmounts = array();
 $contractNotes = array();
 
-$sql = "SELECT * FROM contracts";
+$sql = "SELECT * FROM contracts ORDER BY ";
+/* Special order of the contracts; a 1 in the settings activates it
+ * 
+ * Contracts with exclamation marks first
+ * Contracts with all other characters except brackets next
+ * Contracts with brackets last
+*/
+if($contractsOrder == 1){
+    $sql .= "CASE WHEN ContractName LIKE '!%' THEN 1"
+            . "   WHEN ContractName LIKE '[%' OR ContractName LIKE '(%' THEN 3"
+            . "   ELSE 2 END, ContractName";
+}
+else{
+    $sql .= " ContractName";
+}
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -25,7 +40,7 @@ if ($result->num_rows > 0) {
         $contractNotes[$row["ContractName"]] = $row["ContractNote"];
     }
 } else {
-    echo "Error while fetching your last paycheck.";
+    echo "Error while fetching your contracts.";
 }
 
 

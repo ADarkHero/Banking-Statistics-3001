@@ -91,6 +91,11 @@ if ($result->num_rows > 0) {
             case "101":
                 $pagesize = $row["SettingValue"]; //How many statements are displayed?
                 
+            /*
+             * CONTRACTS
+             */ 
+            case "201":
+                $contractsOrder = $row["SettingValue"]; //1: Order contracts in this schema: 1) !   2) a-z   3) [] 
                 
             /*
              * CREDIT CARD IMPORT
