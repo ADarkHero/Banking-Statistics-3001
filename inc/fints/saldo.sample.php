@@ -12,19 +12,22 @@ define('FHP_BANK_PORT', 443);               # HBCI / FinTS Port can be found her
 define('FHP_BANK_CODE', 50031000);                # Your bank code / Bankleitzahl
 define('FHP_ONLINE_BANKING_USERNAME', '');  # Your online banking username / alias
 define('FHP_ONLINE_BANKING_PIN', '');       # Your online banking PIN (NOT! the pin of your bank card!)
+define('FHP_REGISTRATION_NO', '');         # The number you receive after registration / FinTS-Registrierungsnummer
+define('FHP_SOFTWARE_VERSION', '1.0');     # Your own Software product version
 
     $fints = new FinTs(
         FHP_BANK_URL,
         FHP_BANK_PORT,
         FHP_BANK_CODE,
         FHP_ONLINE_BANKING_USERNAME,
-        FHP_ONLINE_BANKING_PIN
+        FHP_ONLINE_BANKING_PIN,
+        null,
+        FHP_REGISTRATION_NO,
+        FHP_SOFTWARE_VERSION
     );
 
     $accounts = $fints->getSEPAAccounts();
-    
-    print_r($accounts);
-    
+        
     //Update account value
     for($i = 0; $i < sizeof($accounts); $i++){ 
         $amount = $fints->getSaldo($accounts[$i])->getAmount();

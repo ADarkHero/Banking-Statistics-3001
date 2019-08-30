@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Fhp' => array($vendorDir . '/mschindler83/fints-hbci-php/lib'),
+    'Fhp' => array($vendorDir . '/nemiah/php-fints/lib'),
 );

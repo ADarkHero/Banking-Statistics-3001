@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitac920939a5bc76461c07a38124adcada
+class ComposerStaticInitbe9af2c7d83ce394c01966c875c01787
 {
     public static $prefixLengthsPsr4 = array (
         'P' => 
@@ -25,7 +25,7 @@ class ComposerStaticInitac920939a5bc76461c07a38124adcada
         array (
             'Fhp' => 
             array (
-                0 => __DIR__ . '/..' . '/mschindler83/fints-hbci-php/lib',
+                0 => __DIR__ . '/..' . '/nemiah/php-fints/lib',
             ),
         ),
     );
@@ -33,9 +33,9 @@ class ComposerStaticInitac920939a5bc76461c07a38124adcada
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitac920939a5bc76461c07a38124adcada::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitac920939a5bc76461c07a38124adcada::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitac920939a5bc76461c07a38124adcada::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitbe9af2c7d83ce394c01966c875c01787::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitbe9af2c7d83ce394c01966c875c01787::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitbe9af2c7d83ce394c01966c875c01787::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

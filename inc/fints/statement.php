@@ -13,7 +13,10 @@ $fints = new FinTs(
     FHP_BANK_PORT,
     FHP_BANK_CODE,
     FHP_ONLINE_BANKING_USERNAME,
-    FHP_ONLINE_BANKING_PIN
+    FHP_ONLINE_BANKING_PIN,
+    null,
+    FHP_REGISTRATION_NO,
+    FHP_SOFTWARE_VERSION
 );
 
 $accounts = $fints->getSEPAAccounts();

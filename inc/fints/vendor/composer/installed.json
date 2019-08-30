@@ -1,27 +1,29 @@
 [
     {
-        "name": "mschindler83/fints-hbci-php",
-        "version": "1.0.4",
-        "version_normalized": "1.0.4.0",
+        "name": "nemiah/php-fints",
+        "version": "1.5.0",
+        "version_normalized": "1.5.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/mschindler83/fints-hbci-php.git",
-            "reference": "e58cb825c178d4c39a8974a9dd93abbc8094551f"
+            "url": "https://github.com/nemiah/phpFinTS.git",
+            "reference": "0e753a26a7eec3017a2b071a540e8fef10165912"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/mschindler83/fints-hbci-php/zipball/e58cb825c178d4c39a8974a9dd93abbc8094551f",
-            "reference": "e58cb825c178d4c39a8974a9dd93abbc8094551f",
+            "url": "https://api.github.com/repos/nemiah/phpFinTS/zipball/0e753a26a7eec3017a2b071a540e8fef10165912",
+            "reference": "0e753a26a7eec3017a2b071a540e8fef10165912",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.2",
+            "ext-curl": "*",
+            "php": ">=5.6",
             "psr/log": "~1.0"
         },
         "suggest": {
-            "monolog/monolog": "Allow sending log messages to a variety of different handlers"
+            "monolog/monolog": "Allow sending log messages to a variety of different handlers",
+            "nemiah/php-sepa-xml": "dev-master"
         },
-        "time": "2017-02-15T13:48:21+00:00",
+        "time": "2019-05-23T04:52:33+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -34,7 +36,7 @@
             "MIT"
         ],
         "description": "PHP Library for the protocols fints and hbci",
-        "homepage": "http://fints-hbci-php.markus-schindler.de"
+        "homepage": "https://github.com/nemiah/phpFinTS"
     },
     {
         "name": "psr/log",
