@@ -27,7 +27,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/logo-nav.css" rel="stylesheet">
-    <?php if($darkMode === "true" || $darkMode === "1"){ ?> <link rel="stylesheet" type="text/css" href="css/dark.css" media="screen" /> <?php } ?>
+    <?php if($darkMode){ ?> <link rel="stylesheet" type="text/css" href="css/dark.css" media="screen" /> <?php } ?>
     <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="css/jquery.minicolors.css">

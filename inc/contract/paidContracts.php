@@ -15,13 +15,13 @@ $contractAmounts = array();
 $contractNotes = array();
 
 $sql = "SELECT * FROM contracts ORDER BY ";
-/* Special order of the contracts; a 1 in the settings activates it
+/* Special order of the contracts
  * 
  * Contracts with exclamation marks first
  * Contracts with all other characters except brackets next
  * Contracts with brackets last
 */
-if($contractsOrder == 1){
+if($contractsOrder){
     $sql .= "CASE WHEN ContractName LIKE '!%' THEN 1"
             . "   WHEN ContractName LIKE '(%' THEN 3"
             . "   WHEN ContractName LIKE '[%' THEN 4"
