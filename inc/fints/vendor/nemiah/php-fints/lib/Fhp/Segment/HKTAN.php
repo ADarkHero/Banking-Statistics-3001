@@ -15,7 +15,7 @@ namespace Fhp\Segment;
 class HKTAN extends AbstractSegment
 {
     const NAME = 'HKTAN';
-    const VERSION = 5;
+    const VERSION = 6;
 
     /**
      * HKCDL constructor.
@@ -28,14 +28,36 @@ class HKTAN extends AbstractSegment
 		$data[] = 4;
 		if($processID){
 			$data = array();
-			$data[] = 2;
+			if ($version == 6) {
+				$data[] = 2; 
+				$data[] = ""; 
+				$data[] = ""; 
+				$data[] = "";
+				$data[] = $processID;
+				$data[] = "N";
+			} else { 
+				$data[] = 2; 
+				$data[] = ""; 
+				$data[] = ""; 
+				$data[] = "";
+				$data[] = $processID;
+				$data[] = "";
+				$data[] = "N";
+			}
+		
+			#$data[] = 2;
+			#$data[] = "";
+			#$data[] = "";
+			#$data[] = "";
+			#$data[] = $processID;
+		} else {
+			$data[] = "HKIDN";
 			$data[] = "";
 			$data[] = "";
-			$data[] = "";
-			$data[] = $processID;
 			$data[] = "";
 			$data[] = "N";
 		}
+		
 		
         parent::__construct(
             static::NAME,

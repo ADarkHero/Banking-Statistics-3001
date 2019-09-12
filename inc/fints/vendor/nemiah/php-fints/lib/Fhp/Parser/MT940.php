@@ -117,7 +117,7 @@ class MT940
 
                     $amount = $trxMatch[4];
                     $amount = str_replace(',', '.', $amount);
-                    $trx[count($trx) - 1]['amount'] = floatval($amount);
+                    $trx[count($trx) - 1]['amount'] = $amount;
 
                     $description = $this->parseDescription($description);
                     $trx[count($trx) - 1]['description'] = $description;
@@ -221,7 +221,7 @@ class MT940
         } else {
             $lastType = null;
             foreach ($descriptionLines as $line) {
-                if (strlen($line) > 5 && $line[4] === '+') {
+                if (strlen($line) >= 5 && $line[4] === '+') {
                     if ($lastType != null) {
                         $description[$lastType] = trim($description[$lastType]);
                     }
