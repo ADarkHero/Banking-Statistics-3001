@@ -24,7 +24,7 @@ if (!isSet($newEntriesCounter)) {
 
 &nbsp;
 
-<div class="input-group col-2">
+<div class="input-group col-6 col-sm-5 col-lg-2 col-xl-3">
     <input type="text" class="form-control" id="tan" placeholder="TAN">
     <div class="input-group-append">
         <button class="btn btn-outline-light" type="button" onclick="sendTAN()">✓</button>
