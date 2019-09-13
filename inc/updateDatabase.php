@@ -24,10 +24,10 @@ if (!isSet($newEntriesCounter)) {
 
 &nbsp;
 
-<div class="input-group">
-    <input type="text" class="form-control col-4" id="tan" placeholder="TAN">
+<div class="input-group col-2">
+    <input type="text" class="form-control" id="tan" placeholder="TAN">
     <div class="input-group-append">
-        <button class="btn btn-outline-light" type="button" onclick="sendTAN()">Send</button>
+        <button class="btn btn-outline-light" type="button" onclick="sendTAN()">✓</button>
     </div>
 </div>
 
@@ -39,13 +39,13 @@ if (!isSet($newEntriesCounter)) {
  * ****************** */
 if (isSet($_POST["updateDB"])) {
     if ($newEntriesCounter > 0) {
-        echo "<p class='newEntries inline'><b class='successMessage'>" . $newEntriesCounter . "</b> new transaction";
+        echo "<span class='newEntries inline'><b class='successMessage'>" . $newEntriesCounter . "</b> new transaction";
         if ($newEntriesCounter !== 1) {
             echo "s";
         }
-        echo " got inserted into the database!</p>";
+        echo " got inserted into the database!</span>";
     } else {
-        echo "<p class='newEntries inline errorMessage'>No new transactions!</p>";
+        echo "<span class='newEntries inline errorMessage'>No new transactions!</span>";
     }
 }
 ?>
