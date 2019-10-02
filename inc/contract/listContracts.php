@@ -129,7 +129,7 @@ $totalSpendable = $lastPaycheckAmount - $totalSum;
               <div class="row" >
                   <div class="col-12 col-lg-2"><span class="text-primary">LAST PAYCHECK</span></div>   
                   <div class="col-12 col-lg-8 cut"><span class="text-primary">You got that much money this month: </span></div>   
-                  <div class="col-12 col-lg-2"><span class="text-primary"><?php echo $lastPaycheckAmount." ".$currency; ?></span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-primary"><?php echo bankNumberFormat($lastPaycheckAmount)." ".$currency; ?></span></div>   
               </div>    
             </div>         
         </button>
@@ -159,7 +159,7 @@ $totalSpendable = $lastPaycheckAmount - $totalSum;
               <div class="row" >
                   <div class="col-12 col-lg-2"><span class="text-success">MONEY ABLE TO SPEND</span></div>   
                   <div class="col-12 col-lg-8 cut"><span class="text-success">You are able to spent that much money freely this month: </span></div>   
-                  <div class="col-12 col-lg-2"><span class="text-success"><?php echo $totalSpendable." ".$currency; ?></span></div>   
+                  <div class="col-12 col-lg-2"><span class="text-success"><?php echo bankNumberFormat($totalSpendable)." ".$currency; ?></span></div>   
               </div>    
             </div>         
         </button>

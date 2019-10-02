@@ -44,6 +44,13 @@ if (isSet($_POST["updateDB"])) {
             echo "s";
         }
         echo " got inserted into the database!</span>";
+        
+        //Redirect to the statement page, if new entries got inserted
+        ?>
+        <script type="text/javascript">
+            setTimeout("location.href = 'statement.php';", 2000);
+        </script>
+        <?php
     } else {
         echo "<span class='newEntries inline errorMessage'>No new transactions!</span>";
     }

@@ -10,10 +10,11 @@
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/inc/index/lastPaycheck.php</file>
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/inc/contract/paidContracts.php</file>
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/inc/updateDatabase.php</file>
-            <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/tan.txt</file>
+            <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/inc/template.php</file>
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/index.php</file>
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/inc/config.sample.php</file>
             <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/css/dark.css</file>
+            <file>file:/C:/xampp/htdocs/Banking-Statistics-3001/inc/template_end.php</file>
         </group>
     </open-files>
 </project-private>
