@@ -54,6 +54,12 @@
 
           
         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="input-group col-12 col-sm-5 col-lg-2 col-xl-3">
+                <input type="text" class="form-control" id="tan" placeholder="TAN">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-light" type="button" onclick="sendTAN()">✓</button>
+                </div>
+            </div>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item <?php isCurrentPage("index"); ?>">
               <a class="nav-link" href="index.php">Home</a>

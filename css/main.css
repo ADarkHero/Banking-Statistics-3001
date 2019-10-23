@@ -35,6 +35,12 @@
     }
 }
 
+@media only screen and (max-width: 540px) {
+    .navbar-collapse{
+        margin-top: 1em !important;
+    }
+}
+
 
 .center{
     text-align: center;
