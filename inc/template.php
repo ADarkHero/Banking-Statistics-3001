@@ -1,85 +1,90 @@
 <?php
-    require_once 'inc/config.php';
-    
-    //Checks, which page the user is currently on to highlight in in the menu
-    function isCurrentPage($page){
-        $basename = basename($_SERVER["SCRIPT_FILENAME"], '.php'); 
-        if($basename === $page){
-           echo 'active'; 
-        }
+require_once 'inc/config.php';
+
+//Checks, which page the user is currently on to highlight in in the menu
+function isCurrentPage($page) {
+    $basename = basename($_SERVER["SCRIPT_FILENAME"], '.php');
+    if ($basename === $page) {
+        echo 'active';
     }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>Banking App</title>
+        <title>Banking App</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/logo-nav.css" rel="stylesheet">
-    <?php if($darkMode){ ?> <link rel="stylesheet" type="text/css" href="css/dark.css" media="screen" /> <?php } ?>
-    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="all" href="css/jquery.minicolors.css">
-    
-    <!-- Chart.JS -->
-    <script src="js/Chart.bundle.min.js"></script>
+        <!-- Custom styles for this template -->
+        <link href="css/logo-nav.css" rel="stylesheet">
+        <?php if ($darkMode) { ?> <link rel="stylesheet" type="text/css" href="css/dark.css" media="screen" /> <?php } ?>
+        <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="all" href="css/jquery.minicolors.css">
 
-  </head>
+        <!-- Chart.JS -->
+        <script src="js/Chart.bundle.min.js"></script>      
 
-  <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-          <?php
-            /********************
-            Write new entries into the database
-            ********************/
-            require_once('inc/updateDatabase.php');
-          ?>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-          
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <div class="input-group col-12 col-sm-5 col-lg-2 col-xl-3">
-                <input type="text" class="form-control" id="tan" placeholder="TAN">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" onclick="sendTAN()">✓</button>
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <?php
+                /*                 * ******************
+                  Write new entries into the database
+                 * ****************** */
+                require_once('inc/updateDatabase.php');
+                ?>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <div class="input-group col-12 col-sm-5 col-lg-2 col-xl-3">
+                        <input type="text" class="form-control" id="tan" placeholder="TAN">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-light" type="button" onclick="sendTAN()">✓</button>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item <?php isCurrentPage("index"); ?>">
+                            <a class="nav-link" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item <?php isCurrentPage("yearly"); ?>">
+                            <a class="nav-link" href="yearly.php">Yearly stats</a>
+                        </li>
+                        <li class="nav-item <?php isCurrentPage("statement"); ?>">
+                            <a class="nav-link" href="statement.php">Statements</a>
+                        </li>
+                        <li class="nav-item <?php isCurrentPage("contract"); ?>">
+                            <a class="nav-link" href="contract.php">Contracts</a>
+                        </li>
+                        <li class="nav-item <?php isCurrentPage("category"); ?>">
+                            <a class="nav-link" href="category.php">Categories</a>
+                        </li>
+                        <li class="nav-item <?php isCurrentPage("settings"); ?>">
+                            <a class="nav-link" href="settings.php">Settings</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item <?php isCurrentPage("index"); ?>">
-              <a class="nav-link" href="index.php">Home</a>
-            </li>
-            <li class="nav-item <?php isCurrentPage("statement"); ?>">
-              <a class="nav-link" href="statement.php">Statements</a>
-            </li>
-            <li class="nav-item <?php isCurrentPage("contract"); ?>">
-              <a class="nav-link" href="contract.php">Contracts</a>
-            </li>
-            <li class="nav-item <?php isCurrentPage("category"); ?>">
-              <a class="nav-link" href="category.php">Categories</a>
-            </li>
-            <li class="nav-item <?php isCurrentPage("settings"); ?>">
-              <a class="nav-link" href="settings.php">Settings</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+        </nav>
 
-    <!-- Page Content -->
-    <div class="container">
+        <!-- Page Content -->
+        <div class="container">
