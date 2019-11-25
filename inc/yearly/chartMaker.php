@@ -1,5 +1,19 @@
 <script src="js/chartjs-plugin-datalabels.min.js"></script>
 
+
+<script>
+    function barChartOpenStatements(event, data) {
+        if (data[0]) {
+            var ticks = data[0]["_xScale"]["ticks"];
+            var index = data[0]["_index"];
+            var clickedValue = ticks[index];
+            var link = 'statement.php?search=' + clickedValue;
+            window.open(link, '_blank');
+        }
+    }
+</script>
+
+
 <?php
 $disablenext = false;
 if (isset($_GET["year"])) {
@@ -178,7 +192,9 @@ echo substr($borderString, 0, -2); //Cut last ,
                             fontSize: <?php echo $chartFontSize; ?>
                         }
                     }]
-            }
+            },
+            onClick: barChartOpenStatements
+
         }
     });
 </script>
