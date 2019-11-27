@@ -21,13 +21,16 @@ if ($year == date("Y")) {
             var index = data[0]["_index"];
             var clickedValue = ticks[index];
 
-            try {
-                //All months
-                var months = ["January", "February", "March", "April",
-                    "May", "June", "July", "August",
-                    "September", "October", "November", "December"];
-                //Get number of the month
-                var monthNumber = months.indexOf(clickedValue) + 1;
+
+            //All months
+            var months = ["January", "February", "March", "April",
+                "May", "June", "July", "August",
+                "September", "October", "November", "December"];
+            //Get number of the month
+            var monthNumber = months.indexOf(clickedValue) + 1;
+
+            //Only change the date, if it's actually a date
+            if (monthNumber != "0") {
                 //If the month is smaller than 10, add a 0 in front of it.
                 if (monthNumber < 10) {
                     clickedValue = "-0" + monthNumber + "-";
@@ -36,9 +39,8 @@ if ($year == date("Y")) {
                 }
                 //Add year
                 clickedValue = <?php echo $year; ?> + clickedValue;
-            } catch (e) {
-
             }
+
 
             var link = 'statement.php?search=' + clickedValue;
             window.open(link, '_blank');
