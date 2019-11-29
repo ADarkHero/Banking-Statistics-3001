@@ -153,7 +153,8 @@ echo substr($motString, 0, -2); //Cut last ,
                     }],
                 xAxes: [{
                         ticks: {
-                            fontSize: <?php echo $chartFontSize; ?>
+                            fontSize: <?php echo $chartFontSize; ?>,
+                            autoSkip: false
                         }
                     }]
             },
