@@ -21,7 +21,6 @@ if ($page > 1) {
 
 //There is a maximum amount of pages
 $sql = 'SELECT EntryDate FROM statements LEFT JOIN categories ON statements.CategoryID = categories.CategoryID ' . $searchString;
-echo $sql;
 $result = $conn->query($sql);
 $maxpages = mysqli_num_rows($result) / $pagesize;
 if ($page == ceil($maxpages)) {
