@@ -141,55 +141,51 @@ function bankNumberFormatComma($number) { //How should numbers be formatted?
 /* * ******************
   Search options
  * ****************** */
+//Statement options
 $searchString = ""; //Generetes searchstring for statements
 if (isset($_GET["search"])) {
     $s = $_GET["search"];
 
 //Split search after each &
-    $searchArray = preg_split("/(\&|\|)/", $s); //Split the search by characters
-    $searchHelpers = preg_replace("/[^\&\|]/", "", $s); //Split the special characters
+    $searchArray = preg_split("/(\&|\||\<|\>)/", $s); //Split the search by characters
+    $searchHelpers = preg_replace("/[^\&\|\<\>]/", "", $s); //Split the special characters
 
     if (!(sizeof($searchArray) > 1)) {
         $searchArray[0] = $s;
     }
 
     $searchString = "WHERE ";
-    $closeBracket = false;
     for ($i = 0; $i < sizeof($searchArray); $i++) {
         $searchPart = trim($searchArray[$i]);
 
         if ($i > 0) {
             switch ($searchHelpers[$i - 1]) {
                 case "&":
-                    if (!$closeBracket) {
-                        $closeBracket = true;
-                    } else {
-                        $searchString .= ") ";
-                    }
-                    $searchString .= "AND (";
+                    $searchString .= "AND";
                     break;
                 case "|":
                     $searchString .= "OR";
+                    break;
+                case ">";
+                    $searchString .= "AND (EntryDate > '" . $searchPart . "') OR";
+                    break;
+                case "<";
+                    $searchString .= "AND (EntryDate < '" . $searchPart . "') OR";
                     break;
             }
             $searchString .= " ";
         }
 
-        $searchString .= "EntryDate LIKE '%" . $searchPart . "%' "
+        $searchString .= "(EntryDate LIKE '%" . $searchPart . "%' "
                 . "OR AcctNo LIKE '%" . $searchPart . "%' "
                 . "OR BankCode LIKE '%" . $searchPart . "%' "
                 . "OR Name1 LIKE '%" . $searchPart . "%' "
                 . "OR Name2 LIKE '%" . $searchPart . "%' "
                 . "OR PaymtPurpose LIKE '%" . $searchPart . "%' "
                 . "OR Value LIKE '%" . $searchPart . "%' "
-                . "OR CategoryName LIKE '%" . $searchPart . "%' ";
-    }
-
-    if ($closeBracket) {
-        $searchString .= ")";
+                . "OR CategoryName LIKE '%" . $searchPart . "%') ";
     }
 }
-
 
 
 

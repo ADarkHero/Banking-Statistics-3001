@@ -44,30 +44,14 @@
                     link = 'statement.php';
                     break;
                 default:
-                    link = 'statement.php?search=' + clickedValue + '%26' +
-                            '<?php echo substr($lastPaycheckDate, 0, 8); ?>' + '%7C' +
-                            '<?php
-$nextMonthStr = substr($lastPaycheckDate, 0, 5);
-$nextMonth = substr($lastPaycheckDate, 5, 2) + 1;
-if ($nextMonth > 12) {
-    $nextYear = substr($lastPaycheckDate, 0, 4) + 1;
-    $nextMonthStr = $nextYear . "-01";
-} else if ($nextMonth < 10) {
-    $nextMonthStr .= "0" . $nextMonth;
-} else {
-    $nextMonthStr .= $nextMonth;
-}
-echo $nextMonthStr . "-";
-?>';
+                    link = 'statement.php?search=' + clickedValue + '>' +
+                            '<?php echo $lastPaycheckDate; ?>' + '<' +
+                            '<?php echo $nextPaycheckDate; ?>';
             }
             window.open(link, '_blank');
         }
     }
 </script>
-
-
-
-
 
 <script>
     var ctx = document.getElementById("moneySpent");
