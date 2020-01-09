@@ -47,16 +47,17 @@
                     link = 'statement.php?search=' + clickedValue + '%26' +
                             '<?php echo substr($lastPaycheckDate, 0, 8); ?>' + '%7C' +
                             '<?php
-echo substr($lastPaycheckDate, 0, 5);
+$nextMonthStr = substr($lastPaycheckDate, 0, 5);
 $nextMonth = substr($lastPaycheckDate, 5, 2) + 1;
 if ($nextMonth > 12) {
-    echo "1";
+    $nextYear = substr($lastPaycheckDate, 0, 4) + 1;
+    $nextMonthStr = $nextYear . "-01";
 } else if ($nextMonth < 10) {
-    echo "0" . $nextMonth;
+    $nextMonthStr .= "0" . $nextMonth;
 } else {
-    echo $nextMonth;
+    $nextMonthStr .= $nextMonth;
 }
-echo "-";
+echo $nextMonthStr . "-";
 ?>';
             }
             window.open(link, '_blank');
