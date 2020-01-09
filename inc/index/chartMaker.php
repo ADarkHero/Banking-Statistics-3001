@@ -44,7 +44,20 @@
                     link = 'statement.php';
                     break;
                 default:
-                    link = 'statement.php?search=' + clickedValue;
+                    link = 'statement.php?search=' + clickedValue + '%26' +
+                            '<?php echo substr($lastPaycheckDate, 0, 8); ?>' + '%7C' +
+                            '<?php
+echo substr($lastPaycheckDate, 0, 5);
+$nextMonth = substr($lastPaycheckDate, 5, 2) + 1;
+if ($nextMonth > 12) {
+    echo "1";
+} else if ($nextMonth < 10) {
+    echo "0" . $nextMonth;
+} else {
+    echo $nextMonth;
+}
+echo "-";
+?>';
             }
             window.open(link, '_blank');
         }
@@ -97,8 +110,7 @@
                     }]
             }
         }
-    });
-</script>
+    });</script>
 
 
 
@@ -160,8 +172,7 @@ echo substr($motString, 0, -2); //Cut last ,
             },
             onClick: lineChartOpenStatements
         }
-    });
-</script>
+    });</script>
 
 
 
@@ -210,8 +221,7 @@ if ($moneyToSave > 0) {
                 }
             }
         }
-    });
-</script>
+    });</script>
 
 
 

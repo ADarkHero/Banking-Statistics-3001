@@ -42,7 +42,7 @@ if ($year == date("Y")) {
             }
 
 
-            var link = 'statement.php?search=' + clickedValue;
+            var link = 'statement.php?search=' + clickedValue + '%26' + <?php echo $year; ?>;
             window.open(link, '_blank');
         }
     }
