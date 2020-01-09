@@ -2,7 +2,7 @@
   "name": "nemiah/php-fints",
   "description": "PHP Library for the protocols fints and hbci",
   "homepage": "https://github.com/nemiah/phpFinTS",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "license": "MIT",
   "autoload": {
     "psr-0": {
@@ -15,9 +15,15 @@
     "ext-curl": "*"
   },
   "require-dev": {
+    "phpunit/phpunit": "5.7.*"
   },
   "suggest": {
     "monolog/monolog": "Allow sending log messages to a variety of different handlers",
     "nemiah/php-sepa-xml": "dev-master"
+  },
+  "scripts": {
+    "test": [
+      "phpunit"
+    ]
   }
 }
