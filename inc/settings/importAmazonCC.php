@@ -51,15 +51,15 @@ function readAmazonCC($filename, $path, $category, $conn){
                     "\"" . date("Y-m-d", strtotime($data[1])) . "\", " .
                     "\"" . date("Y-m-d", strtotime($data[2])) . "\", " .
                     "\"" . $data[3] . "\", " .
-                    "\"" . $data[3] . " ~ " . $data[1] . " ~ " . $data[6] . " &euro;\", " .
-                    "\"" . $data[6] . "\", " .
+                    "\"" . $data[3] . " ~ " . $data[1] . " ~ " . $data[8] . " &euro;\", " .
+                    "\"" . $data[8] . "\", " .
                     $category . " )";
 
             //Only import, if it's an actual transaction
-            if($data[6] != null && $data[6] != "" && $data[6] != "Betrag in EUR"){
+            if($data[8] != null && $data[8] != "" && $data[8] != "0" && $data[8] != "0,00" && $data[8] != "Betrag in EUR"){
                 $conn->query($sql);
                 if($conn->affected_rows > 0){
-                    echo $data[3] . " ~ " . $data[1] . " ~ " . $data[6] . " &euro; got inserted into the database!<br>";
+                    echo $data[3] . " ~ " . $data[1] . " ~ " . $data[8] . " &euro; got inserted into the database!<br>";
                 }
                 else{
                     "No new entries got inserted.";
