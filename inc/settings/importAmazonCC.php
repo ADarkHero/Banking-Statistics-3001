@@ -43,7 +43,7 @@ function readAmazonCC($filename, $path, $category, $conn){
         //Try to read the file
         while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
             $num = count($data);
-            $priceCC = doubleval($data[8]) * -1;
+            $priceCC = doubleval(str_replace(",", ".", $data[8])) * -1;
             
             $row++;
             $sql = "INSERT INTO statements (AcctNo, EntryDate, ValueDate, Name1, PaymtPurpose, Value, CategoryID) " .
