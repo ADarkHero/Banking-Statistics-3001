@@ -12,7 +12,7 @@ if (isset($_GET["page"])) {
 }
 $offset = $pagesize * ($currentpage - 1);
 
-$sql = "SELECT EntryDate, AcctNo, BankCode, Name1, Name2, PaymtPurpose, Value, statements.CategoryID AS CategoryID, CategoryName, CategoryColor"
+$sql = "SELECT EntryDate, AcctNo, BankCode, Name1, PaymtPurpose, Value, statements.CategoryID AS CategoryID, CategoryName, CategoryColor"
         . " FROM statements LEFT JOIN categories ON statements.CategoryID = categories.CategoryID " . $searchString;
 $sql .= " ORDER BY EntryDate DESC LIMIT " . $pagesize . " OFFSET " . $offset;
 $result = $conn->query($sql);
