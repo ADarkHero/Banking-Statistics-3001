@@ -180,7 +180,6 @@ if (isset($_GET["search"])) {
                 . "OR AcctNo LIKE '%" . $searchPart . "%' "
                 . "OR BankCode LIKE '%" . $searchPart . "%' "
                 . "OR Name1 LIKE '%" . $searchPart . "%' "
-                . "OR Name2 LIKE '%" . $searchPart . "%' "
                 . "OR PaymtPurpose LIKE '%" . $searchPart . "%' "
                 . "OR Value LIKE '%" . $searchPart . "%' "
                 . "OR CategoryName LIKE '%" . $searchPart . "%') ";

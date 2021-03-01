@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
                             echo "<tr><td><b>Entry Date</b></td><td class='word-break'>" . $row["EntryDate"] . "</td></tr>";
                             echo "<tr><td><b>Account Number</b></td><td class='word-break'>" . $row["AcctNo"] . "</td></tr>";
                             echo "<tr><td><b>Bank Code</b></td><td class='word-break'>" . $row["BankCode"] . "</td></tr>";
-                            echo "<tr><td><b>Name</b></td><td class='word-break'>" . $row["Name1"] . " " . $row["Name2"] . "</td></tr>";
+                            echo "<tr><td><b>Name</b></td><td class='word-break'>" . $row["Name1"] . "</td></tr>";
                             echo "<tr><td><b>Payment Purpose (Long)</b></td><td class='word-break'>" . $purpose . "</td></tr>";
                             echo "<tr><td><b>Payment Purpose</b></td><td class='word-break'>" . $purpose_text . "</td></tr>";
                             echo "<tr><td><b>Value</b></td><td class='word-break'>" . bankNumberFormatComma($row["Value"]) . " " . $currency . "</td></tr>";
