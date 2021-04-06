@@ -116,7 +116,6 @@ function categoryDropdown($categories, $categoryID, $categoryName, $categoryColo
 //If the category was changed, write it into the database
 function changeCategory($conn, $newCategory, $purpose) {
     $sql = "UPDATE statements SET CategoryID='" . $newCategory . "' WHERE PaymtPurpose = '" . htmlentities($purpose) . "'"; //SQL statement
-    echo $sql;
 
     if ($conn->query($sql) === TRUE) {
         echo "<p class='successMessage'>Your category was changed.</p>";

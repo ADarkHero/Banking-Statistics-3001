@@ -46,15 +46,16 @@ function readAmazonCC($filename, $path, $category, $conn){
             $priceCC = doubleval(str_replace(",", ".", $data[8])) * -1;
             
             $row++;
-            $sql = "INSERT INTO statements (AcctNo, EntryDate, ValueDate, Name1, PaymtPurpose, Value, CategoryID) " .
+            $sql = "INSERT INTO statements (AcctNo, EntryDate, Name1, PaymtPurpose, Value, CategoryID) " .
                     "VALUES ( " .
                     "\"" . $data[0] . "\", " .
                     "\"" . date("Y-m-d", strtotime($data[1])) . "\", " .
-                    "\"" . date("Y-m-d", strtotime($data[2])) . "\", " .
                     "\"" . $data[3] . "\", " .
                     "\"" . $data[3] . " ~ " . $data[1] . " ~ " . $data[8] . " &euro;\", " .
                     "\"" . $priceCC . "\", " .
                     $category . " )";
+					
+					//echo $sql;
 
             //Only import, if it's an actual transaction
             if($data[8] != null && $data[8] != "" && $data[8] != "0" && $data[8] != "0,00" && $data[8] != "Betrag in EUR"){
@@ -71,5 +72,8 @@ function readAmazonCC($filename, $path, $category, $conn){
         
         fclose($handle); //Close the file
     }
+	else{
+		echo "File is not readable.";
+	}
   }
 ?>
