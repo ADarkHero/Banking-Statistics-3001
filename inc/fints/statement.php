@@ -14,9 +14,8 @@ try {
     $accounts = $fints->getSEPAAccounts();
 
     $fints->setTANMechanism(901); //901 -> Mobile TAN
-
     $oneAccount = $accounts[0];
-    $from = new \DateTime(date('Y-m-d', strtotime("-90 days")));
+    $from = new \DateTime($lastDBUpdate);
     $to = new \DateTime();
     $soa = $fints->getStatementOfAccount($oneAccount, $from, $to);
 
@@ -59,7 +58,7 @@ for ($i = 0; $i < sizeof($accounts); $i++) {
             $amnt = floatval($transaction->getAmount());
             if ($transaction->getCreditDebit() == "debit") {
                 $amnt *= -1;
-            }
+            }			
 
             $sql .= "INSERT INTO statements (EntryDate, Value, AcctNo, BankCode, Name1, PaymtPurpose)"
                     . " VALUES ("

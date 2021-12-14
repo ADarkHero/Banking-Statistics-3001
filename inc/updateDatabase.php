@@ -33,12 +33,19 @@ if (!isSet($newEntriesCounter)) {
   Success Message
  * ****************** */
 if (isSet($_POST["updateDB"])) {
+	
+	
     if ($newEntriesCounter > 0) {
         echo "<span class='newEntries inline'><b class='successMessage'>" . $newEntriesCounter . "</b> new transaction";
         if ($newEntriesCounter !== 1) {
             echo "s";
         }
         echo " got inserted into the database!</span>";
+		
+		$sql = "UPDATE settings SET SettingValue = '" . date("Y-m-d") . "' WHERE SettingID = 3";
+		if ($conn->query($sql) === TRUE) {
+			$newEntriesCounter++;
+		}
         
         //Redirect to the statement page, if new entries got inserted
         ?>
