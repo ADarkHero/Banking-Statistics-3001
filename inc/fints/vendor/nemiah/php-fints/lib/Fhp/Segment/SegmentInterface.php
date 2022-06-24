@@ -2,28 +2,19 @@
 
 namespace Fhp\Segment;
 
-/**
- * Interface SegmentInterface
- * @package Fhp\Segment
- */
 interface SegmentInterface
 {
     /**
      * Returns string representation of object.
-     *
-     * @return string
      */
-    public function __toString();
+    public function __toString(): string;
 
     /**
      * Gets the name of the segment.
-     *
-     * @return string
      */
-    public function getName();
+    public function getName(): string;
 
-    /**
-     * @return int
-     */
-    public function getSegmentNumber();
+    public function getVersion(): int;
+
+    public function getSegmentNumber(): int;
 }

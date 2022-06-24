@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Fhp\Segment;
-
 
 class Segmentkopf extends BaseDeg
 {
     /**
-     * The name/type of the segment, e.g. "HITANS", corresponding to {@link SegmentDescriptor#kennung}.
+     * The name/type of the segment, e.g. "HITANS", corresponding to {@link SegmentDescriptor::$kennung}.
      * Max length: 6
      * @var string
      */
@@ -16,20 +14,20 @@ class Segmentkopf extends BaseDeg
     /**
      * A number to refer to the segment within a message. Similar to an index, but they don't technically have to be
      * consecutive within a message.
-     * @var integer
+     * @var int
      */
     public $segmentnummer;
 
     /**
-     * Version of the segment, corresponding to {@link SegmentDescriptor#version}.
-     * @var integer
+     * Version of the segment, corresponding to {@link SegmentDescriptor::$version}.
+     * @var int
      */
     public $segmentversion;
 
     /**
      * Not allowed in requests, optionally present in responses.
-     * In a response message, this refers to the {@link #segmentnummer} of a segment in the request message.
-     * @var integer|null
+     * In a response message, this refers to the {@link $segmentnummer} of a segment in the request message.
+     * @var int|null
      */
     public $bezugselement;
 }

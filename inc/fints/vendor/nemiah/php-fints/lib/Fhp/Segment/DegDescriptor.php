@@ -3,26 +3,21 @@
 namespace Fhp\Segment;
 
 /**
- * Class SegmentDescriptor
- *
- * Contains meta information about a data elemnt group, i.e. anything that can be statically known about a sub-class of
+ * Contains meta information about a data element group, i.e. anything that can be statically known about a sub-class of
  * {@link BaseDeg} through reflection.
- *
- * @package Fhp\Segment
  */
 class DegDescriptor extends BaseDescriptor
 {
-
     /** @var DegDescriptor[] */
-    private static $descriptors;
+    private static $descriptors = [];
 
     /**
      * @param string $class The name of a sub-class of {@link BaseDeg}.
      * @return DegDescriptor The descriptor for the class.
      */
-    public static function get($class)
+    public static function get(string $class): DegDescriptor
     {
-        if (!isset(static::$descriptors[$class])) {
+        if (!array_key_exists($class, static::$descriptors)) {
             static::$descriptors[$class] = new DegDescriptor($class);
         }
         return static::$descriptors[$class];
@@ -32,7 +27,7 @@ class DegDescriptor extends BaseDescriptor
      * Please use the factory above.
      * @param string $class The name of a sub-class of {@link BaseDeg}.
      */
-    protected function __construct($class)
+    protected function __construct(string $class)
     {
         $this->class = $class;
         try {

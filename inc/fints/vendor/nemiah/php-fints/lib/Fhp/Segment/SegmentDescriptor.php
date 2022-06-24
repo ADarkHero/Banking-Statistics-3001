@@ -1,30 +1,23 @@
 <?php
 
-
 namespace Fhp\Segment;
 
-
 /**
- * Class SegmentDescriptor
- *
  * Contains meta information about a segment, i.e. anything that can be statically known about a sub-class of
  * {@link BaseSegment} through reflection.
- *
- * @package Fhp\Segment
  */
 class SegmentDescriptor extends BaseDescriptor
 {
-
     /** @var SegmentDescriptor[] */
-    private static $descriptors;
+    private static $descriptors = [];
 
     /**
      * @param string $class The name of a sub-class of {@link BaseSegment}.
      * @return SegmentDescriptor The descriptor for the class.
      */
-    public static function get($class)
+    public static function get(string $class): SegmentDescriptor
     {
-        if (!isset(static::$descriptors[$class])) {
+        if (!array_key_exists($class, static::$descriptors)) {
             static::$descriptors[$class] = new SegmentDescriptor($class);
         }
         return static::$descriptors[$class];
@@ -37,7 +30,7 @@ class SegmentDescriptor extends BaseDescriptor
      * Please use the factory above.
      * @param string $class The name of a sub-class of {@link BaseSegment}.
      */
-    protected function __construct($class)
+    protected function __construct(string $class)
     {
         $this->class = $class;
         try {
@@ -51,7 +44,7 @@ class SegmentDescriptor extends BaseDescriptor
             if (preg_match('/^([A-Z]+)v([0-9]+)$/', $clazz->getShortName(), $match) !== 1) {
                 throw new \InvalidArgumentException("Invalid segment class name: $class");
             }
-            $this->kennung = $match[1];
+            $this->kennung = strval($match[1]);
             $this->version = intval($match[2]);
         } catch (\ReflectionException $e) {
             throw new \RuntimeException($e);
@@ -62,12 +55,10 @@ class SegmentDescriptor extends BaseDescriptor
     {
         parent::validateObject($obj);
         if (!($obj instanceof BaseSegment)) {
-            throw new \InvalidArgumentException("Expected sub-class of BaseSegment, got " . gettype($obj));
+            throw new \InvalidArgumentException('Expected sub-class of BaseSegment, got ' . gettype($obj));
         }
         if ($obj->getName() !== $this->kennung) {
             throw new \InvalidArgumentException("Expected $this->kennung, got " . $obj->getName());
         }
-        DegDescriptor::get(Segmentkopf::class)->validateObject($obj->segmentkopf);
-
     }
 }

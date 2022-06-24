@@ -1,84 +1,66 @@
 <?php
 
-require 'vendor/autoload.php';
-
-use Fhp\FinTs;
-use Fhp\Model\StatementOfAccount\Statement;
-use Fhp\Model\StatementOfAccount\Transaction;
-
-$fints = new FinTs(
-        FHP_BANK_URL, FHP_BANK_PORT, FHP_BANK_CODE, FHP_ONLINE_BANKING_USERNAME, FHP_ONLINE_BANKING_PIN, null, FHP_REGISTRATION_NO, FHP_SOFTWARE_VERSION
-);
-
-try {
-    $accounts = $fints->getSEPAAccounts();
-
-    $fints->setTANMechanism(901); //901 -> Mobile TAN
-    $oneAccount = $accounts[0];
-    $from = new \DateTime($lastDBUpdate);
-    $to = new \DateTime();
-    $soa = $fints->getStatementOfAccount($oneAccount, $from, $to);
-
-    $serialized = serialize($soa);
-
-    if ($soa->isTANRequest()) {
-        file_put_contents("tan.txt", ""); //Clear TAN file
-        //Wait, until TAN is added
-        while (1) {
-            sleep(1);
-            $tan = trim(file_get_contents("inc/fints/tan.txt"));
-            if ($tan == "") {
-                echo "No TAN found, waiting!\n";
-                continue;
-            }
-            break;
-        }
-        $unserialized = unserialize($serialized);
-        $fints = new FinTs(
-                FHP_BANK_URL, FHP_BANK_PORT, FHP_BANK_CODE, FHP_ONLINE_BANKING_USERNAME, FHP_ONLINE_BANKING_PIN, null, FHP_REGISTRATION_NO, FHP_SOFTWARE_VERSION
-        );
-        $soa = $fints->finishStatementOfAccount($unserialized, $oneAccount, $from, $to, $tan);
-
-        $fints->end();
-    }
-} catch (\Exception $ex) {
-    echo 'Sth. went wrong - ' . $ex->getMessage();
-    exit;
-}
-
-
+//Defined in saldo.php
+//$fints = require 'login.php';
 
 $newEntriesCounter = 0; //Counts, how much new entries are being made
-for ($i = 0; $i < sizeof($accounts); $i++) {
-    $soa = $fints->getStatementOfAccount($accounts[$i], $from, $to);
-    foreach ($soa->getStatements() as $statement) {
-        foreach ($statement->getTransactions() as $transaction) {
-            //SQL Statement
-            $sql = "";
-            $amnt = floatval($transaction->getAmount());
-            if ($transaction->getCreditDebit() == "debit") {
-                $amnt *= -1;
-            }			
 
-            $sql .= "INSERT INTO statements (EntryDate, Value, AcctNo, BankCode, Name1, PaymtPurpose)"
-                    . " VALUES ("
-                    . "'" . $transaction->getBookingDate()->format('Y-m-d') . "',"
-                    . "'" . $amnt . "',"
-                    . "'" . $transaction->getAccountNumber() . "',"
-                    . "'" . $transaction->getBankCode() . "',"
-                    . "'" . $transaction->getName() . "',"
-                    . "'" . $transaction->getDescription1() . "'"
-                    . ")";
+try {
+	$getSepaAccounts = \Fhp\Action\GetSEPAAccounts::create();
+	$fints->execute($getSepaAccounts);
+	if ($getSepaAccounts->needsTan()) {
+		handleStrongAuthentication($getSepaAccounts); // See login.php for the implementation.
+	}
+	$oneAccount = $getSepaAccounts->getAccounts()[0];
 
-            //Execute the query. If no error occured (like a duplicate entry), raise the counter.
-            //If there are no new entries: break the loop
-            //Note: The database checks for duplicates. A more effective/faster way should be implemented sometime.
-            if ($conn->query($sql) === TRUE) {
-                $newEntriesCounter++;
-            } else {
-                //Currently buggy?
-                //break 3;
-            }
-        }
-    }
+    $from = new \DateTime($lastDBUpdate);
+    $to = new \DateTime();
+    $getStatement = \Fhp\Action\GetStatementOfAccount::create($oneAccount, $from, $to);
+	$fints->execute($getStatement);
+		
+	if ($getStatement->needsTan()) {
+		handleStrongAuthentication($getStatement); // See login.php for the implementation.
+	}
+
+	$soa = $getStatement->getStatement();
+		
+	foreach ($soa->getStatements() as $statement) {
+		foreach ($statement->getTransactions() as $transaction) {
+			
+			echo 'Amount      : ' . ($transaction->getCreditDebit() == \Fhp\Model\StatementOfAccount\Transaction::CD_DEBIT ? '-' : '') . $transaction->getAmount() . PHP_EOL;
+        echo 'Booking text: ' . $transaction->getBookingText() . PHP_EOL;
+        echo 'Name        : ' . $transaction->getName() . PHP_EOL;
+        echo 'Description : ' . $transaction->getMainDescription() . PHP_EOL;
+        echo 'EREF        : ' . $transaction->getEndToEndID() . PHP_EOL;
+        echo '=======================================' . PHP_EOL . PHP_EOL;
+			
+			//SQL Statement
+			$sql = "";
+			$amnt = floatval(($transaction->getCreditDebit() == \Fhp\Model\StatementOfAccount\Transaction::CD_DEBIT ? '-' : '') . $transaction->getAmount());
+
+			$sql .= "INSERT INTO statements (EntryDate, Value, AcctNo, BankCode, Name1, PaymtPurpose)"
+					. " VALUES ("
+					. "'" . $transaction->getBookingDate()->format('Y-m-d') . "',"
+					. "'" . $amnt . "',"
+					. "'" . $transaction->getAccountNumber() . "',"
+					. "'" . $transaction->getBankCode() . "',"
+					. "'" . $transaction->getName() . "',"
+					. "'" . $transaction->getMainDescription() . "'"
+					. ")";
+
+			//Execute the query. If no error occured (like a duplicate entry), raise the counter.
+			//If there are no new entries: break the loop
+			//Note: The database checks for duplicates. A more effective/faster way should be implemented sometime.
+			if ($conn->query($sql) === TRUE) {
+				$newEntriesCounter++;
+			} else {
+				//Currently buggy?
+				//break 3;
+			}
+		}
+	}
+	
+} catch (\Exception $ex) {
+    echo 'Exception: ' . $ex->getMessage();
+    exit;
 }

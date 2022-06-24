@@ -3,9 +3,10 @@
 namespace Fhp\Segment\HIRMG;
 
 use Fhp\Segment\BaseSegment;
+use Fhp\Segment\HIRMS\FindRueckmeldungTrait;
+use Fhp\Segment\HIRMS\RueckmeldungContainer;
 
 /**
- * Class HIRMGv2
  * Segment: Rückmeldungen zur Gesamtnachricht (Version 2)
  * Sender: Kreditinstitut
  *
@@ -14,11 +15,11 @@ use Fhp\Segment\BaseSegment;
  *
  * @link https://www.hbci-zka.de/dokumente/spezifikation_deutsch/fintsv3/FinTS_3.0_Formals_2017-10-06_final_version.pdf
  * Section B.7.2
- *
- * @package Fhp\Segment\HIRMG
  */
-class HIRMGv2 extends BaseSegment
+class HIRMGv2 extends BaseSegment implements RueckmeldungContainer
 {
-	/** @var \Fhp\Segment\HIRMS\Rueckmeldung[] @Max(99) */
-	public $rueckmeldung;
+    use FindRueckmeldungTrait; // For RueckmeldungContainer.
+
+    /** @var \Fhp\Segment\HIRMS\Rueckmeldung[] @Max(99) */
+    public $rueckmeldung;
 }

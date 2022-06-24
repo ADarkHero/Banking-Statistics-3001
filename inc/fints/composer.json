@@ -1,5 +1,5 @@
 {
     "require": {
-        "nemiah/php-fints": "^1.6"
+        "nemiah/php-fints": "^3.3"
     }
 }

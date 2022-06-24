@@ -2,8 +2,11 @@ language: php
 install: composer install
 script:
   - ./disallowtabs.sh
+  - ./csfixer-check.sh
   - ./phplint.sh ./lib/
   - ./vendor/bin/phpunit
+dist: bionic
 php:
-  - '7.2'
-  - '7.3'
+  - '7.4'
+  - '8.0'
+  - '8.1.0'

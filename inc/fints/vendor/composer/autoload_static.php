@@ -21,6 +21,13 @@ class ComposerStaticInit61d53a12430de145b58569dc0bba1bd8
     );
 
     public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Tests\\Fhp' => 
+            array (
+                0 => __DIR__ . '/..' . '/nemiah/php-fints/lib',
+            ),
+        ),
         'F' => 
         array (
             'Fhp' => 

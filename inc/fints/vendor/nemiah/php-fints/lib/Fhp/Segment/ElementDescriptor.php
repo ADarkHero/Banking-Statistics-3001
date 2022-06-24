@@ -2,14 +2,12 @@
 
 namespace Fhp\Segment;
 
+use Fhp\Syntax\Bin;
+
 /**
- * Class ElementDescriptor
- *
  * Contains information about an element (aka. field) in a segment or Deg.
  *
  * Elements implicitly have version 1.
- *
- * @package Fhp\Segment
  */
 class ElementDescriptor
 {
@@ -29,14 +27,14 @@ class ElementDescriptor
     /**
      * Whether the field must be present (at least once, if repeated) in every segment/Deg instance (false) or can be
      * omitted (true). This is auto-detected from the nullable suffix `|null` in the PHP type.
-     * @var boolean
+     * @var bool
      */
     public $optional = false;
 
     /**
      * Whether the field can have multiple values (if so, this field contains the maximum number of allowed values) or
      * not (if so, the value is zero). This is auto-detected from the array suffix `[]` in the PHP type.
-     * @var integer
+     * @var int
      */
     public $repeated = 0;
 
@@ -47,7 +45,9 @@ class ElementDescriptor
     public function validateField($obj)
     {
         if (!isset($obj->{$this->field})) {
-            if ($this->optional) return;
+            if ($this->optional) {
+                return;
+            }
             throw new \InvalidArgumentException("Missing field $this->field");
         }
         $value = $obj->{$this->field};
@@ -66,7 +66,7 @@ class ElementDescriptor
     /**
      * Maps types declared in a {@}var comment to the return format of `gettype()`.
      */
-    const TYPE_MAP = [
+    public const TYPE_MAP = [
         'int' => 'integer', 'integer' => 'integer',
         'float' => 'double',
         'bool' => 'boolean', 'boolean' => 'boolean',
@@ -75,9 +75,9 @@ class ElementDescriptor
 
     /**
      * @param string $type A potential PHP scalar type.
-     * @return boolean True if parseDataElement() would understand it.
+     * @return bool True if parseDataElement() would understand it.
      */
-    public static function isScalarType($type)
+    public static function isScalarType(string $type): bool
     {
         return array_key_exists($type, static::TYPE_MAP);
     }
@@ -92,16 +92,18 @@ class ElementDescriptor
             $expectedType = static::TYPE_MAP[$this->type];
             $actualType = gettype($value);
             if ($actualType !== $expectedType) {
-                throw new \InvalidArgumentException("Expected $expectedType, got $actualType: $value");
+                throw new \InvalidArgumentException("Expected $expectedType, got $actualType: $value for $this->field");
             }
         } elseif ($this->type instanceof \ReflectionClass) {
             if (!$this->type->isInstance($value)) {
-                throw new \InvalidArgumentException("Expected {$this->type->name}, got $value");
+                throw new \InvalidArgumentException("Expected {$this->type->name}, got $value for $this->field");
             }
             if ($value instanceof BaseSegment || $value instanceof BaseDeg) {
                 $value->validate();
+            } elseif ($value instanceof Bin) {
+                // Nothing to validate on a binary value.
             } else {
-                throw new \AssertionError(); // Violates guarantees of what we put in $this->type.
+                throw new \AssertionError("Unexpected type {$this->type->name}"); // Violates guarantees of what we put in $this->type.
             }
         } else {
             throw new \InvalidArgumentException("Unsupported type: $this->type");

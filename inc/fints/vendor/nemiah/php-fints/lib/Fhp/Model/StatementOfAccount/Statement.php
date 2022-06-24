@@ -2,19 +2,15 @@
 
 namespace Fhp\Model\StatementOfAccount;
 
-/**
- * Class Statement
- * @package Fhp\Model\StatementOfAccount
- */
 class Statement
 {
-    const CD_CREDIT = 'credit';
-    const CD_DEBIT = 'debit';
+    public const CD_CREDIT = 'credit';
+    public const CD_DEBIT = 'debit';
 
     /**
      * @var array of Transaction
      */
-    protected $transactions = array();
+    protected $transactions = [];
 
     /**
      * @var float
@@ -36,23 +32,9 @@ class Statement
      *
      * @return Transaction[]
      */
-    public function getTransactions()
+    public function getTransactions(): array
     {
         return $this->transactions;
-    }
-
-    /**
-     * Set transactions
-     *
-     * @param array $transactions
-     *
-     * @return $this
-     */
-    public function setTransactions(array $transactions = null)
-    {
-        $this->transactions = $transactions;
-
-        return $this;
     }
 
     public function addTransaction(Transaction $transaction)
@@ -62,10 +44,8 @@ class Statement
 
     /**
      * Get startBalance
-     *
-     * @return float
      */
-    public function getStartBalance()
+    public function getStartBalance(): float
     {
         return $this->startBalance;
     }
@@ -73,11 +53,9 @@ class Statement
     /**
      * Set startBalance
      *
-     * @param float $startBalance
-     *
      * @return $this
      */
-    public function setStartBalance($startBalance)
+    public function setStartBalance(float $startBalance)
     {
         $this->startBalance = (float) $startBalance;
 
@@ -86,10 +64,8 @@ class Statement
 
     /**
      * Get creditDebit
-     *
-     * @return string
      */
-    public function getCreditDebit()
+    public function getCreditDebit(): string
     {
         return $this->creditDebit;
     }
@@ -97,11 +73,9 @@ class Statement
     /**
      * Set creditDebit
      *
-     * @param string|null $creditDebit
-     *
      * @return $this
      */
-    public function setCreditDebit($creditDebit)
+    public function setCreditDebit(?string $creditDebit)
     {
         $this->creditDebit = $creditDebit;
 
@@ -110,18 +84,14 @@ class Statement
 
     /**
      * Get date
-     *
-     * @return \DateTime
      */
-    public function getDate()
+    public function getDate(): \DateTime
     {
         return $this->date;
     }
 
     /**
      * Set date
-     *
-     * @param \DateTime $date
      *
      * @return $this
      */

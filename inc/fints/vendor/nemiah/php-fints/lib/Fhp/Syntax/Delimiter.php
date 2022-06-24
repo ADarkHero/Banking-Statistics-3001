@@ -1,11 +1,11 @@
 <?php
 
-
 namespace Fhp\Syntax;
 
 abstract class Delimiter
 {
-    const SEGMENT = "'";
-    const ELEMENT = "+";
-    const GROUP = ":";
+    public const SEGMENT = "'";
+    public const ELEMENT = '+';
+    public const GROUP = ':';
+    public const BINARY = '@';
 }
